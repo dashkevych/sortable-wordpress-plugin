@@ -6,7 +6,7 @@
   "title": "Sortable Container",
   "category": "widgets",
   "icon": "portfolio",
-  "description": "Example static block scaffolded with Create Block tool.",
+  "description": "Container which holds sortable items.",
   "attributes": {
     "isSorted": {
       "type": "boolean",

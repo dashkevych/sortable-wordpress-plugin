@@ -1,10 +1,10 @@
 {
 	"name": "sortable",
-	"version": "0.0.1",
-	"description": "Example static block scaffolded with Create Block tool.",
-	"author": "The WordPress Contributors",
+	"title": "Sortable",
+	"version": "0.0.2",
+	"description": "A simple block that allows to sort its content based on date.",
+	"author": "Taras Dashkevych",
 	"license": "GPL-2.0-or-later",
-	"main": "build/index.js",
 	"scripts": {
 		"build": "wp-scripts build",
 		"format": "wp-scripts format",
@@ -15,6 +15,6 @@
 		"start": "wp-scripts start"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^23.7.2"
+		"@wordpress/scripts": "^24.2.0"
 	}
 }

@@ -15,8 +15,8 @@ import {
 	InnerBlocks,
 	useBlockProps,
 	useInnerBlocksProps,
-    InspectorControls,
-	store as blockEditorStore
+	InspectorControls,
+	store as blockEditorStore,
 } from '@wordpress/block-editor';
 
 /**
@@ -24,11 +24,7 @@ import {
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-components/
  */
-import {
-	DateTimePicker,
-	PanelBody,
-	PanelRow,
-} from '@wordpress/components';
+import { DateTimePicker, PanelBody, PanelRow } from '@wordpress/components';
 
 /**
  * WordPress dependencies.
@@ -56,7 +52,12 @@ import './editor.scss';
  * @constant
  * @type {string[]}
  */
-const ALLOWED_BLOCKS = [ 'core/paragraph', 'core/media-text', 'core/columns' ];
+const ALLOWED_BLOCKS = [
+	'sortable/date',
+	'core/paragraph',
+	'core/media-text',
+	'core/columns',
+];
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -66,17 +67,18 @@ const ALLOWED_BLOCKS = [ 'core/paragraph', 'core/media-text', 'core/columns' ];
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit({
+export default function Edit( {
 	clientId,
 	attributes: { dateTime },
-	setAttributes
-}) {
+	setAttributes,
+} ) {
 	const blockProps = useBlockProps();
 	const { updateBlockAttributes } = useDispatch( blockEditorStore );
 
 	const { rootClientId, hasChildBlocks } = useSelect(
 		( select ) => {
-			const { getBlockRootClientId, getBlockOrder } = select( blockEditorStore );
+			const { getBlockRootClientId, getBlockOrder } =
+				select( blockEditorStore );
 			const rootId = getBlockRootClientId( clientId );
 
 			return {
@@ -89,7 +91,7 @@ export default function Edit({
 
 	// Update date in block.
 	const updateDate = ( value ) => {
-		setAttributes({ dateTime: value });
+		setAttributes( { dateTime: value } );
 
 		// Reset parent block.
 		updateBlockAttributes( rootClientId, {
@@ -99,7 +101,7 @@ export default function Edit({
 
 	useEffect( () => {
 		if ( ! dateTime ) {
-			setAttributes({ dateTime: new Date() });
+			setAttributes( { dateTime: new Date() } );
 
 			// Reset parent block.
 			updateBlockAttributes( rootClientId, {
@@ -112,8 +114,8 @@ export default function Edit({
 		allowedBlocks: ALLOWED_BLOCKS,
 		orientation: 'horizontal',
 		renderAppender: hasChildBlocks
-				? undefined
-				: InnerBlocks.ButtonBlockAppender,
+			? undefined
+			: InnerBlocks.ButtonBlockAppender,
 	} );
 
 	return (

@@ -1,29 +1,30 @@
 === Sortable Block ===
-Contributors:      The WordPress Contributors
-Tags:              block
-Tested up to:      6.0
-Stable tag:        0.1.0
+Contributors:      Taras Dashkevych
+Tags:              block, sorting, sort
+Tested up to:      6.1
+Stable tag:        0.0.2
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
-Example static block scaffolded with Create Block tool.
+A simple block that allows to sort its content based on selected date.
 
 == Description ==
 
-This is the long description. No limit, and you can use Markdown (as well as in the following sections).
+The purpose of the Sortable Block plugin is to provide a way to sort specific sections on the page based on set dates.
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+=== Stay Connected ===
+
+* [Follow on Twitter](https://twitter.com/themesharbor)
+* [View on GitHub](https://github.com/ThemesHarbor/sortable-wordpress-plugin)
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
-
-e.g.
-
-1. Upload the plugin files to the `/wp-content/plugins/sortable-block` directory, or install the plugin through the WordPress plugins screen directly.
-1. Activate the plugin through the 'Plugins' screen in WordPress
-
+1. You have a couple options:
+	* Go to Plugins &rarr; Add New and search for "Sortable Block". Once found, click "Install".
+	* Download the Sortable Block plugin from wordpress.org and make sure the folder is zipped. Then upload it via Plugins &rarr; Add New &rarr; Upload.
+    * Open the block inserter within the Block Editor and search for "icon". The plugin should appear and allow you to install it directly. Skip steps 2 and 3.
+2. Activate the plugin through the 'Plugins' screen in WordPress.
+3. Search for the block within the Block Editor and begin using.
 
 == Frequently Asked Questions ==
 
@@ -45,11 +46,11 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
-= 0.1.0 =
-* Release
+= 0.0.2 - Octobrt 1, 2022 =
 
-== Arbitrary section ==
+* Add: Sortable Date block to display a set date from Sortable Entry block.
+* Update:
 
-You may provide arbitrary sections, in the same format as the ones above. This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation." Arbitrary sections will be shown below the built-in sections outlined above.
+= 0.0.1 =
+
+* Release initial version of the plugin.

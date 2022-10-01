@@ -15,8 +15,8 @@ import {
 	InnerBlocks,
 	useBlockProps,
 	useInnerBlocksProps,
-	store as blockEditorStore
- } from '@wordpress/block-editor';
+	store as blockEditorStore,
+} from '@wordpress/block-editor';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -32,8 +32,8 @@ import './editor.scss';
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-element/
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/
  */
- import { useEffect } from '@wordpress/element';
- import { useSelect, useDispatch } from '@wordpress/data';
+import { useEffect } from '@wordpress/element';
+import { useSelect, useDispatch } from '@wordpress/data';
 
 /**
  * Allowed blocks constant is passed to InnerBlocks precisely as specified here.
@@ -54,7 +54,7 @@ const ALLOWED_BLOCKS = [ 'sortable/entry' ];
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit({ clientId, attributes, setAttributes }) {
+export default function Edit( { clientId, attributes, setAttributes } ) {
 	const blockProps = useBlockProps();
 	const { replaceInnerBlocks } = useDispatch( blockEditorStore );
 	const { childBlocks } = useSelect(
@@ -70,21 +70,21 @@ export default function Edit({ clientId, attributes, setAttributes }) {
 
 	useEffect( () => {
 		if ( ! attributes.isSorted && childBlocks.length > 0 ) {
-			let temp = [...childBlocks].sort(
-				(blockA, blockB) => {
-					const result = Number( new Date( blockB.attributes.dateTime ) ) - Number( new Date( blockA.attributes.dateTime ) );
+			let temp = [ ...childBlocks ].sort( ( blockA, blockB ) => {
+				const result =
+					Number( new Date( blockB.attributes.dateTime ) ) -
+					Number( new Date( blockA.attributes.dateTime ) );
 
-					return result;
-				}
-			);
+				return result;
+			} );
 
-			setAttributes({
+			setAttributes( {
 				isSorted: true,
-			});
+			} );
 
-			replaceInnerBlocks(clientId, temp, false);
+			replaceInnerBlocks( clientId, temp, false );
 		}
-	}, [attributes.isSorted] );
+	}, [ attributes.isSorted ] );
 
 	const innerBlocksProps = useInnerBlocksProps( blockProps, {
 		allowedBlocks: ALLOWED_BLOCKS,

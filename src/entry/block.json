@@ -6,7 +6,7 @@
 	"title": "Sortable Entry",
 	"category": "widgets",
 	"icon": "media-document",
-	"description": "Example static block scaffolded with Create Block tool.",
+	"description": "Sortable item.",
 	"parent": [ "sortable/container" ],
 	"supports": {
 		"html": false
@@ -15,6 +15,9 @@
 		"dateTime": {
 			"type": "string"
 		}
+	},
+	"providesContext": {
+		"sortable/entryDateTime": "dateTime"
 	},
 	"textdomain": "sortable",
 	"editorScript": "file:./index.js",
