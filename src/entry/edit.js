@@ -56,6 +56,7 @@ const ALLOWED_BLOCKS = [
 	'sortable/date',
 	'core/paragraph',
 	'core/media-text',
+	'core/group',
 	'core/columns',
 ];
 
