@@ -1,3 +1,5 @@
+import classnames from 'classnames';
+
 /**
  * React hook that is used to mark the block wrapper element.
  * It provides all the necessary props like the class name.
@@ -15,8 +17,14 @@ import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
  *
  * @return {WPElement} Element to render.
  */
-export default function save() {
-	const innerBlocksProps = useInnerBlocksProps.save( useBlockProps.save() );
+export default function save({ attributes }) {
+	const innerBlocksProps = useInnerBlocksProps.save( useBlockProps.save({
+		className: classnames( {
+			'is-list': attributes.layout === 'list',
+			'is-grid': attributes.layout === 'grid',
+			[ `columns-${ attributes.columns }` ]: attributes.layout === 'grid',
+		} )
+	}) );
 
 	return <div { ...innerBlocksProps } />;
 }

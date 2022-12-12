@@ -1,3 +1,5 @@
+import classnames from 'classnames';
+
 /**
  * Retrieves the translation of text.
  *
@@ -15,6 +17,8 @@ import {
 	InnerBlocks,
 	useBlockProps,
 	useInnerBlocksProps,
+	InspectorControls,
+	BlockControls,
 	store as blockEditorStore,
 } from '@wordpress/block-editor';
 
@@ -34,6 +38,15 @@ import './editor.scss';
  */
 import { useEffect } from '@wordpress/element';
 import { useSelect, useDispatch } from '@wordpress/data';
+import {
+	RangeControl,
+	PanelBody,
+	ToolbarGroup
+} from '@wordpress/components';
+import {
+	list,
+	grid
+} from '@wordpress/icons';
 
 /**
  * Allowed blocks constant is passed to InnerBlocks precisely as specified here.
@@ -55,7 +68,13 @@ const ALLOWED_BLOCKS = [ 'sortable/entry' ];
  * @return {WPElement} Element to render.
  */
 export default function Edit( { clientId, attributes, setAttributes } ) {
-	const blockProps = useBlockProps();
+	const blockProps = useBlockProps( {
+		className: classnames( {
+			'is-list': attributes.layout === 'list',
+			'is-grid': attributes.layout === 'grid',
+			[ `columns-${ attributes.columns }` ]: attributes.layout === 'grid',
+		} ),
+	} );
 	const { replaceInnerBlocks } = useDispatch( blockEditorStore );
 	const { childBlocks } = useSelect(
 		( select ) => {
@@ -86,11 +105,50 @@ export default function Edit( { clientId, attributes, setAttributes } ) {
 		}
 	}, [ attributes.isSorted ] );
 
+	const layoutControls = [
+		{
+			icon: list,
+			title: __( 'List view' ),
+			onClick: () => setAttributes( { layout: 'list' } ),
+			isActive: attributes.layout === 'list',
+		},
+		{
+			icon: grid,
+			title: __( 'Grid view' ),
+			onClick: () => setAttributes( { layout: 'grid' } ),
+			isActive: attributes.layout === 'grid',
+		},
+	];
+
 	const innerBlocksProps = useInnerBlocksProps( blockProps, {
 		allowedBlocks: ALLOWED_BLOCKS,
 		orientation: 'horizontal',
-		renderAppender: InnerBlocks.ButtonBlockAppender,
+		renderAppender: InnerBlocks.ButtonBlockAppender
 	} );
 
-	return <div { ...innerBlocksProps } />;
+	return (
+		<>
+			<InspectorControls>
+				{ attributes.layout === 'grid' && (
+					<PanelBody title={ __( 'Grid settings' ) }>
+						<RangeControl
+							__nextHasNoMarginBottom
+							label={ __( 'Columns' ) }
+							value={ attributes.columns }
+							onChange={ ( value ) =>
+								setAttributes( { columns: value } )
+							}
+							min={ 2 }
+							max={ 6 }
+							required
+						/>
+					</PanelBody>
+				) }
+			</InspectorControls>
+			<BlockControls>
+				<ToolbarGroup controls={ layoutControls } />
+			</BlockControls>
+			<div { ...innerBlocksProps } />
+		</>
+	);
 }

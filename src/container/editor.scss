@@ -3,6 +3,12 @@
  */
 
 .wp-block-sortable-container {
+	&.is-grid {
+		& > .block-list-appender {
+			grid-column: 1 / -1;
+		}
+	}
+
 	& > .block-list-appender {
 		position: relative;
 		right: auto;
