@@ -49,7 +49,7 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 = 0.0.2 - Octobrt 1, 2022 =
 
 * Add: Sortable Date block to display a set date from Sortable Entry block.
-* Update:
+* Update: information in Read Me file.
 
 = 0.0.1 =
 

@@ -4,6 +4,9 @@
 /**
  * The following styles get applied inside the editor only.
  */
+.wp-block-sortable-container.is-grid > .block-list-appender {
+  grid-column: 1/-1;
+}
 .wp-block-sortable-container > .block-list-appender {
   position: relative;
   right: auto;
@@ -13,6 +16,8 @@
 }
 .wp-block-sortable-container > .block-list-appender .block-editor-button-block-appender {
   flex-direction: row;
+  color: currentColor;
+  box-shadow: inset 0 0 0 1px currentColor;
 }
 .wp-block-sortable-container > .block-list-appender .block-editor-button-block-appender::after {
   content: attr(aria-label);

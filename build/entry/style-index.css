@@ -7,5 +7,13 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+.wp-block-sortable-entry > :first-child {
+  -webkit-margin-before: 0;
+          margin-block-start: 0;
+}
+.wp-block-sortable-entry > :last-child {
+  -webkit-margin-after: 0;
+          margin-block-end: 0;
+}
 
 /*# sourceMappingURL=style-index.css.map*/
