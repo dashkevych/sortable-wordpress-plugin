@@ -6,7 +6,7 @@
   "title": "Sortable Entry",
   "category": "widgets",
   "icon": "media-document",
-  "description": "Sortable item.",
+  "description": "An entry that needs to be sorted.",
   "parent": [
     "sortable/container"
   ],

@@ -3,10 +3,10 @@
 	"apiVersion": 2,
 	"name": "sortable/container",
 	"version": "0.1.0",
-	"title": "Sortable Container",
+	"title": "Sortable",
 	"category": "widgets",
 	"icon": "portfolio",
-	"description": "Container which holds sortable items.",
+	"description": "A sortable container which holds sortable items.",
 	"attributes": {
 		"isSorted": {
 			"type": "boolean",

@@ -1,10 +1,10 @@
 <?php
 /**
  * Plugin Name:       Sortable Block
- * Description:       A simple block that allows you to sort content pieces by date.
- * Requires at least: 6.0
- * Requires PHP:      7.0
- * Version:           0.0.1
+ * Description:       A simple block to sort content by date.
+ * Requires at least: 6.1
+ * Requires PHP:      7.4
+ * Version:           0.0.3
  * Author:            Taras Dashkevych
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html

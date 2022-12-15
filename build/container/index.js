@@ -513,7 +513,7 @@ module.exports = window["wp"]["primitives"];
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"sortable/container","version":"0.1.0","title":"Sortable Container","category":"widgets","icon":"portfolio","description":"Container which holds sortable items.","attributes":{"isSorted":{"type":"boolean","default":true},"layout":{"type":"string","default":"list"},"columns":{"type":"number","default":3}},"supports":{"anchor":true,"align":true,"html":false,"color":{"gradients":true,"link":true,"__experimentalDefaultControls":{"background":true,"text":true}},"spacing":{"margin":true,"padding":true}},"textdomain":"sortable","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"sortable/container","version":"0.1.0","title":"Sortable","category":"widgets","icon":"portfolio","description":"A sortable container which holds sortable items.","attributes":{"isSorted":{"type":"boolean","default":true},"layout":{"type":"string","default":"list"},"columns":{"type":"number","default":3}},"supports":{"anchor":true,"align":true,"html":false,"color":{"gradients":true,"link":true,"__experimentalDefaultControls":{"background":true,"text":true}},"spacing":{"margin":true,"padding":true}},"textdomain":"sortable","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 

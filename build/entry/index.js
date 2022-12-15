@@ -333,7 +333,7 @@ module.exports = window["wp"]["i18n"];
   \******************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"sortable/entry","version":"0.1.0","title":"Sortable Entry","category":"widgets","icon":"media-document","description":"Sortable item.","parent":["sortable/container"],"supports":{"html":false},"attributes":{"dateTime":{"type":"string"}},"providesContext":{"sortable/entryDateTime":"dateTime"},"textdomain":"sortable","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"sortable/entry","version":"0.1.0","title":"Sortable Entry","category":"widgets","icon":"media-document","description":"An entry that needs to be sorted.","parent":["sortable/container"],"supports":{"html":false},"attributes":{"dateTime":{"type":"string"}},"providesContext":{"sortable/entryDateTime":"dateTime"},"textdomain":"sortable","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 

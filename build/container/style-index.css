@@ -7,6 +7,11 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+.wp-block-sortable-container.is-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wp--style--block-gap);
+}
 .wp-block-sortable-container.is-grid {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
