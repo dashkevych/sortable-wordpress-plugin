@@ -17,14 +17,17 @@ import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
  *
  * @return {WPElement} Element to render.
  */
-export default function save({ attributes }) {
-	const innerBlocksProps = useInnerBlocksProps.save( useBlockProps.save({
-		className: classnames( {
-			'is-list': attributes.layout === 'list',
-			'is-grid': attributes.layout === 'grid',
-			[ `columns-${ attributes.columns }` ]: attributes.layout === 'grid',
+export default function save( { attributes } ) {
+	const innerBlocksProps = useInnerBlocksProps.save(
+		useBlockProps.save( {
+			className: classnames( {
+				'is-list': attributes.layout === 'list',
+				'is-grid': attributes.layout === 'grid',
+				[ `columns-${ attributes.columns }` ]:
+					attributes.layout === 'grid',
+			} ),
 		} )
-	}) );
+	);
 
 	return <div { ...innerBlocksProps } />;
 }

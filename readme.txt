@@ -46,10 +46,12 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
-= 0.0.3 - December 15, 2022 =
+= 0.0.3 - December 15, 2022
+* Add: support for alignment and grid layout;
+* Update: allow Group block in Sortable Entry;
+* Fix: button contrast issue in Sortable Container
 
 = 0.0.2 - October 1, 2022 =
-
 * Add: Sortable Date block to display a set date from Sortable Entry block.
 * Update: information in Read Me file.
 

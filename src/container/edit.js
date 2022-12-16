@@ -38,15 +38,8 @@ import './editor.scss';
  */
 import { useEffect } from '@wordpress/element';
 import { useSelect, useDispatch } from '@wordpress/data';
-import {
-	RangeControl,
-	PanelBody,
-	ToolbarGroup
-} from '@wordpress/components';
-import {
-	list,
-	grid
-} from '@wordpress/icons';
+import { RangeControl, PanelBody, ToolbarGroup } from '@wordpress/components';
+import { list, grid } from '@wordpress/icons';
 
 /**
  * Allowed blocks constant is passed to InnerBlocks precisely as specified here.
@@ -123,7 +116,7 @@ export default function Edit( { clientId, attributes, setAttributes } ) {
 	const innerBlocksProps = useInnerBlocksProps( blockProps, {
 		allowedBlocks: ALLOWED_BLOCKS,
 		orientation: 'horizontal',
-		renderAppender: InnerBlocks.ButtonBlockAppender
+		renderAppender: InnerBlocks.ButtonBlockAppender,
 	} );
 
 	return (
