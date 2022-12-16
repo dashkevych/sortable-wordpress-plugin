@@ -42,9 +42,12 @@ function render_block_sortable_date( $attributes, $content, $block ) {
 		return '';
 	}
 
-	$unformatted_date   = date_i18n( 'c', strtotime( $block->context['sortable/entryDateTime'] ) );
-	$formatted_date     = date_i18n( get_option( 'date_format' ), strtotime( $block->context['sortable/entryDateTime'] ) );
-	$wrapper_attributes = get_block_wrapper_attributes();
+	$date_unix_timestamp = strtotime( $block->context['sortable/entryDateTime'] );
+	$unformatted_date    = wp_date( 'c', $date_unix_timestamp );
+	$formatted_date      = wp_date( get_option( 'date_format' ), $date_unix_timestamp );
+	$wrapper_attributes  = get_block_wrapper_attributes();
+
+	//var_dump($block->context['sortable/entryDateTime']);
 
 	return sprintf(
 		'<div %1$s><time datetime="%2$s">%3$s</time></div>',

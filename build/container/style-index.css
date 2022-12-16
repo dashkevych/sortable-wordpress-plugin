@@ -1,1 +1,37 @@
-.wp-block-sortable-container.is-list{display:flex;flex-direction:column;gap:var(--wp--style--block-gap)}.wp-block-sortable-container.is-grid{display:grid;gap:var(--wp--style--block-gap);grid-template-columns:repeat(1,minmax(0,1fr))}@media(min-width:782px){.wp-block-sortable-container.is-grid.columns-2{grid-template-columns:repeat(2,minmax(0,1fr))}.wp-block-sortable-container.is-grid.columns-3{grid-template-columns:repeat(3,minmax(0,1fr))}.wp-block-sortable-container.is-grid.columns-4{grid-template-columns:repeat(4,minmax(0,1fr))}.wp-block-sortable-container.is-grid.columns-5{grid-template-columns:repeat(5,minmax(0,1fr))}.wp-block-sortable-container.is-grid.columns-6{grid-template-columns:repeat(6,minmax(0,1fr))}}
+/*!*************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/container/style.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied both on the front of a website
+ * and in the editor.
+ */
+.wp-block-sortable-container.is-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wp--style--block-gap);
+}
+.wp-block-sortable-container.is-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: var(--wp--style--block-gap);
+}
+
+@media (min-width: 782px) {
+  .wp-block-sortable-container.is-grid.columns-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .wp-block-sortable-container.is-grid.columns-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .wp-block-sortable-container.is-grid.columns-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .wp-block-sortable-container.is-grid.columns-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  .wp-block-sortable-container.is-grid.columns-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+/*# sourceMappingURL=style-index.css.map*/

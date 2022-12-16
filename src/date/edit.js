@@ -11,6 +11,7 @@ import { __ } from '@wordpress/i18n';
 import { useEntityProp } from '@wordpress/core-data';
 import {
 	dateI18n,
+	getDate,
 	__experimentalGetSettings as getDateSettings,
 } from '@wordpress/date';
 
@@ -46,9 +47,11 @@ export default function Edit( { context } ) {
 		'date_format'
 	);
 
+	const date = getDate( context[ 'sortable/entryDateTime' ] );
+
 	let entryDate = (
-		<time dateTime={ dateI18n( 'c', context[ 'sortable/entryDateTime' ] ) }>
-			{ dateI18n( siteFormat, context[ 'sortable/entryDateTime' ] ) }
+		<time dateTime={ dateI18n( 'c', date ) }>
+			{ dateI18n( siteFormat, date ) }
 		</time>
 	);
 

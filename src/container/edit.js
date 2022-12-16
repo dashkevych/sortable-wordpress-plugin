@@ -81,7 +81,7 @@ export default function Edit( { clientId, attributes, setAttributes } ) {
 	);
 
 	useEffect( () => {
-		if ( ! attributes.isSorted && childBlocks.length > 0 ) {
+		if ( ! attributes.orderBy && childBlocks.length > 0 ) {
 			let temp = [ ...childBlocks ].sort( ( blockA, blockB ) => {
 				const result =
 					Number( new Date( blockB.attributes.dateTime ) ) -
@@ -91,12 +91,12 @@ export default function Edit( { clientId, attributes, setAttributes } ) {
 			} );
 
 			setAttributes( {
-				isSorted: true,
+				orderBy: "date",
 			} );
 
 			replaceInnerBlocks( clientId, temp, false );
 		}
-	}, [ attributes.isSorted ] );
+	}, [ attributes.orderBy ] );
 
 	const layoutControls = [
 		{

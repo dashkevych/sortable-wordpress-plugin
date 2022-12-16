@@ -78,8 +78,7 @@ export default function Edit( {
 
 	const { rootClientId, hasChildBlocks } = useSelect(
 		( select ) => {
-			const { getBlockRootClientId, getBlockOrder } =
-				select( blockEditorStore );
+			const { getBlockRootClientId, getBlockOrder } = select( blockEditorStore );
 			const rootId = getBlockRootClientId( clientId );
 
 			return {
@@ -94,9 +93,9 @@ export default function Edit( {
 	const updateDate = ( value ) => {
 		setAttributes( { dateTime: value } );
 
-		// Reset parent block.
+		// Reset parent block sorting.
 		updateBlockAttributes( rootClientId, {
-			isSorted: false,
+			orderBy: "",
 		} );
 	};
 
@@ -104,9 +103,9 @@ export default function Edit( {
 		if ( ! dateTime ) {
 			setAttributes( { dateTime: new Date() } );
 
-			// Reset parent block.
+			// Reset parent block sorting.
 			updateBlockAttributes( rootClientId, {
-				isSorted: false,
+				orderBy: "",
 			} );
 		}
 	}, [ dateTime ] );

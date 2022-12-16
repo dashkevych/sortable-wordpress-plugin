@@ -23,8 +23,7 @@ export default function save( { attributes } ) {
 			className: classnames( {
 				'is-list': attributes.layout === 'list',
 				'is-grid': attributes.layout === 'grid',
-				[ `columns-${ attributes.columns }` ]:
-					attributes.layout === 'grid',
+				[ `columns-${ attributes.columns }` ]: attributes.layout === 'grid',
 			} ),
 		} )
 	);

@@ -8,10 +8,6 @@
   "icon": "portfolio",
   "description": "A sortable container which holds sortable items.",
   "attributes": {
-    "isSorted": {
-      "type": "boolean",
-      "default": true
-    },
     "layout": {
       "type": "string",
       "default": "list"
@@ -19,6 +15,10 @@
     "columns": {
       "type": "number",
       "default": 3
+    },
+    "orderBy": {
+      "type": "string",
+      "default": "date"
     }
   },
   "supports": {
