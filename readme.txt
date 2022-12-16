@@ -46,6 +46,11 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 0.0.4 - December 15, 2022
+* Update: formatting;
+* Update: information about sorting in main container;
+* Fix: date issue in editor;
+
 = 0.0.3 - December 15, 2022
 * Add: support for alignment and grid layout;
 * Update: allow Group block in Sortable Entry;
