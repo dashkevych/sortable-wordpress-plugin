@@ -10,18 +10,18 @@ A simple block that allows to sort its content based on selected date.
 
 == Description ==
 
-The purpose of the Sortable Block plugin is to provide a way to sort specific sections on the page based on set dates.
+The purpose of the Sortable Block plugin is to provide a way to sort sections on the page based on set dates.
 
 === Stay Connected ===
 
-* [Follow on Twitter](https://twitter.com/themesharbor)
-* [View on GitHub](https://github.com/ThemesHarbor/sortable-wordpress-plugin)
+* [Follow on Twitter](https://twitter.com/themesharbor/)
+* [Follow on Instagram](https://www.instagram.com/themesharbor/)
 
 == Installation ==
 
 1. You have a couple options:
 	* Go to Plugins &rarr; Add New and search for "Sortable Block". Once found, click "Install".
-	* Download the Sortable Block plugin from wordpress.org and make sure the folder is zipped. Then upload it via Plugins &rarr; Add New &rarr; Upload.
+	* Download the Sortable Block plugin from WordPress.org and make sure the folder is zipped. Then upload it via Plugins &rarr; Add New &rarr; Upload.
     * Open the block inserter within the Block Editor and search for "icon". The plugin should appear and allow you to install it directly. Skip steps 2 and 3.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
 3. Search for the block within the Block Editor and begin using.

@@ -72,7 +72,7 @@ __webpack_require__.r(__webpack_exports__);
  * @constant
  * @type {string[]}
  */
-const ALLOWED_BLOCKS = ['sortable/date', 'core/paragraph', 'core/media-text', 'core/group', 'core/columns'];
+const ALLOWED_BLOCKS = ['sortable/date', 'core/heading', 'core/paragraph', 'core/media-text', 'core/group', 'core/columns'];
 
 /**
  * The edit function describes the structure of your block in the context of the

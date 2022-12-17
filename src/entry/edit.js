@@ -54,6 +54,7 @@ import './editor.scss';
  */
 const ALLOWED_BLOCKS = [
 	'sortable/date',
+	'core/heading',
 	'core/paragraph',
 	'core/media-text',
 	'core/group',

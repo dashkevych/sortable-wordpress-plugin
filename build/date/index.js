@@ -68,7 +68,6 @@ function Edit(_ref) {
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)();
   const [siteFormat = (0,_wordpress_date__WEBPACK_IMPORTED_MODULE_3__.__experimentalGetSettings)().formats.date] = (0,_wordpress_core_data__WEBPACK_IMPORTED_MODULE_2__.useEntityProp)('root', 'site', 'date_format');
   const date = (0,_wordpress_date__WEBPACK_IMPORTED_MODULE_3__.getDate)(context['sortable/entryDateTime']);
-  console.log(date);
   let entryDate = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("time", {
     dateTime: (0,_wordpress_date__WEBPACK_IMPORTED_MODULE_3__.dateI18n)('c', date)
   }, (0,_wordpress_date__WEBPACK_IMPORTED_MODULE_3__.dateI18n)(siteFormat, date));
