@@ -1,10 +1,14 @@
 === Sortable Block ===
-Contributors:      Taras Dashkevych
-Tags:              block, sorting, sort
+Contributors:      taskotr
+Author URI:        https://themesharbor.com/
+Tags:              block, sorting, sort, blocks, filter
 Tested up to:      6.1
-Stable tag:        0.0.2
-License:           GPL-2.0-or-later
-License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+Requires at Least: 6.1
+Requires PHP:      7.4
+Stable tag:        1.0.0
+Text Domain:       sortable
+License:           GPLv2 or later
+License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 
 A simple block that allows to sort its content based on selected date.
 
@@ -28,17 +32,30 @@ The purpose of the Sortable Block plugin is to provide a way to sort sections on
 
 == Frequently Asked Questions ==
 
-= A question that someone might have =
+= How to sort blocks? =
 
-An answer to that question.
+1. Add Sortable block to content area in Block editor. This is main container for items to sort.
+2. Inside Sortable block, add Sortable Entry.
+3. Each Sortable Entry comes with date option. To change date option, select Sortable Entry within List View, and make changes in Date Settings in Block sidebar.
 
-= What about foo bar? =
+= What blocks to use inside Sortable? =
 
-Answer to foo bar dilemma.
+Sortable block supports only Sortable Entry block as inner content. It's not possible to add any other blocks to main container of Sortable block.
+
+= What blocks to use inside Sortable Entry? =
+
+Sortable Entry block supports following blocks: Sortable Date, Heading, Paragraph, Media-Text, Group, Columns.
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
+1. Preview of Sortable Entry inside Sortable, shown in List View.
+
+2. Preview of Block sidebar with active Date Settings for Sortable Entry.
+
+3. Preview of Sortable Entry inside Sortable with grid layout.
+
+
+This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
 the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
 directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
 (or jpg, jpeg, gif).
