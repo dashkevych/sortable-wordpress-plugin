@@ -38,6 +38,11 @@ The purpose of the Sortable Block plugin is to provide a way to sort sections on
 2. Inside Sortable block, add Sortable Entry.
 3. Each Sortable Entry comes with date option. To change date option, select Sortable Entry within List View, and make changes in Date Settings in Block sidebar.
 
+= How to change layout? =
+
+1. In Block editor, select Sortable Entry within List View.
+2. Within block toolbar, click on eather List view or Grid view icon.
+
 = What blocks to use inside Sortable? =
 
 Sortable block supports only Sortable Entry block as inner content. It's not possible to add any other blocks to main container of Sortable block.
@@ -54,12 +59,7 @@ Sortable Entry block supports following blocks: Sortable Date, Heading, Paragrap
 
 3. Preview of Sortable Entry inside Sortable with grid layout.
 
-
-This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+4. Preview of Sortable Entry inside Sortable with list layout.
 
 == Changelog ==
 

@@ -56,11 +56,14 @@ const ALLOWED_BLOCKS = [ 'sortable/entry' ];
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
  *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
- *
+ * @param {Object} props All props passed to this function.
  * @return {WPElement} Element to render.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
  */
-export default function Edit( { clientId, attributes, setAttributes } ) {
+export default function Edit( props ) {
+	const { clientId, attributes, setAttributes } = props;
+
 	const blockProps = useBlockProps( {
 		className: classnames( {
 			'is-list': attributes.layout === 'list',
@@ -82,7 +85,7 @@ export default function Edit( { clientId, attributes, setAttributes } ) {
 
 	useEffect( () => {
 		if ( ! attributes.orderBy && childBlocks.length > 0 ) {
-			let temp = [ ...childBlocks ].sort( ( blockA, blockB ) => {
+			const temp = [ ...childBlocks ].sort( ( blockA, blockB ) => {
 				const result =
 					Number( new Date( blockB.attributes.dateTime ) ) -
 					Number( new Date( blockA.attributes.dateTime ) );
@@ -91,7 +94,7 @@ export default function Edit( { clientId, attributes, setAttributes } ) {
 			} );
 
 			setAttributes( {
-				orderBy: "date",
+				orderBy: 'date',
 			} );
 
 			replaceInnerBlocks( clientId, temp, false );

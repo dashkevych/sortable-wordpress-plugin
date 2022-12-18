@@ -1,18 +1,11 @@
 /**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
- */
-import { __ } from '@wordpress/i18n';
-
-/**
  * WordPress dependencies
  */
 import { useEntityProp } from '@wordpress/core-data';
 import {
 	dateI18n,
 	getDate,
-	__experimentalGetSettings as getDateSettings,
+	getSettings as getDateSettings,
 } from '@wordpress/date';
 
 /**
@@ -35,12 +28,15 @@ import './editor.scss';
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
  *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
- *
+ * @param {Object} props All props passed to this function.
  * @return {WPElement} Element to render.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
  */
-export default function Edit( { context } ) {
+export default function Edit( props ) {
+	const { context } = props;
 	const blockProps = useBlockProps();
+
 	const [ siteFormat = getDateSettings().formats.date ] = useEntityProp(
 		'root',
 		'site',
@@ -49,7 +45,7 @@ export default function Edit( { context } ) {
 
 	const date = getDate( context[ 'sortable/entryDateTime' ] );
 
-	let entryDate = (
+	const entryDate = (
 		<time dateTime={ dateI18n( 'c', date ) }>
 			{ dateI18n( siteFormat, date ) }
 		</time>

@@ -3,11 +3,12 @@
  * and in the editor.
  */
 .wp-block-sortable-entry {
-	& > :first-child {
+
+	> :first-child {
 		margin-block-start: 0;
 	}
 
-	& > :last-child {
+	> :last-child {
 		margin-block-end: 0;
 	}
 }

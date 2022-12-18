@@ -3,6 +3,7 @@
  * and in the editor.
  */
 .wp-block-sortable-container {
+
 	&.is-list {
 		display: flex;
 		flex-direction: column;
@@ -17,8 +18,11 @@
 }
 
 @media (min-width: 782px) {
+
 	.wp-block-sortable-container {
+
 		&.is-grid {
+
 			&.columns-2 {
 				grid-template-columns: repeat(2, minmax(0, 1fr));
 			}

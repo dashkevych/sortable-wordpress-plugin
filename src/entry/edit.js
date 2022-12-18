@@ -29,7 +29,7 @@ import { DateTimePicker, PanelBody, PanelRow } from '@wordpress/components';
 /**
  * WordPress dependencies.
  *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-element/
+ * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-element/ ,
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/
  */
 import { useEffect } from '@wordpress/element';
@@ -65,21 +65,24 @@ const ALLOWED_BLOCKS = [
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
  *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
- *
+ * @param {Object} props All props passed to this function.
  * @return {WPElement} Element to render.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
  */
-export default function Edit( {
-	clientId,
-	attributes: { dateTime },
-	setAttributes,
-} ) {
+export default function Edit( props ) {
+	const {
+		clientId,
+		attributes: { dateTime },
+		setAttributes,
+	} = props;
 	const blockProps = useBlockProps();
 	const { updateBlockAttributes } = useDispatch( blockEditorStore );
 
 	const { rootClientId, hasChildBlocks } = useSelect(
 		( select ) => {
-			const { getBlockRootClientId, getBlockOrder } = select( blockEditorStore );
+			const { getBlockRootClientId, getBlockOrder } =
+				select( blockEditorStore );
 			const rootId = getBlockRootClientId( clientId );
 
 			return {
@@ -96,7 +99,7 @@ export default function Edit( {
 
 		// Reset parent block sorting.
 		updateBlockAttributes( rootClientId, {
-			orderBy: "",
+			orderBy: '',
 		} );
 	};
 
@@ -106,7 +109,7 @@ export default function Edit( {
 
 			// Reset parent block sorting.
 			updateBlockAttributes( rootClientId, {
-				orderBy: "",
+				orderBy: '',
 			} );
 		}
 	}, [ dateTime ] );
