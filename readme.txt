@@ -80,6 +80,5 @@ Sortable Entry block supports following blocks: Sortable Date, Heading, Paragrap
 * Add: Sortable Date block to display a set date from Sortable Entry block.
 * Update: information in Read Me file.
 
-= 0.0.1 =
-
-* Release initial version of the plugin.
+= 0.0.1 - September 6, 2022 =
+* Start the plugin.
