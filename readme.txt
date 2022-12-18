@@ -1,7 +1,7 @@
 === Sortable Block ===
 Contributors:      taskotr
 Author URI:        https://themesharbor.com/
-Tags:              block, sorting, sort, blocks, filter
+Tags:              block, sorting, sort, blocks, filter, block sort, blocks sorting, filter content
 Tested up to:      6.1
 Requires at Least: 6.1
 Requires PHP:      7.4
@@ -62,6 +62,9 @@ Sortable Entry block supports following blocks: Sortable Date, Heading, Paragrap
 4. Preview of Sortable Entry inside Sortable with list layout.
 
 == Changelog ==
+
+= 1.0.0 - December 17, 2022
+* Initial release;
 
 = 0.0.4 - December 15, 2022
 * Update: formatting;

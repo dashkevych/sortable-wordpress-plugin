@@ -145,16 +145,17 @@ const ALLOWED_BLOCKS = ['sortable/entry'];
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
  *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
- *
+ * @param {Object} props All props passed to this function.
  * @return {WPElement} Element to render.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
  */
-function Edit(_ref) {
-  let {
+function Edit(props) {
+  const {
     clientId,
     attributes,
     setAttributes
-  } = _ref;
+  } = props;
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)({
     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({
       'is-list': attributes.layout === 'list',
@@ -177,12 +178,12 @@ function Edit(_ref) {
   }, [clientId]);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (!attributes.orderBy && childBlocks.length > 0) {
-      let temp = [...childBlocks].sort((blockA, blockB) => {
+      const temp = [...childBlocks].sort((blockA, blockB) => {
         const result = Number(new Date(blockB.attributes.dateTime)) - Number(new Date(blockA.attributes.dateTime));
         return result;
       });
       setAttributes({
-        orderBy: "date"
+        orderBy: 'date'
       });
       replaceInnerBlocks(clientId, temp, false);
     }
@@ -314,14 +315,15 @@ __webpack_require__.r(__webpack_exports__);
  * be combined into the final markup, which is then serialized by the block
  * editor into `post_content`.
  *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
- *
+ * @param {Object} props All props passed to this function.
  * @return {WPElement} Element to render.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
  */
-function save(_ref) {
-  let {
+function save(props) {
+  const {
     attributes
-  } = _ref;
+  } = props;
   const innerBlocksProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useInnerBlocksProps.save(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({
       'is-list': attributes.layout === 'list',
@@ -513,7 +515,7 @@ module.exports = window["wp"]["primitives"];
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"sortable/container","version":"0.1.0","title":"Sortable","category":"widgets","icon":"portfolio","description":"A sortable container which holds sortable items.","attributes":{"layout":{"type":"string","default":"list"},"columns":{"type":"number","default":3},"orderBy":{"type":"string","default":"date"}},"supports":{"anchor":true,"align":true,"html":false,"color":{"gradients":true,"link":true,"__experimentalDefaultControls":{"background":true,"text":true}},"spacing":{"margin":true,"padding":true}},"textdomain":"sortable","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"sortable/container","version":"1.0.0","title":"Sortable","category":"widgets","icon":"portfolio","description":"A sortable container which holds sortable items.","attributes":{"layout":{"type":"string","default":"list"},"columns":{"type":"number","default":3},"orderBy":{"type":"string","default":"date"}},"supports":{"anchor":true,"align":true,"html":false,"color":{"gradients":true,"link":true,"__experimentalDefaultControls":{"background":true,"text":true}},"spacing":{"margin":true,"padding":true}},"textdomain":"sortable","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 

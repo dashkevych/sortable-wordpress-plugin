@@ -49,7 +49,7 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * WordPress dependencies.
  *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-element/
+ * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-element/ ,
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/
  */
 
@@ -78,18 +78,19 @@ const ALLOWED_BLOCKS = ['sortable/date', 'core/heading', 'core/paragraph', 'core
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
  *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
- *
+ * @param {Object} props All props passed to this function.
  * @return {WPElement} Element to render.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
  */
-function Edit(_ref) {
-  let {
+function Edit(props) {
+  const {
     clientId,
     attributes: {
       dateTime
     },
     setAttributes
-  } = _ref;
+  } = props;
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
   const {
     updateBlockAttributes
@@ -117,7 +118,7 @@ function Edit(_ref) {
 
     // Reset parent block sorting.
     updateBlockAttributes(rootClientId, {
-      orderBy: ""
+      orderBy: ''
     });
   };
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
@@ -128,7 +129,7 @@ function Edit(_ref) {
 
       // Reset parent block sorting.
       updateBlockAttributes(rootClientId, {
-        orderBy: ""
+        orderBy: ''
       });
     }
   }, [dateTime]);
@@ -333,7 +334,7 @@ module.exports = window["wp"]["i18n"];
   \******************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"sortable/entry","version":"0.1.0","title":"Sortable Entry","category":"widgets","icon":"media-document","description":"An entry that needs to be sorted.","parent":["sortable/container"],"supports":{"html":false},"attributes":{"dateTime":{"type":"string"}},"providesContext":{"sortable/entryDateTime":"dateTime"},"textdomain":"sortable","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"sortable/entry","version":"1.0.0","title":"Sortable Entry","category":"widgets","icon":"media-document","description":"An entry that needs to be sorted.","parent":["sortable/container"],"supports":{"html":false},"attributes":{"dateTime":{"type":"string"}},"providesContext":{"sortable/entryDateTime":"dateTime"},"textdomain":"sortable","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 
