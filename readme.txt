@@ -40,7 +40,7 @@ The purpose of the Sortable Block plugin is to provide a way to sort sections on
 
 = How to change layout? =
 
-1. In Block editor, select Sortable Entry within List View.
+1. In Block editor, select Sortable within List View.
 2. Within block toolbar, click on eather List view or Grid view icon.
 
 = What blocks to use inside Sortable? =
