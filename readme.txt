@@ -63,6 +63,9 @@ Sortable Entry block supports following blocks: Sortable Date, Heading, Paragrap
 
 == Changelog ==
 
+= 1.1.0 - (December 27, 2022)
+* Add: option to select between decreasing order & increasing order;
+
 = 1.0.0 - December 17, 2022
 * Initial release;
 
