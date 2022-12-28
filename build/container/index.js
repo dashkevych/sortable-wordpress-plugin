@@ -177,17 +177,35 @@ function Edit(props) {
     };
   }, [clientId]);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    if (!attributes.orderBy && childBlocks.length > 0) {
-      const temp = [...childBlocks].sort((blockA, blockB) => {
-        const result = Number(new Date(blockB.attributes.dateTime)) - Number(new Date(blockA.attributes.dateTime));
-        return result;
-      });
+    if (childBlocks.length > 0 && !attributes.orderBy || attributes.order) {
+      let sortedBlocks = [];
+      if (attributes.order === 'asc') {
+        sortedBlocks = [...childBlocks].sort((blockA, blockB) => {
+          const result = Number(new Date(blockA.attributes.dateTime)) - Number(new Date(blockB.attributes.dateTime));
+          return result;
+        });
+      } else {
+        sortedBlocks = [...childBlocks].sort((blockA, blockB) => {
+          const result = Number(new Date(blockB.attributes.dateTime)) - Number(new Date(blockA.attributes.dateTime));
+          return result;
+        });
+      }
       setAttributes({
         orderBy: 'date'
       });
-      replaceInnerBlocks(clientId, temp, false);
+      replaceInnerBlocks(clientId, sortedBlocks, false);
     }
-  }, [attributes.orderBy]);
+  }, [attributes.orderBy, attributes.order]);
+
+  // Update order.
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    // Make sure order attribute is set.
+    if (attributes.order === '') {
+      setAttributes({
+        order: 'desc'
+      });
+    }
+  }, [attributes.order]);
   const layoutControls = [{
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__["default"],
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('List view'),
@@ -220,6 +238,22 @@ function Edit(props) {
     min: 2,
     max: 6,
     required: true
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Order settings')
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Order'),
+    value: attributes.order,
+    options: [{
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Descending (decreasing order)'),
+      value: 'desc'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Ascending (increasing order)'),
+      value: 'asc'
+    }],
+    onChange: value => setAttributes({
+      order: value
+    }),
+    __nextHasNoMarginBottom: true
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.BlockControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.ToolbarGroup, {
     controls: layoutControls
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", innerBlocksProps));
@@ -515,7 +549,7 @@ module.exports = window["wp"]["primitives"];
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"sortable/container","version":"1.0.0","title":"Sortable","category":"widgets","icon":"portfolio","description":"A sortable container which holds sortable items.","attributes":{"layout":{"type":"string","default":"list"},"columns":{"type":"number","default":3},"orderBy":{"type":"string","default":"date"}},"supports":{"anchor":true,"align":true,"html":false,"color":{"gradients":true,"link":true,"__experimentalDefaultControls":{"background":true,"text":true}},"spacing":{"margin":true,"padding":true}},"textdomain":"sortable","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"sortable/container","version":"1.0.0","title":"Sortable","category":"widgets","icon":"portfolio","description":"A sortable container which holds sortable items.","attributes":{"layout":{"type":"string","default":"list"},"columns":{"type":"number","default":3},"orderBy":{"type":"string","default":"date"},"order":{"type":"string","default":""}},"supports":{"anchor":true,"align":true,"html":false,"color":{"gradients":true,"link":true,"__experimentalDefaultControls":{"background":true,"text":true}},"spacing":{"margin":true,"padding":true}},"textdomain":"sortable","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 

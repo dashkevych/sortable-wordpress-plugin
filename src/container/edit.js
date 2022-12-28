@@ -38,7 +38,12 @@ import './editor.scss';
  */
 import { useEffect } from '@wordpress/element';
 import { useSelect, useDispatch } from '@wordpress/data';
-import { RangeControl, PanelBody, ToolbarGroup } from '@wordpress/components';
+import {
+	RangeControl,
+	PanelBody,
+	ToolbarGroup,
+	SelectControl
+} from '@wordpress/components';
 import { list, grid } from '@wordpress/icons';
 
 /**
@@ -84,22 +89,41 @@ export default function Edit( props ) {
 	);
 
 	useEffect( () => {
-		if ( ! attributes.orderBy && childBlocks.length > 0 ) {
-			const temp = [ ...childBlocks ].sort( ( blockA, blockB ) => {
-				const result =
-					Number( new Date( blockB.attributes.dateTime ) ) -
-					Number( new Date( blockA.attributes.dateTime ) );
+		if ( childBlocks.length > 0 && ! attributes.orderBy || attributes.order  ) {
+			let sortedBlocks = [];
+			if ( attributes.order === 'asc' ) {
+				sortedBlocks = [ ...childBlocks ].sort( ( blockA, blockB ) => {
+					const result =
+						Number( new Date( blockA.attributes.dateTime ) ) -
+						Number( new Date( blockB.attributes.dateTime ) );
 
-				return result;
-			} );
+					return result;
+				} );
+			} else {
+				sortedBlocks = [ ...childBlocks ].sort( ( blockA, blockB ) => {
+					const result =
+						Number( new Date( blockB.attributes.dateTime ) ) -
+						Number( new Date( blockA.attributes.dateTime ) );
+
+					return result;
+				} );
+			}
 
 			setAttributes( {
 				orderBy: 'date',
 			} );
 
-			replaceInnerBlocks( clientId, temp, false );
+			replaceInnerBlocks( clientId, sortedBlocks, false );
 		}
-	}, [ attributes.orderBy ] );
+	}, [ attributes.orderBy, attributes.order ] );
+
+	// Update order.
+	useEffect( () => {
+		// Make sure order attribute is set.
+		if ( attributes.order === '' ) {
+			setAttributes( { order: 'desc' } )
+		}
+	}, [ attributes.order ] );
 
 	const layoutControls = [
 		{
@@ -140,6 +164,20 @@ export default function Edit( props ) {
 						/>
 					</PanelBody>
 				) }
+				<PanelBody title={ __( 'Order settings' ) }>
+				<SelectControl
+					label={ __( 'Order' ) }
+					value={ attributes.order }
+					options={ [
+						{ label: __( 'Descending (decreasing order)' ), value: 'desc' },
+						{ label: __( 'Ascending (increasing order)' ), value: 'asc' },
+					] }
+					onChange={ ( value ) =>
+						setAttributes( { order: value } )
+					}
+					__nextHasNoMarginBottom
+				/>
+				</PanelBody>
 			</InspectorControls>
 			<BlockControls>
 				<ToolbarGroup controls={ layoutControls } />

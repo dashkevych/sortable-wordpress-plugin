@@ -19,6 +19,10 @@
 		"orderBy": {
 			"type": "string",
 			"default": "date"
+		},
+		"order": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {
