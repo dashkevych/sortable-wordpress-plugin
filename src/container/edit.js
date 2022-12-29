@@ -42,7 +42,7 @@ import {
 	RangeControl,
 	PanelBody,
 	ToolbarGroup,
-	SelectControl
+	SelectControl,
 } from '@wordpress/components';
 import { list, grid } from '@wordpress/icons';
 
@@ -89,7 +89,10 @@ export default function Edit( props ) {
 	);
 
 	useEffect( () => {
-		if ( childBlocks.length > 0 && ! attributes.orderBy || attributes.order  ) {
+		if (
+			( childBlocks.length > 0 && ! attributes.orderBy ) ||
+			attributes.order
+		) {
 			let sortedBlocks = [];
 			if ( attributes.order === 'asc' ) {
 				sortedBlocks = [ ...childBlocks ].sort( ( blockA, blockB ) => {
@@ -121,7 +124,7 @@ export default function Edit( props ) {
 	useEffect( () => {
 		// Make sure order attribute is set.
 		if ( attributes.order === '' ) {
-			setAttributes( { order: 'desc' } )
+			setAttributes( { order: 'desc' } );
 		}
 	}, [ attributes.order ] );
 
@@ -165,18 +168,18 @@ export default function Edit( props ) {
 					</PanelBody>
 				) }
 				<PanelBody title={ __( 'Order settings' ) }>
-				<SelectControl
-					label={ __( 'Order' ) }
-					value={ attributes.order }
-					options={ [
-						{ label: __( 'Newest to oldest' ), value: 'desc' },
-						{ label: __( 'Oldest to newest' ), value: 'asc' },
-					] }
-					onChange={ ( value ) =>
-						setAttributes( { order: value } )
-					}
-					__nextHasNoMarginBottom
-				/>
+					<SelectControl
+						label={ __( 'Order' ) }
+						value={ attributes.order }
+						options={ [
+							{ label: __( 'Newest to oldest' ), value: 'desc' },
+							{ label: __( 'Oldest to newest' ), value: 'asc' },
+						] }
+						onChange={ ( value ) =>
+							setAttributes( { order: value } )
+						}
+						__nextHasNoMarginBottom
+					/>
 				</PanelBody>
 			</InspectorControls>
 			<BlockControls>

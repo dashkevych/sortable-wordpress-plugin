@@ -1,4 +1,11 @@
 /**
+ * Retrieves the translation of text.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
+ */
+import { __ } from '@wordpress/i18n';
+
+/**
  * WordPress dependencies
  */
 import { useEntityProp } from '@wordpress/core-data';
@@ -14,7 +21,13 @@ import {
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import {
+	useBlockProps,
+	InspectorControls,
+	__experimentalDateFormatPicker as DateFormatPicker,
+} from '@wordpress/block-editor';
+
+import { PanelBody } from '@wordpress/components';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -34,10 +47,11 @@ import './editor.scss';
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
  */
 export default function Edit( props ) {
-	const { context } = props;
+	const { context, attributes, setAttributes } = props;
 	const blockProps = useBlockProps();
+	const dateSettings = getDateSettings();
 
-	const [ siteFormat = getDateSettings().formats.date ] = useEntityProp(
+	const [ siteFormat = dateSettings.formats.date ] = useEntityProp(
 		'root',
 		'site',
 		'date_format'
@@ -47,9 +61,25 @@ export default function Edit( props ) {
 
 	const entryDate = (
 		<time dateTime={ dateI18n( 'c', date ) }>
-			{ dateI18n( siteFormat, date ) }
+			{ dateI18n( attributes.format || siteFormat, date ) }
 		</time>
 	);
 
-	return <div { ...blockProps }>{ entryDate }</div>;
+	return (
+		<>
+			<InspectorControls>
+				<PanelBody title={ __( 'Settings' ) }>
+					<DateFormatPicker
+						format={ attributes.format }
+						defaultFormat={ siteFormat }
+						onChange={ ( nextFormat ) =>
+							setAttributes( { format: nextFormat } )
+						}
+					/>
+				</PanelBody>
+			</InspectorControls>
+
+			<div { ...blockProps }>{ entryDate }</div>
+		</>
+	);
 }

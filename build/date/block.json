@@ -10,6 +10,11 @@
   "ancestor": [
     "sortable/entry"
   ],
+  "attributes": {
+    "format": {
+      "type": "string"
+    }
+  },
   "supports": {
     "html": false,
     "typography": {

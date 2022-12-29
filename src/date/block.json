@@ -8,6 +8,11 @@
 	"icon": "calendar",
 	"description": "Sortable date.",
 	"ancestor": [ "sortable/entry" ],
+	"attributes": {
+		"format": {
+			"type": "string"
+		}
+	},
 	"supports": {
 		"html": false,
 		"typography": {

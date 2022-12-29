@@ -43,9 +43,15 @@ function render_block_sortable_date( $attributes, $content, $block ) {
 		return '';
 	}
 
+	$date_format = get_option( 'date_format' );
+
+	if ( isset( $attributes['format'] ) && '' !== $attributes['format'] ) {
+		$date_format = $attributes['format'];
+	}
+
 	$date_unix_timestamp = strtotime( $block->context['sortable/entryDateTime'] );
 	$unformatted_date    = wp_date( 'c', $date_unix_timestamp );
-	$formatted_date      = wp_date( get_option( 'date_format' ), $date_unix_timestamp );
+	$formatted_date      = wp_date( $date_format, $date_unix_timestamp );
 	$wrapper_attributes  = get_block_wrapper_attributes();
 
 	return sprintf(
