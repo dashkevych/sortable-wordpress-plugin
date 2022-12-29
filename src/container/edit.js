@@ -169,8 +169,8 @@ export default function Edit( props ) {
 					label={ __( 'Order' ) }
 					value={ attributes.order }
 					options={ [
-						{ label: __( 'Descending (decreasing order)' ), value: 'desc' },
-						{ label: __( 'Ascending (increasing order)' ), value: 'asc' },
+						{ label: __( 'Newest to oldest' ), value: 'desc' },
+						{ label: __( 'Oldest to newest' ), value: 'asc' },
 					] }
 					onChange={ ( value ) =>
 						setAttributes( { order: value } )
