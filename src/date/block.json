@@ -6,7 +6,7 @@
 	"title": "Sortable Date",
 	"category": "widgets",
 	"icon": "calendar",
-	"description": "Sortable date.",
+	"description": "Since this block is dependent on the Sortable Entry block, it displays the date set in it and also allows to customize how the date is displayed by providing the option to change the date format.",
 	"ancestor": [ "sortable/entry" ],
 	"attributes": {
 		"format": {

@@ -6,7 +6,7 @@
   "title": "Sortable",
   "category": "widgets",
   "icon": "portfolio",
-  "description": "A sortable container which holds sortable items.",
+  "description": "This block serves as a main container to hold sortable entries, and it also offers the option to order entries from newest to oldest or oldest to newest, as well as the option to switch the layout between list and grid.",
   "attributes": {
     "layout": {
       "type": "string",
@@ -22,7 +22,7 @@
     },
     "order": {
       "type": "string",
-      "default": ""
+      "default": "desc"
     }
   },
   "supports": {

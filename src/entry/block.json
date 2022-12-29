@@ -6,7 +6,7 @@
 	"title": "Sortable Entry",
 	"category": "widgets",
 	"icon": "media-document",
-	"description": "An entry that needs to be sorted.",
+	"description": "This block serves as an entry that needs to be sorted, where you set the date and keep specific content for the entry.",
 	"parent": [ "sortable/container" ],
 	"supports": {
 		"html": false
