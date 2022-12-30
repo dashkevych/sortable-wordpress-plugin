@@ -2,11 +2,11 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
 	"name": "sortable/entry",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"title": "Sortable Entry",
 	"category": "widgets",
 	"icon": "media-document",
-	"description": "This block serves as an entry that needs to be sorted, where you set the date and keep specific content for the entry.",
+	"description": "This block serves as an entry that needs to be sorted, and it is where you can set the date and keep specific content for the entry.",
 	"parent": [ "sortable/container" ],
 	"supports": {
 		"html": false

@@ -1,11 +1,11 @@
 === Sortable Block ===
 Contributors:      taskotr
 Author URI:        https://themesharbor.com/
-Tags:              block, sorting, sort, blocks, filter, block sort, blocks sorting, filter content
+Tags:              block, sorting, sort, blocks, filter, block sort, blocks sorting, filter content, simple events calendar, product changelog
 Tested up to:      6.1
 Requires at Least: 6.1
 Requires PHP:      7.4
-Stable tag:        1.0.0
+Stable tag:        1.1.0
 Text Domain:       sortable
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
@@ -14,7 +14,13 @@ A simple block that allows to sort its content based on selected date.
 
 == Description ==
 
-The purpose of the Sortable Block plugin is to provide a way to sort sections on the page based on set dates.
+The purpose of the Sortable Block plugin is to sort sections on the page based on set dates.
+
+The plugin allows to organize block-based content either from newest to oldest, or from oldest to newest.
+
+There are several possible cases when to use the plugin. For instance, to create a simple events calendar, a product changelog, media mentions, etc.
+
+Sortable Block also comes with two layout options: list and grid.
 
 === Stay Connected ===
 
@@ -34,14 +40,19 @@ The purpose of the Sortable Block plugin is to provide a way to sort sections on
 
 = How to sort blocks? =
 
-1. Add Sortable block to content area in Block editor. This is main container for items to sort.
-2. Inside Sortable block, add Sortable Entry.
+1. Add Sortable block to content area in Block editor. This is the main container for entries that need to be sorted.
+2. Inside Sortable block, add Sortable Entry. This is a container for your content. Note, you can have multiple entries inside the Sortable block.
 3. Each Sortable Entry comes with date option. To change date option, select Sortable Entry within List View, and make changes in Date Settings in Block sidebar.
 
 = How to change layout? =
 
 1. In Block editor, select Sortable within List View.
 2. Within block toolbar, click on eather List view or Grid view icon.
+
+= How to change order? =
+
+1. In Block editor, select Sortable within List View.
+2. In Block sidebar, select either Newest to oldest or Oldest to newest within the Order settings section.
 
 = What blocks to use inside Sortable? =
 
@@ -63,7 +74,7 @@ Sortable Entry block supports following blocks: Sortable Date, Heading, Paragrap
 
 == Changelog ==
 
-= 1.1.0 - (December 27, 2022)
+= 1.1.0 - December 29, 2022
 * Add: option to select between decreasing order & increasing order;
 * Add: option to choose format in Date block;
 * Update: description in blocks;
