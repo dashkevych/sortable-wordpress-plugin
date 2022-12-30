@@ -52,15 +52,15 @@ Sortable Block also comes with two layout options: list and grid.
 = How to change order? =
 
 1. In Block editor, select Sortable within List View.
-2. In Block sidebar, select either Newest to oldest or Oldest to newest within the Order settings section.
+2. In Block sidebar, select either the "Newest to Oldest" or "Oldest to Newest" option from the dropdown menu within the Order settings section.
 
 = What blocks to use inside Sortable? =
 
-Sortable block supports only Sortable Entry block as inner content. It's not possible to add any other blocks to main container of Sortable block.
+Sortable block supports only Sortable Entry block as inner content. It's not possible to add any other blocks to the main container of Sortable block.
 
 = What blocks to use inside Sortable Entry? =
 
-Sortable Entry block supports following blocks: Sortable Date, Heading, Paragraph, Media-Text, Group, Columns.
+Sortable Entry block supports the following blocks: Sortable Date, Heading, Paragraph, Media-Text, Group, Columns.
 
 == Screenshots ==
 
