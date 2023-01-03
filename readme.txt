@@ -74,7 +74,7 @@ Sortable Entry block supports the following blocks: Sortable Date, Heading, Para
 
 == Changelog ==
 
-= 1.1.1 - January 02, 2022
+= 1.1.1 - January 02, 2023
 * Update: detect time format in Sortable Date block;
 * Fix: wrong time output in Sortable Date block when viewed on front-end;
 * Fix: wrong time output in Sortable Date block when viewed on back-end;

@@ -9,10 +9,7 @@ import { __ } from '@wordpress/i18n';
  * WordPress dependencies
  */
 import { useEntityProp } from '@wordpress/core-data';
-import {
-	format,
-	getSettings as getDateSettings,
-} from '@wordpress/date';
+import { format, getSettings as getDateSettings } from '@wordpress/date';
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -77,9 +74,7 @@ export default function Edit( props ) {
 					<DateFormatPicker
 						format={ attributes.format }
 						defaultFormat={ siteFormat }
-						is12Hour={ is12HourFormat(
-							siteTimeFormat
-						) }
+						is12Hour={ is12HourFormat( siteTimeFormat ) }
 						onChange={ ( nextFormat ) =>
 							setAttributes( { format: nextFormat } )
 						}
