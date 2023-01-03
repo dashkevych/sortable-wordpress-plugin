@@ -50,8 +50,8 @@ function render_block_sortable_date( $attributes, $content, $block ) {
 	}
 
 	$date_unix_timestamp = strtotime( $block->context['sortable/entryDateTime'] );
-	$unformatted_date    = wp_date( 'c', $date_unix_timestamp );
-	$formatted_date      = wp_date( $date_format, $date_unix_timestamp );
+	$unformatted_date    = date_i18n( 'c', $date_unix_timestamp);
+	$formatted_date      = date_i18n( $date_format, $date_unix_timestamp );
 	$wrapper_attributes  = get_block_wrapper_attributes();
 
 	return sprintf(

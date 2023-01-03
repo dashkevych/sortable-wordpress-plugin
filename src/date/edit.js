@@ -10,8 +10,7 @@ import { __ } from '@wordpress/i18n';
  */
 import { useEntityProp } from '@wordpress/core-data';
 import {
-	dateI18n,
-	getDate,
+	format,
 	getSettings as getDateSettings,
 } from '@wordpress/date';
 
@@ -57,11 +56,17 @@ export default function Edit( props ) {
 		'date_format'
 	);
 
-	const date = getDate( context[ 'sortable/entryDateTime' ] );
+	const [ siteTimeFormat = dateSettings.formats.time ] = useEntityProp(
+		'root',
+		'site',
+		'time_format'
+	);
+
+	const date = context[ 'sortable/entryDateTime' ];
 
 	const entryDate = (
-		<time dateTime={ dateI18n( 'c', date ) }>
-			{ dateI18n( attributes.format || siteFormat, date ) }
+		<time dateTime={ format( 'c', date ) }>
+			{ format( attributes.format || siteFormat, date ) }
 		</time>
 	);
 
@@ -72,6 +77,9 @@ export default function Edit( props ) {
 					<DateFormatPicker
 						format={ attributes.format }
 						defaultFormat={ siteFormat }
+						is12Hour={ is12HourFormat(
+							siteTimeFormat
+						) }
 						onChange={ ( nextFormat ) =>
 							setAttributes( { format: nextFormat } )
 						}
@@ -82,4 +90,13 @@ export default function Edit( props ) {
 			<div { ...blockProps }>{ entryDate }</div>
 		</>
 	);
+}
+
+export function is12HourFormat( format ) {
+	// To know if the time format is a 12 hour time, look for any of the 12 hour
+	// format characters: 'a', 'A', 'g', and 'h'. The character must be
+	// unescaped, i.e. not preceded by a '\'. Coincidentally, 'aAgh' is how I
+	// feel when working with regular expressions.
+	// https://www.php.net/manual/en/datetime.format.php
+	return /(?:^|[^\\])[aAgh]/.test( format );
 }
