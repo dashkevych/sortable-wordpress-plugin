@@ -5,7 +5,7 @@ Tags:              block, sorting, sort, blocks, filter, block sort, blocks sort
 Tested up to:      6.1
 Requires at Least: 6.1
 Requires PHP:      7.4
-Stable tag:        1.1.0
+Stable tag:        1.1.1
 Text Domain:       sortable
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
@@ -73,6 +73,11 @@ Sortable Entry block supports the following blocks: Sortable Date, Heading, Para
 4. Preview of Sortable Entry inside Sortable with list layout.
 
 == Changelog ==
+
+= 1.1.1 - January 02, 2022
+* Update: detect time format in Sortable Date block;
+* Fix: wrong time output in Sortable Date block when viewed on front-end;
+* Fix: wrong time output in Sortable Date block when viewed on back-end;
 
 = 1.1.0 - December 29, 2022
 * Add: option to select between decreasing order & increasing order;
