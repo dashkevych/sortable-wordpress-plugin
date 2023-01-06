@@ -64,13 +64,17 @@ Sortable Entry block supports the following blocks: Sortable Date, Heading, Para
 
 == Screenshots ==
 
-1. Preview of Sortable Entry inside Sortable, shown in List View.
+1. Preview of Sortable block in the block inserter.
 
-2. Preview of Block sidebar with active Date Settings for Sortable Entry.
+2. Preview of Sortable block toolbar, with active "List view" layout.
 
-3. Preview of Sortable Entry inside Sortable with grid layout.
+3. Preview of Sortable block settings, focusing on Order settings.
 
-4. Preview of Sortable Entry inside Sortable with list layout.
+4. Preview of Sortable block button that adds Sortable Entry into the block.
+
+5. Preview of Sortable Entry block settings, focusing on Date settings.
+
+6. Preview of Sortable Entry block button that adds content into the block.
 
 == Changelog ==
 
