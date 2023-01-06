@@ -15,6 +15,14 @@
 	},
 	"supports": {
 		"html": false,
+		"color": {
+			"gradients": true,
+			"link": false,
+			"__experimentalDefaultControls": {
+				"background": true,
+				"text": true
+			}
+		},
 		"typography": {
 			"fontSize": true,
 			"lineHeight": true,
