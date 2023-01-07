@@ -4,7 +4,7 @@
  * Description:       A simple block to sort content by date.
  * Requires at least: 6.1
  * Requires PHP:      7.4
- * Version:           1.1.1
+ * Version:           1.2.0
  * Author:            Themes Harbor
  * Author URI:        https://themesharbor.com/
  * License:           GPL-2.0-or-later

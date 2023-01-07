@@ -5,12 +5,12 @@ Tags:              block, sorting, sort, blocks, filter, block sort, blocks sort
 Tested up to:      6.1
 Requires at Least: 6.1
 Requires PHP:      7.4
-Stable tag:        1.1.1
+Stable tag:        1.2.0
 Text Domain:       sortable
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 
-A simple block that allows to sort its content based on selected date.
+A simple block to sort its content based on selected date.
 
 == Description ==
 
@@ -82,7 +82,7 @@ Sortable Entry block supports the following blocks: Sortable Date, Heading, Para
 
 == Changelog ==
 
-= 1.2.0 - (January 02, 2023)
+= 1.2.0 - January 06, 2023
 * Add: support for colors in Sortable Date block;
 * Add: support for padding dimensions in Sortable Date block;
 
