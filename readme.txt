@@ -80,6 +80,7 @@ Sortable Entry block supports the following blocks: Sortable Date, Heading, Para
 
 = 1.2.0 - (January 02, 2023)
 * Add: support for colors in Sortable Date block;
+* Add: support for padding dimensions in Sortable Date block;
 
 = 1.1.1 - January 02, 2023
 * Update: detect time format in Sortable Date block;
