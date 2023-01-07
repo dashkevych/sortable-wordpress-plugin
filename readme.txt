@@ -22,6 +22,10 @@ There are several possible cases when to use the plugin. For instance, to create
 
 Sortable Block also comes with two layout options: list and grid.
 
+=== Examples ===
+
+* Sortable block used for [Changelog](https://themesharbor.com/sortable-block-plugin/#changelog) section;
+
 === Stay Connected ===
 
 * [Follow on Twitter](https://twitter.com/themesharbor/)
