@@ -25,6 +25,9 @@
         "text": true
       }
     },
+    "spacing": {
+      "padding": true
+    },
     "typography": {
       "fontSize": true,
       "lineHeight": true,
