@@ -2,12 +2,13 @@
  * The following styles get applied inside the editor only.
  */
 .wp-block-sortable-entry {
-    > .block-list-appender {
+
+	> .block-list-appender {
 
 		.block-editor-button-block-appender {
-            flex-direction: row;
-            box-shadow: none;
-            border: 1px dashed;
+			flex-direction: row;
+			box-shadow: none;
+			border: 1px dashed;
 
 			&::after {
 				content: attr(aria-label);
