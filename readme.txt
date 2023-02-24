@@ -85,7 +85,7 @@ Sortable Entry block supports the following blocks: Sortable Date, Heading, Para
 = 1.3.0 - February 23, 2023
 * Add: support for reusable blocks (note, it does not for reusable blocks with Sortable block in it);
 * Add: support for Border options in Sortable block;
-* Update: improve Insert buttons in the editor";
+* Update: improve Insert buttons in the editor;
 
 = 1.2.0 - January 06, 2023
 * Add: support for colors in Sortable Date block;
