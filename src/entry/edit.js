@@ -59,6 +59,7 @@ const ALLOWED_BLOCKS = [
 	'core/media-text',
 	'core/group',
 	'core/columns',
+	'core/block'
 ];
 
 /**
