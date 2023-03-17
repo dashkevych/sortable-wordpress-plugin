@@ -1,7 +1,7 @@
 === Sortable Block ===
 Contributors:      taskotr
 Author URI:        https://themesharbor.com/
-Tags:              block, sorting, sort, blocks, filter, block sort, blocks sorting, filter content, simple events calendar, product changelog
+Tags:              block, sorting, sort, blocks, filter, block sort, blocks sorting, filter content, simple events calendar, product changelog, timeline
 Tested up to:      6.1
 Requires at Least: 6.1
 Requires PHP:      7.4
@@ -10,17 +10,17 @@ Text Domain:       sortable
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 
-A simple block to sort its content based on selected date.
+Easily create customizable, sortable sections on your website using WordPress blocks with the Sortable Block plugin.
 
 == Description ==
 
-The purpose of the Sortable Block plugin is to sort sections on the page based on set dates.
+The Sortable Block plugin enables you to create sortable sections on your website using WordPress blocks. This powerful tool allows you to effortlessly build and organize content within a container, with each inner section being sortable by date.
 
-The plugin allows to organize block-based content either from newest to oldest, or from oldest to newest.
+With the flexibility of using any WordPress block to design your inner sections, you can create a variety of layouts tailored to your needs. This plugin is perfect for managing event calendars, product changelogs, media mentions, and more.
 
-There are several possible cases when to use the plugin. For instance, to create a simple events calendar, a product changelog, media mentions, etc.
+Choose between two layout options - list and grid - for even more customization and a seamless user experience.
 
-Sortable Block also comes with two layout options: list and grid.
+Create dynamic, sortable sections with ease using the Sortable Block plugin!
 
 === Examples ===
 
@@ -33,38 +33,38 @@ Sortable Block also comes with two layout options: list and grid.
 
 == Installation ==
 
-1. You have a couple options:
-	* Go to Plugins &rarr; Add New and search for "Sortable Block". Once found, click "Install".
-	* Download the Sortable Block plugin from WordPress.org and make sure the folder is zipped. Then upload it via Plugins &rarr; Add New &rarr; Upload.
-    * Open the block inserter within the Block Editor and search for "icon". The plugin should appear and allow you to install it directly. Skip steps 2 and 3.
+1. Choose one of the following options:
+	* Go to Plugins → Add New in your WordPress dashboard, search for "Sortable Block", and click "Install".
+	* Download the Sortable Block plugin from WordPress.org, ensure the folder is zipped, and then upload it via Plugins → Add New → Upload.
+    * Open the block inserter within the Block Editor, search for "icon", and the plugin should appear, allowing you to install it directly. Skip steps 2 and 3.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
-3. Search for the block within the Block Editor and begin using.
+3. Search for the block within the Block Editor and start using it.
 
 == Frequently Asked Questions ==
 
-= How to sort blocks? =
+= How do I sort blocks? =
 
-1. Add Sortable block to content area in Block editor. This is the main container for entries that need to be sorted.
-2. Inside Sortable block, add Sortable Entry. This is a container for your content. Note, you can have multiple entries inside the Sortable block.
-3. Each Sortable Entry comes with date option. To change date option, select Sortable Entry within List View, and make changes in Date Settings in Block sidebar.
+1. Add a Sortable block to the content area in the Block Editor. This serves as the main container for entries that need sorting.
+2. Inside the Sortable block, add Sortable Entry blocks. These containers hold your content. Note that you can have multiple entries inside a Sortable block.
+3. Each Sortable Entry has a date option. To change this option, select a Sortable Entry within the List View, and modify the Date Settings in the Block sidebar.
 
-= How to change layout? =
+= How do I change the layout? =
 
-1. In Block editor, select Sortable within List View.
-2. Within block toolbar, click on eather List view or Grid view icon.
+1. In the Block Editor, select the Sortable block within the List View.
+2. In the block toolbar, click on either the List view or Grid view icon to switch layouts.
 
-= How to change order? =
+= How do I change the order of entries? =
 
-1. In Block editor, select Sortable within List View.
-2. In Block sidebar, select either the "Newest to Oldest" or "Oldest to Newest" option from the dropdown menu within the Order settings section.
+1. In the Block Editor, select the Sortable block within the List View.
+2. In the Block sidebar, choose either "Newest to Oldest" or "Oldest to Newest" from the dropdown menu in the Order settings section.
 
-= What blocks to use inside Sortable? =
+= What blocks can I use inside a Sortable block? =
 
-Sortable block supports only Sortable Entry block as inner content. It's not possible to add any other blocks to the main container of Sortable block.
+The Sortable block supports only the Sortable Entry block as inner content. It's not possible to add any other blocks to the main container of the Sortable block.
 
-= What blocks to use inside Sortable Entry? =
+= What blocks can I use inside a Sortable Entry? =
 
-Sortable Entry block supports the following blocks: Sortable Date, Heading, Paragraph, Media-Text, Group, Columns.
+Sortable Entry blocks support the following blocks: Sortable Date, Heading, Paragraph, Media-Text, Group, and Columns
 
 == Screenshots ==
 
