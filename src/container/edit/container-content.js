@@ -28,22 +28,39 @@ import {
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
-import './editor.scss';
+import './../editor.scss';
 
 /**
- * WordPress dependencies.
+ * WordPress core element library functions for building user interfaces.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-element/
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/
  */
 import { useEffect } from '@wordpress/element';
+
+/**
+ * WordPress Data API functions for managing application data.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/
+ */
 import { useSelect, useDispatch } from '@wordpress/data';
+
+/**
+ * WordPress core components library for building user interfaces.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-components/
+ */
 import {
 	RangeControl,
 	PanelBody,
 	ToolbarGroup,
 	SelectControl,
 } from '@wordpress/components';
+
+/**
+ * Import icons from the WordPress Icons package.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-icons/
+ */
 import { list, grid } from '@wordpress/icons';
 
 /**
@@ -66,10 +83,10 @@ const ALLOWED_BLOCKS = [ 'sortable/entry' ];
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
  */
-export default function Edit( props ) {
-	const { clientId, attributes, setAttributes } = props;
+export default function ContainerContent( props ) {
+    const { clientId, attributes, setAttributes } = props;
 
-	const blockProps = useBlockProps( {
+    const blockProps = useBlockProps( {
 		className: classnames( {
 			'is-list': attributes.layout === 'list',
 			'is-grid': attributes.layout === 'grid',
@@ -89,10 +106,7 @@ export default function Edit( props ) {
 	);
 
 	useEffect( () => {
-		if (
-			( childBlocks.length > 0 && ! attributes.orderBy ) ||
-			attributes.order
-		) {
+		if ( ( childBlocks.length > 0 && ! attributes.orderBy ) || attributes.order ) {
 			let sortedBlocks = [];
 			if ( attributes.order === 'asc' ) {
 				sortedBlocks = [ ...childBlocks ].sort( ( blockA, blockB ) => {
@@ -127,21 +141,6 @@ export default function Edit( props ) {
 			setAttributes( { order: 'desc' } );
 		}
 	}, [ attributes.order ] );
-
-	const layoutControls = [
-		{
-			icon: list,
-			title: __( 'List view' ),
-			onClick: () => setAttributes( { layout: 'list' } ),
-			isActive: attributes.layout === 'list',
-		},
-		{
-			icon: grid,
-			title: __( 'Grid view' ),
-			onClick: () => setAttributes( { layout: 'grid' } ),
-			isActive: attributes.layout === 'grid',
-		},
-	];
 
 	const innerBlocksProps = useInnerBlocksProps( blockProps, {
 		allowedBlocks: ALLOWED_BLOCKS,
@@ -183,9 +182,22 @@ export default function Edit( props ) {
 				</PanelBody>
 			</InspectorControls>
 			<BlockControls>
-				<ToolbarGroup controls={ layoutControls } />
+				<ToolbarGroup controls={ [
+					{
+						icon: list,
+						title: __( 'List view' ),
+						onClick: () => setAttributes( { layout: 'list' } ),
+						isActive: attributes.layout === 'list',
+					},
+					{
+						icon: grid,
+						title: __( 'Grid view' ),
+						onClick: () => setAttributes( { layout: 'grid' } ),
+						isActive: attributes.layout === 'grid',
+					},
+				] } />
 			</BlockControls>
-			<div { ...innerBlocksProps } />
+			<div {...innerBlocksProps} />
 		</>
 	);
 }
