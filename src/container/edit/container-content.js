@@ -84,9 +84,9 @@ const ALLOWED_BLOCKS = [ 'sortable/entry' ];
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
  */
 export default function ContainerContent( props ) {
-    const { clientId, attributes, setAttributes } = props;
+	const { clientId, attributes, setAttributes } = props;
 
-    const blockProps = useBlockProps( {
+	const blockProps = useBlockProps( {
 		className: classnames( {
 			'is-list': attributes.layout === 'list',
 			'is-grid': attributes.layout === 'grid',
@@ -106,7 +106,10 @@ export default function ContainerContent( props ) {
 	);
 
 	useEffect( () => {
-		if ( ( childBlocks.length > 0 && ! attributes.orderBy ) || attributes.order ) {
+		if (
+			( childBlocks.length > 0 && ! attributes.orderBy ) ||
+			attributes.order
+		) {
 			let sortedBlocks = [];
 			if ( attributes.order === 'asc' ) {
 				sortedBlocks = [ ...childBlocks ].sort( ( blockA, blockB ) => {
@@ -182,22 +185,24 @@ export default function ContainerContent( props ) {
 				</PanelBody>
 			</InspectorControls>
 			<BlockControls>
-				<ToolbarGroup controls={ [
-					{
-						icon: list,
-						title: __( 'List view' ),
-						onClick: () => setAttributes( { layout: 'list' } ),
-						isActive: attributes.layout === 'list',
-					},
-					{
-						icon: grid,
-						title: __( 'Grid view' ),
-						onClick: () => setAttributes( { layout: 'grid' } ),
-						isActive: attributes.layout === 'grid',
-					},
-				] } />
+				<ToolbarGroup
+					controls={ [
+						{
+							icon: list,
+							title: __( 'List view' ),
+							onClick: () => setAttributes( { layout: 'list' } ),
+							isActive: attributes.layout === 'list',
+						},
+						{
+							icon: grid,
+							title: __( 'Grid view' ),
+							onClick: () => setAttributes( { layout: 'grid' } ),
+							isActive: attributes.layout === 'grid',
+						},
+					] }
+				/>
 			</BlockControls>
-			<div {...innerBlocksProps} />
+			<div { ...innerBlocksProps } />
 		</>
 	);
 }

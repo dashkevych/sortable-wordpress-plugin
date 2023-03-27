@@ -4,9 +4,7 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/
  */
-import {
-	store as blockEditorStore,
-} from '@wordpress/block-editor';
+import { store as blockEditorStore } from '@wordpress/block-editor';
 
 /**
  * WordPress Data API functions for managing application data.
@@ -31,7 +29,7 @@ const ContainerEdit = ( props ) => {
 
 	const Component = hasInnerBlocks ? ContainerContent : ContainerPlaceholder;
 
-    return ( <Component { ...props } /> );
+	return <Component { ...props } />;
 };
 
 export default ContainerEdit;

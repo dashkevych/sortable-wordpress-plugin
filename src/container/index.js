@@ -39,5 +39,5 @@ registerBlockType( metadata.name, {
 	/**
 	 * @see ./variations.js
 	 */
-	variations
+	variations,
 } );

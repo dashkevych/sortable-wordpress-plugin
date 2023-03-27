@@ -12,10 +12,7 @@ import {
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/
  */
-import {
-    useDispatch,
-    useSelect
-} from '@wordpress/data';
+import { useDispatch, useSelect } from '@wordpress/data';
 
 /**
  * This module imports hooks from the WordPress Element package that allow React components to
@@ -41,9 +38,9 @@ import ContainerContent from './container-content';
  * ContainerPlaceholder component
  */
 export default function ContainerPlaceholder( props ) {
-    const { clientId, name, setAttributes } = props;
+	const { clientId, name, setAttributes } = props;
 
-    const { blockType, defaultVariation, variations } = useSelect(
+	const { blockType, defaultVariation, variations } = useSelect(
 		( select ) => {
 			const {
 				getBlockVariations,
@@ -62,35 +59,37 @@ export default function ContainerPlaceholder( props ) {
 	const { replaceInnerBlocks } = useDispatch( blockEditorStore );
 	const blockProps = useBlockProps();
 
-    const [isPickerVisible, setIsPickerVisible] = useState(true);
+	const [ isPickerVisible, setIsPickerVisible ] = useState( true );
 
-    if ( !isPickerVisible ) {
-        return ( <ContainerContent { ...props } /> );
-    }
+	if ( ! isPickerVisible ) {
+		return <ContainerContent { ...props } />;
+	}
 
-    return (
+	return (
 		<div { ...blockProps }>
 			<__experimentalBlockVariationPicker
 				icon={ blockType?.icon?.src }
 				label={ blockType?.title }
 				variations={ variations }
 				onSelect={ ( nextVariation = defaultVariation ) => {
-
-                    // Handle the "Skip" button click here. You can either do nothing or perform some custom action.
-                    if ( !nextVariation.innerBlocks.length ) {
-                        setIsPickerVisible(false);
-                        return;
-                    }
+					// Handle the "Skip" button click here. You can either do nothing or perform some custom action.
+					if ( ! nextVariation.innerBlocks.length ) {
+						setIsPickerVisible( false );
+						return;
+					}
 
 					if ( nextVariation.attributes ) {
 						setAttributes( nextVariation.attributes );
 					}
 
 					if ( nextVariation.innerBlocks ) {
-                        const innerBlocksTemplate = nextVariation.innerBlocks;
-                        const createdBlocks = createBlocksFromInnerBlocksTemplate( innerBlocksTemplate );
-                        replaceInnerBlocks( clientId, createdBlocks, true );
-                    }
+						const innerBlocksTemplate = nextVariation.innerBlocks;
+						const createdBlocks =
+							createBlocksFromInnerBlocksTemplate(
+								innerBlocksTemplate
+							);
+						replaceInnerBlocks( clientId, createdBlocks, true );
+					}
 				} }
 				allowSkip
 			/>

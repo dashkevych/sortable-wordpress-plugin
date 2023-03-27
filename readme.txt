@@ -5,7 +5,7 @@ Tags:              block, sorting, sort, blocks, filter, block sort, blocks sort
 Tested up to:      6.1
 Requires at Least: 6.1
 Requires PHP:      7.4
-Stable tag:        1.3.0
+Stable tag:        1.4.0
 Text Domain:       sortable
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
@@ -81,6 +81,10 @@ Sortable Entry blocks support the following blocks: Sortable Date, Heading, Para
 6. Preview of Sortable Entry block button that adds content into the block.
 
 == Changelog ==
+
+= 1.4.0 - March 27, 2023
+* Add: support for variations in Sortable Container block;
+* Update: plugin information in Read Me file;
 
 = 1.3.0 - February 23, 2023
 * Add: support for reusable blocks (note, it does not for reusable blocks with Sortable block in it);
