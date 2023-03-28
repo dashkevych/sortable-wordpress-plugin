@@ -19,6 +19,7 @@ import './style.scss';
  */
 import Edit from './edit';
 import save from './save';
+import variations from './variations';
 import metadata from './block.json';
 
 /**
@@ -35,4 +36,8 @@ registerBlockType( metadata.name, {
 	 * @see ./save.js
 	 */
 	save,
+	/**
+	 * @see ./variations.js
+	 */
+	variations,
 } );
