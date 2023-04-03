@@ -16,3 +16,8 @@
 		}
 	}
 }
+
+/* temporary fix for core issue */
+.block-editor-block-inspector .sortable-block__date-row .components-datetime .components-base-control {
+	margin-bottom: 0;
+}

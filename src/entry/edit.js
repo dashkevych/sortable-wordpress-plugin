@@ -127,13 +127,11 @@ export default function Edit( props ) {
 		<>
 			<InspectorControls>
 				<PanelBody title={ __( 'Date Settings', 'sortable' ) }>
-					<PanelRow>
+					<PanelRow className="sortable-block__date-row">
 						<DateTimePicker
 							currentDate={ dateTime }
 							onChange={ updateDate }
 							is12Hour={ true }
-							__nextRemoveHelpButton
-							__nextRemoveResetButton
 						/>
 					</PanelRow>
 				</PanelBody>

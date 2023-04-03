@@ -1,10 +1,10 @@
 <?php
 /**
  * Plugin Name:       Sortable Block
- * Description:       A simple block to sort content by date.
+ * Description:       A simple block to sort sections in content by date.
  * Requires at least: 6.1
  * Requires PHP:      7.4
- * Version:           1.4.0
+ * Version:           1.4.1
  * Author:            Themes Harbor
  * Author URI:        https://themesharbor.com/
  * License:           GPL-2.0-or-later
