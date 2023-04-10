@@ -10,6 +10,7 @@ import { __ } from '@wordpress/i18n';
  */
 import { useEntityProp } from '@wordpress/core-data';
 import { format, getSettings as getDateSettings } from '@wordpress/date';
+import { useSelect, useDispatch } from '@wordpress/data';
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -23,7 +24,7 @@ import {
 	__experimentalDateFormatPicker as DateFormatPicker,
 } from '@wordpress/block-editor';
 
-import { PanelBody } from '@wordpress/components';
+import { PanelBody, Button } from '@wordpress/components';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -43,9 +44,19 @@ import './editor.scss';
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
  */
 export default function Edit( props ) {
-	const { context, attributes, setAttributes } = props;
+	const { context, attributes, setAttributes, clientId } = props;
+
 	const blockProps = useBlockProps();
 	const dateSettings = getDateSettings();
+
+	const { getBlock, getBlockParents } = useSelect( ( select ) => {
+		return {
+			getBlockParents: select( 'core/block-editor' ).getBlockParents,
+			getBlock: select( 'core/block-editor' ).getBlock,
+		};
+	}, [] );
+
+	const { selectBlock } = useDispatch( 'core/block-editor' );
 
 	const [ siteFormat = dateSettings.formats.date ] = useEntityProp(
 		'root',
@@ -67,6 +78,17 @@ export default function Edit( props ) {
 		</time>
 	);
 
+	// Act when Change Date button clicked.
+	const onChangeDateClick = () => {
+		const containerClientId = getBlockParents( clientId )[ 1 ];
+		const containerBlock = getBlock( containerClientId );
+
+		// Set focus on container block.
+		if ( 'sortable/entry' === containerBlock.name ) {
+			selectBlock( containerClientId );
+		}
+	};
+
 	return (
 		<>
 			<InspectorControls>
@@ -79,6 +101,9 @@ export default function Edit( props ) {
 							setAttributes( { format: nextFormat } )
 						}
 					/>
+					<Button variant="secondary" onClick={ onChangeDateClick }>
+						{ __( 'Change date', 'sortable' ) }
+					</Button>
 				</PanelBody>
 			</InspectorControls>
 
