@@ -36,6 +36,8 @@ import ContainerContent from './container-content';
 
 /**
  * ContainerPlaceholder component
+ *
+ * @param props
  */
 export default function ContainerPlaceholder( props ) {
 	const { clientId, name, setAttributes } = props;
