@@ -19,11 +19,7 @@ import { format, getSettings as getDateSettings } from "@wordpress/date";
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/
  */
-import {
-	useSelect,
-	useDispatch,
-	store as blockEditorStore,
-} from "@wordpress/data";
+import { useSelect, useDispatch } from "@wordpress/data";
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -35,6 +31,7 @@ import {
 	useBlockProps,
 	InspectorControls,
 	__experimentalDateFormatPicker as DateFormatPicker,
+	store as blockEditorStore,
 } from "@wordpress/block-editor";
 
 /**
