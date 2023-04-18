@@ -78,22 +78,20 @@ const ALLOWED_BLOCKS = [
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
  */
 export default function Edit(props) {
-	const {
-		clientId,
-		attributes: { dateTime },
-		setAttributes,
-	} = props;
+	const { clientId, attributes, setAttributes } = props;
+	const { dateTime } = attributes;
 	const blockProps = useBlockProps();
 	const { updateBlockAttributes } = useDispatch(blockEditorStore);
 
-	const { rootClientId, hasChildBlocks } = useSelect(
+	const { rootClientId, childBlocks } = useSelect(
 		(select) => {
-			const { getBlockRootClientId, getBlockOrder } = select(blockEditorStore);
+			const { getBlockRootClientId, getBlock } = select(blockEditorStore);
 			const rootId = getBlockRootClientId(clientId);
+			const parentBlock = getBlock(clientId);
 
 			return {
 				rootClientId: rootId,
-				hasChildBlocks: getBlockOrder(clientId).length > 0,
+				childBlocks: parentBlock ? parentBlock.innerBlocks : [],
 			};
 		},
 		[clientId]
@@ -123,7 +121,7 @@ export default function Edit(props) {
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		allowedBlocks: ALLOWED_BLOCKS,
 		orientation: "horizontal",
-		renderAppender: hasChildBlocks
+		renderAppender: childBlocks.length
 			? undefined
 			: InnerBlocks.ButtonBlockAppender,
 	});
