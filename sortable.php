@@ -4,9 +4,9 @@
  * Description:       A simple block to sort sections in content by date.
  * Requires at least: 6.1
  * Requires PHP:      7.4
- * Version:           1.4.2
- * Author:            Themes Harbor
- * Author URI:        https://themesharbor.com/
+ * Version:           1.4.3
+ * Author:            Taras Dashkevych
+ * Author URI:        https://tarascodes.com/
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       sortable
@@ -22,10 +22,13 @@
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
 function sortable_plugin_init() {
+	// Register Sortable Date block.
 	register_block_type( __DIR__ . '/build/date',array(
 		'render_callback' => 'render_block_sortable_date',
 	) );
+	// Register Sortable Entry block.
 	register_block_type( __DIR__ . '/build/entry' );
+	// Register Sortable block.
 	register_block_type( __DIR__ . '/build/container' );
 }
 add_action( 'init', 'sortable_plugin_init' );

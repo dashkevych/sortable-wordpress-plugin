@@ -1,11 +1,11 @@
-=== Sortable Block - Organize Sections by Date ===
+=== Sortable Block - Sort and Organize Sections by Date ===
 Contributors:      taskotr
-Author URI:        https://themesharbor.com/
+Author URI:        https://tarascodes.com/
 Tags:              block, sorting, sort, blocks, filter, block sort, blocks sorting, filter content, simple events calendar, product changelog, timeline
 Tested up to:      6.2
 Requires at Least: 6.1
 Requires PHP:      7.4
-Stable tag:        1.4.2
+Stable tag:        1.4.3
 Text Domain:       sortable
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
@@ -82,54 +82,72 @@ Sortable Entry blocks support the following blocks: Sortable Date, Heading, Para
 
 == Changelog ==
 
-= 1.4.2 - April 10, 2023
+= 1.4.3 - April 18, 2023 =
+
+* Update: formatting in blocks;
+* Update: improve user experience for toolbar in Sortable Entry blocks;
+* Update: plugin information;
+* Fix: incorrect Move icons in Sortable Entry toolbar;
+
+= 1.4.2 - April 10, 2023 =
 
 * Update: improve UX in Sortable Date block settings;
 * Update: allow to access date settings is Sortable Entry block via Sortable Date block;
 
-= 1.4.1 - April 3, 2023
+= 1.4.1 - April 3, 2023 =
+
 * Fix: cursor icon when interacting with Sortable Date block in editor;
 * Fix: provide a temporary solution to layout issue in date picker, caused by WordPress core;
 
-= 1.4.0 - March 27, 2023
+= 1.4.0 - March 27, 2023 =
+
 * Add: support for variations in Sortable Container block;
 * Update: plugin information in Read Me file;
 
-= 1.3.0 - February 23, 2023
+= 1.3.0 - February 23, 2023 =
+
 * Add: support for reusable blocks (note, it does not for reusable blocks with Sortable block in it);
 * Add: support for Border options in Sortable block;
 * Update: improve Insert buttons in the editor;
 
-= 1.2.0 - January 06, 2023
+= 1.2.0 - January 06, 2023 =
+
 * Add: support for colors in Sortable Date block;
 * Add: support for padding dimensions in Sortable Date block;
 
-= 1.1.1 - January 02, 2023
+= 1.1.1 - January 02, 2023 =
+
 * Update: detect time format in Sortable Date block;
 * Fix: wrong time output in Sortable Date block when viewed on front-end;
 * Fix: wrong time output in Sortable Date block when viewed on back-end;
 
-= 1.1.0 - December 29, 2022
+= 1.1.0 - December 29, 2022 =
+
 * Add: option to select between decreasing order & increasing order;
 * Add: option to choose format in Date block;
 * Update: description in blocks;
 
-= 1.0.0 - December 17, 2022
+= 1.0.0 - December 17, 2022 =
+
 * Initial release;
 
-= 0.0.4 - December 15, 2022
+= 0.0.4 - December 15, 2022 =
+
 * Update: formatting;
 * Update: information about sorting in main container;
 * Fix: date issue in editor;
 
-= 0.0.3 - December 15, 2022
+= 0.0.3 - December 15, 2022 =
+
 * Add: support for alignment and grid layout;
 * Update: allow Group block in Sortable Entry;
 * Fix: button contrast issue in Sortable Container;
 
 = 0.0.2 - October 1, 2022 =
-* Add: Sortable Date block to display a set date from Sortable Entry block.
-* Update: information in Read Me file.
+
+* Add: Sortable Date block to display a set date from Sortable Entry block;
+* Update: information in Read Me file;
 
 = 0.0.1 - September 6, 2022 =
-* Start the plugin.
+
+* Start the plugin;

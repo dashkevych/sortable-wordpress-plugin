@@ -6,10 +6,19 @@
 import { __ } from '@wordpress/i18n';
 
 /**
- * WordPress dependencies
+ * WordPress dependencies.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-core-data/
+ * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-date/
  */
 import { useEntityProp } from '@wordpress/core-data';
 import { format, getSettings as getDateSettings } from '@wordpress/date';
+
+/**
+ * WordPress Data API functions for managing application data.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/
+ */
 import { useSelect, useDispatch } from '@wordpress/data';
 
 /**
@@ -22,8 +31,14 @@ import {
 	useBlockProps,
 	InspectorControls,
 	__experimentalDateFormatPicker as DateFormatPicker,
+	store as blockEditorStore,
 } from '@wordpress/block-editor';
 
+/**
+ * WordPress core components.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/components/
+ */
 import { PanelBody, Button } from '@wordpress/components';
 
 /**
@@ -51,12 +66,12 @@ export default function Edit( props ) {
 
 	const { getBlock, getBlockParents } = useSelect( ( select ) => {
 		return {
-			getBlockParents: select( 'core/block-editor' ).getBlockParents,
-			getBlock: select( 'core/block-editor' ).getBlock,
+			getBlockParents: select( blockEditorStore ).getBlockParents,
+			getBlock: select( blockEditorStore ).getBlock,
 		};
 	}, [] );
 
-	const { selectBlock } = useDispatch( 'core/block-editor' );
+	const { selectBlock } = useDispatch( blockEditorStore );
 
 	const [ siteFormat = dateSettings.formats.date ] = useEntityProp(
 		'root',

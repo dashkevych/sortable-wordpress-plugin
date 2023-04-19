@@ -145,9 +145,13 @@ export default function ContainerContent( props ) {
 		}
 	}, [ attributes.order ] );
 
+	// Set orientation based on layout
+	const orientation =
+		attributes.layout === 'grid' ? 'horizontal' : 'vertical';
+
 	const innerBlocksProps = useInnerBlocksProps( blockProps, {
 		allowedBlocks: ALLOWED_BLOCKS,
-		orientation: 'horizontal',
+		orientation: orientation,
 		renderAppender: InnerBlocks.ButtonBlockAppender,
 	} );
 
