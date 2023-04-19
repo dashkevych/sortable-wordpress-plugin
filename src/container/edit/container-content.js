@@ -1,11 +1,11 @@
-import classnames from 'classnames';
+import classnames from "classnames";
 
 /**
  * Retrieves the translation of text.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
  */
-import { __ } from '@wordpress/i18n';
+import { __ } from "@wordpress/i18n";
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -20,7 +20,7 @@ import {
 	InspectorControls,
 	BlockControls,
 	store as blockEditorStore,
-} from '@wordpress/block-editor';
+} from "@wordpress/block-editor";
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -28,21 +28,21 @@ import {
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
-import './../editor.scss';
+import "./../editor.scss";
 
 /**
  * WordPress core element library functions for building user interfaces.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-element/
  */
-import { useEffect } from '@wordpress/element';
+import { useEffect } from "@wordpress/element";
 
 /**
  * WordPress Data API functions for managing application data.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/
  */
-import { useSelect, useDispatch } from '@wordpress/data';
+import { useSelect, useDispatch } from "@wordpress/data";
 
 /**
  * WordPress core components library for building user interfaces.
@@ -54,14 +54,14 @@ import {
 	PanelBody,
 	ToolbarGroup,
 	SelectControl,
-} from '@wordpress/components';
+} from "@wordpress/components";
 
 /**
  * Import icons from the WordPress Icons package.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-icons/
  */
-import { list, grid } from '@wordpress/icons';
+import { list, grid } from "@wordpress/icons";
 
 /**
  * Allowed blocks constant is passed to InnerBlocks precisely as specified here.
@@ -72,7 +72,7 @@ import { list, grid } from '@wordpress/icons';
  * @constant
  * @type {string[]}
  */
-const ALLOWED_BLOCKS = [ 'sortable/entry' ];
+const ALLOWED_BLOCKS = ["sortable/entry"];
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -83,126 +83,122 @@ const ALLOWED_BLOCKS = [ 'sortable/entry' ];
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
  */
-export default function ContainerContent( props ) {
+export default function ContainerContent(props) {
 	const { clientId, attributes, setAttributes } = props;
 
-	const blockProps = useBlockProps( {
-		className: classnames( {
-			'is-list': attributes.layout === 'list',
-			'is-grid': attributes.layout === 'grid',
-			[ `columns-${ attributes.columns }` ]: attributes.layout === 'grid',
-		} ),
-	} );
-	const { replaceInnerBlocks } = useDispatch( blockEditorStore );
+	const blockProps = useBlockProps({
+		className: classnames({
+			"is-list": attributes.layout === "list",
+			"is-grid": attributes.layout === "grid",
+			[`columns-${attributes.columns}`]: attributes.layout === "grid",
+		}),
+	});
+	const { replaceInnerBlocks } = useDispatch(blockEditorStore);
 	const { childBlocks } = useSelect(
-		( select ) => {
-			const { getBlocks } = select( blockEditorStore );
+		(select) => {
+			const { getBlocks } = select(blockEditorStore);
 
 			return {
-				childBlocks: getBlocks( clientId ),
+				childBlocks: getBlocks(clientId),
 			};
 		},
-		[ clientId ]
+		[clientId]
 	);
 
-	useEffect( () => {
-		if (
-			( childBlocks.length > 0 && ! attributes.orderBy ) ||
-			attributes.order
-		) {
+	useEffect(() => {
+		if ((childBlocks.length > 0 && !attributes.orderBy) || attributes.order) {
 			let sortedBlocks = [];
-			if ( attributes.order === 'asc' ) {
-				sortedBlocks = [ ...childBlocks ].sort( ( blockA, blockB ) => {
+			if (attributes.order === "asc") {
+				sortedBlocks = [...childBlocks].sort((blockA, blockB) => {
 					const result =
-						Number( new Date( blockA.attributes.dateTime ) ) -
-						Number( new Date( blockB.attributes.dateTime ) );
+						Number(new Date(blockA.attributes.dateTime)) -
+						Number(new Date(blockB.attributes.dateTime));
 
 					return result;
-				} );
+				});
 			} else {
-				sortedBlocks = [ ...childBlocks ].sort( ( blockA, blockB ) => {
+				sortedBlocks = [...childBlocks].sort((blockA, blockB) => {
 					const result =
-						Number( new Date( blockB.attributes.dateTime ) ) -
-						Number( new Date( blockA.attributes.dateTime ) );
+						Number(new Date(blockB.attributes.dateTime)) -
+						Number(new Date(blockA.attributes.dateTime));
 
 					return result;
-				} );
+				});
 			}
 
-			setAttributes( {
-				orderBy: 'date',
-			} );
+			setAttributes({
+				orderBy: "date",
+			});
 
-			replaceInnerBlocks( clientId, sortedBlocks, false );
+			replaceInnerBlocks(clientId, sortedBlocks, false);
 		}
-	}, [ attributes.orderBy, attributes.order ] );
+	}, [attributes.orderBy, attributes.order]);
 
 	// Update order.
-	useEffect( () => {
+	useEffect(() => {
 		// Make sure order attribute is set.
-		if ( attributes.order === '' ) {
-			setAttributes( { order: 'desc' } );
+		if (attributes.order === "") {
+			setAttributes({ order: "desc" });
 		}
-	}, [ attributes.order ] );
+	}, [attributes.order]);
 
-	const innerBlocksProps = useInnerBlocksProps( blockProps, {
+	// Set orientation based on layout
+	const orientation = attributes.layout === "grid" ? "horizontal" : "vertical";
+
+	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		allowedBlocks: ALLOWED_BLOCKS,
-		orientation: 'horizontal',
+		orientation: orientation,
 		renderAppender: InnerBlocks.ButtonBlockAppender,
-	} );
+	});
 
 	return (
 		<>
 			<InspectorControls>
-				{ attributes.layout === 'grid' && (
-					<PanelBody title={ __( 'Grid settings' ) }>
+				{attributes.layout === "grid" && (
+					<PanelBody title={__("Grid settings")}>
 						<RangeControl
 							__nextHasNoMarginBottom
-							label={ __( 'Columns' ) }
-							value={ attributes.columns }
-							onChange={ ( value ) =>
-								setAttributes( { columns: value } )
-							}
-							min={ 2 }
-							max={ 6 }
+							label={__("Columns")}
+							value={attributes.columns}
+							onChange={(value) => setAttributes({ columns: value })}
+							min={2}
+							max={6}
 							required
 						/>
 					</PanelBody>
-				) }
-				<PanelBody title={ __( 'Order settings' ) }>
+				)}
+				<PanelBody title={__("Order settings")}>
 					<SelectControl
-						label={ __( 'Order' ) }
-						value={ attributes.order }
-						options={ [
-							{ label: __( 'Newest to oldest' ), value: 'desc' },
-							{ label: __( 'Oldest to newest' ), value: 'asc' },
-						] }
-						onChange={ ( value ) =>
-							setAttributes( { order: value } )
-						}
+						label={__("Order")}
+						value={attributes.order}
+						options={[
+							{ label: __("Newest to oldest"), value: "desc" },
+							{ label: __("Oldest to newest"), value: "asc" },
+						]}
+						onChange={(value) => setAttributes({ order: value })}
 						__nextHasNoMarginBottom
 					/>
 				</PanelBody>
 			</InspectorControls>
 			<BlockControls>
 				<ToolbarGroup
-					controls={ [
+					controls={[
 						{
 							icon: list,
-							title: __( 'List view' ),
-							onClick: () => setAttributes( { layout: 'list' } ),
-							isActive: attributes.layout === 'list',
+							title: __("List view"),
+							onClick: () => setAttributes({ layout: "list" }),
+							isActive: attributes.layout === "list",
 						},
 						{
 							icon: grid,
-							title: __( 'Grid view' ),
-							onClick: () => setAttributes( { layout: 'grid' } ),
-							isActive: attributes.layout === 'grid',
+							title: __("Grid view"),
+							onClick: () => setAttributes({ layout: "grid" }),
+							isActive: attributes.layout === "grid",
 						},
-					] }
+					]}
 				/>
 			</BlockControls>
-			<div { ...innerBlocksProps } />
+			<div {...innerBlocksProps} />
 		</>
 	);
 }
