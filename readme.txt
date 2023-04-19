@@ -1,11 +1,11 @@
-=== Sortable Block - Organize Sections by Date ===
+=== Sortable Block - Sort and Organize Sections by Date ===
 Contributors:      taskotr
 Author URI:        https://tarascodes.com/
 Tags:              block, sorting, sort, blocks, filter, block sort, blocks sorting, filter content, simple events calendar, product changelog, timeline
 Tested up to:      6.2
 Requires at Least: 6.1
 Requires PHP:      7.4
-Stable tag:        1.4.2
+Stable tag:        1.4.3
 Text Domain:       sortable
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
@@ -82,9 +82,11 @@ Sortable Entry blocks support the following blocks: Sortable Date, Heading, Para
 
 == Changelog ==
 
-= 1.4.3 - April 10, 2023 =
+= 1.4.3 - April 18, 2023 =
 
-* Update: formatting;
+* Update: formatting in blocks;
+* Update: improve user experience for toolbar in Sortable Entry blocks;
+* Update: plugin information;
 * Fix: incorrect Move icons in Sortable Entry toolbar;
 
 = 1.4.2 - April 10, 2023 =
