@@ -1,6 +1,6 @@
 === Sortable Block - Organize Sections by Date ===
 Contributors:      taskotr
-Author URI:        https://themesharbor.com/
+Author URI:        https://tarascodes.com/
 Tags:              block, sorting, sort, blocks, filter, block sort, blocks sorting, filter content, simple events calendar, product changelog, timeline
 Tested up to:      6.2
 Requires at Least: 6.1
@@ -81,6 +81,11 @@ Sortable Entry blocks support the following blocks: Sortable Date, Heading, Para
 6. Preview of Sortable Entry block button that adds content into the block.
 
 == Changelog ==
+
+= 1.4.3 - April 10, 2023 =
+
+* Update: formatting;
+* Fix: incorrect Move icons in Sortable Entry toolbar;
 
 = 1.4.2 - April 10, 2023 =
 
