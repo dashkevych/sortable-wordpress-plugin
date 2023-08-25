@@ -31,7 +31,7 @@ const variations = [
 	},
 	{
 		name: 'grid-date-title-description',
-		title: __( 'Grid View with date, title, text' ),
+		title: __( 'Grid View' ),
 		icon: gridView,
 		description: __(
 			'Display multiple columns in a grid with date, title and description'
@@ -120,7 +120,7 @@ const variations = [
 	},
 	{
 		name: 'list-date-title-description',
-		title: __( 'List View with date, title, text' ),
+		title: __( 'List View' ),
 		icon: listView,
 		description: __(
 			'Display multiple lines in a list with date, title and description'

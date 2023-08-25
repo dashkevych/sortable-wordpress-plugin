@@ -1,4 +1,11 @@
 /**
+ * Retrieves the translation of text.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
+ */
+import { __ } from '@wordpress/i18n';
+
+/**
  * Import necessary modules from the WordPress Block Editor
  */
 import {
@@ -31,6 +38,13 @@ import {
 	store as blocksStore,
 } from '@wordpress/blocks';
 
+/**
+ * WordPress core components.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/components/
+ */
+import { Button, Placeholder } from '@wordpress/components';
+
 // Import ContainerContent component
 import ContainerContent from './container-content';
 
@@ -40,7 +54,17 @@ import ContainerContent from './container-content';
  * @param props
  */
 export default function ContainerPlaceholder( props ) {
-	const { clientId, name, setAttributes } = props;
+	const { clientId, name, openPatternSelectionModal, setAttributes } = props;
+
+	// Define the phases
+	const PHASES = {
+		PICKER: 'picker',
+		BLANK: 'blank',
+		CONTENT: 'content',
+	};
+
+	// Replace isPickerVisible and isStartingBlank with currentPhase
+	const [ currentPhase, setCurrentPhase ] = useState( PHASES.PICKER );
 
 	const { blockType, defaultVariation, variations } = useSelect(
 		( select ) => {
@@ -61,14 +85,9 @@ export default function ContainerPlaceholder( props ) {
 	const { replaceInnerBlocks } = useDispatch( blockEditorStore );
 	const blockProps = useBlockProps();
 
-	const [ isPickerVisible, setIsPickerVisible ] = useState( true );
-
-	if ( ! isPickerVisible ) {
-		return <ContainerContent { ...props } />;
-	}
-
-	return (
-		<div { ...blockProps }>
+	// Check if the user want to use the Variation Picker when first use block.
+	if ( currentPhase === PHASES.BLANK ) {
+		return (
 			<__experimentalBlockVariationPicker
 				icon={ blockType?.icon?.src }
 				label={ blockType?.title }
@@ -76,7 +95,7 @@ export default function ContainerPlaceholder( props ) {
 				onSelect={ ( nextVariation = defaultVariation ) => {
 					// Handle the "Skip" button click here. You can either do nothing or perform some custom action.
 					if ( ! nextVariation.innerBlocks.length ) {
-						setIsPickerVisible( false );
+						setCurrentPhase( PHASES.CONTENT );
 						return;
 					}
 
@@ -92,9 +111,45 @@ export default function ContainerPlaceholder( props ) {
 							);
 						replaceInnerBlocks( clientId, createdBlocks, true );
 					}
+
+					setCurrentPhase( PHASES.CONTENT );
 				} }
 				allowSkip
 			/>
+		);
+	}
+
+	if ( currentPhase === PHASES.CONTENT ) {
+		return <ContainerContent { ...props } />;
+	}
+
+	const hasPatterns = true;
+
+	return (
+		<div { ...blockProps }>
+			<Placeholder
+				icon={ blockType?.icon?.src }
+				label={ blockType?.title }
+				instructions={ __( 'Choose a pattern or start blank.' ) }
+			>
+				{ !! hasPatterns && (
+					<Button
+						variant="primary"
+						onClick={ openPatternSelectionModal }
+					>
+						{ __( 'Choose' ) }
+					</Button>
+				) }
+
+				<Button
+					variant="secondary"
+					onClick={ () => {
+						setCurrentPhase( PHASES.BLANK );
+					} }
+				>
+					{ __( 'Start blank' ) }
+				</Button>
+			</Placeholder>
 		</div>
 	);
 }
