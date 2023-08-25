@@ -4,7 +4,7 @@
  * Description:       A simple block to sort sections in content by date.
  * Requires at least: 6.1
  * Requires PHP:      7.4
- * Version:           1.4.3
+ * Version:           1.5.0
  * Author:            Taras Dashkevych
  * Author URI:        https://tarascodes.com/
  * License:           GPL-2.0-or-later

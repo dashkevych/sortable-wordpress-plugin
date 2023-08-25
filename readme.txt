@@ -2,10 +2,10 @@
 Contributors:      taskotr
 Author URI:        https://tarascodes.com/
 Tags:              block, sorting, sort, blocks, filter, block sort, blocks sorting, filter content, simple events calendar, product changelog, timeline
-Tested up to:      6.2
+Tested up to:      6.3
 Requires at Least: 6.1
 Requires PHP:      7.4
-Stable tag:        1.4.3
+Stable tag:        1.5.0
 Text Domain:       sortable
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
@@ -14,11 +14,11 @@ Easily create customizable, sortable sections on your website using WordPress bl
 
 == Description ==
 
-The Sortable Block plugin enables you to create sortable sections on your website using WordPress blocks. This powerful tool allows you to effortlessly build and organize content within a container, with each inner section being sortable by date.
+The Sortable Block plugin enables you to create sortable sections on a website using WordPress blocks. This plugin allows to build and organize content within a container, with each inner section being sortable by date.
 
 With the flexibility of using any WordPress block to design your inner sections, you can create a variety of layouts tailored to your needs. This plugin is perfect for managing event calendars, product changelogs, media mentions, and more.
 
-Choose between two layout options - list and grid - for even more customization and a seamless user experience.
+The Sortable Block plugin allows to choose between two layout options - list and grid - for even more customization and a seamless user experience.
 
 Create dynamic, sortable sections with ease using the Sortable Block plugin!
 
@@ -81,6 +81,14 @@ Sortable Entry blocks support the following blocks: Sortable Date, Heading, Para
 6. Preview of Sortable Entry block button that adds content into the block.
 
 == Changelog ==
+
+= 1.5.0 - August 25, 2023 =
+
+* Add: pre-made layout in Patterns to create Changelog List;
+* Add: allow to select pre-defined pattern when block first added to content area;
+* Update: refactor welcome screen when block first added to content area;
+* Update: formatting in files;
+* Update: simplify labels for Variations screen;
 
 = 1.4.3 - April 18, 2023 =
 
