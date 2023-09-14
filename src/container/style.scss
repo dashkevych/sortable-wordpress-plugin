@@ -19,6 +19,7 @@
 	&.has-separator {
 		& > .wp-block-sortable-entry {
 			position: relative;
+			margin-block: 0;
 
 			&:where(:not(:first-child)) {
 				&::after {

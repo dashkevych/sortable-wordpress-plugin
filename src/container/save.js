@@ -48,6 +48,7 @@ export default function save(props) {
 		...(gap && { "--wp--sortable-container--spacing--gap": gap }),
 	};
 
+	// Inner blocks (children of parent block).
 	const innerBlocksProps = useInnerBlocksProps.save(
 		useBlockProps.save({
 			className: classnames({
