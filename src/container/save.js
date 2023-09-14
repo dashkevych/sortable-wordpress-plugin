@@ -1,3 +1,8 @@
+/**
+ * Utility to conditionally join classNames together.
+ *
+ * @see https://www.npmjs.com/package/classnames
+ */
 import classnames from 'classnames';
 
 /**
@@ -6,7 +11,11 @@ import classnames from 'classnames';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
+import {
+	useBlockProps,
+	useInnerBlocksProps,
+	__experimentalGetGapCSSValue as getGapCSSValue,
+} from '@wordpress/block-editor';
 
 /**
  * The save function defines the way in which the different attributes should
@@ -20,6 +29,26 @@ import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
  */
 export default function save( props ) {
 	const { attributes } = props;
+
+	// Destructure the separator attribute.
+	const { width, style, color } = attributes.separator || {};
+
+	// Construct style properties based on the separator properties.
+	const separatorStyles = {
+		...( width && { '--wp--sortable-container--separator--width': width } ),
+		...( style && { '--wp--sortable-container--separator--style': style } ),
+		...( color && { '--wp--sortable-container--separator--color': color } ),
+	};
+
+	// Custom spacing value.
+	const gap = getGapCSSValue( attributes.style?.spacing?.blockGap );
+
+	// Construct style properties based on the spacing properties.
+	const spacingStyles = {
+		...( gap && { '--wp--sortable-container--spacing--gap': gap } ),
+	};
+
+	// Inner blocks (children of parent block).
 	const innerBlocksProps = useInnerBlocksProps.save(
 		useBlockProps.save( {
 			className: classnames( {
@@ -27,7 +56,13 @@ export default function save( props ) {
 				'is-grid': attributes.layout === 'grid',
 				[ `columns-${ attributes.columns }` ]:
 					attributes.layout === 'grid',
+				// Add has-separator class if any of the separator properties exist
+				'has-separator': width || style || color,
 			} ),
+			style: {
+				...separatorStyles,
+				...spacingStyles,
+			},
 		} )
 	);
 

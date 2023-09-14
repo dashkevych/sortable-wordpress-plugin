@@ -4,7 +4,7 @@
  * Description:       A simple block to sort sections in content by date.
  * Requires at least: 6.1
  * Requires PHP:      7.4
- * Version:           1.5.0
+ * Version:           1.6.0
  * Author:            Taras Dashkevych
  * Author URI:        https://tarascodes.com/
  * License:           GPL-2.0-or-later
@@ -26,7 +26,7 @@ function sortable_plugin_init() {
 	register_block_type(
 		__DIR__ . '/build/date',
 		array(
-			'render_callback' => 'render_block_sortable_date',
+			'render_callback' => 'sortable_render_block_sortable_date',
 		)
 	);
 	// Register Sortable Entry block.
@@ -180,7 +180,7 @@ add_action( 'init', 'sortable_plugin_init' );
  * @param WP_Block $block      Block instance.
  * @return string Return the post comment's date.
  */
-function render_block_sortable_date( $attributes, $content, $block ) {
+function sortable_render_block_sortable_date( $attributes, $content, $block ) {
 	if ( ! isset( $block->context['sortable/entryDateTime'] ) ) {
 		return '';
 	}

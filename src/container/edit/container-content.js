@@ -1,3 +1,8 @@
+/**
+ * Utility to conditionally join classNames together.
+ *
+ * @see https://www.npmjs.com/package/classnames
+ */
 import classnames from 'classnames';
 
 /**
@@ -8,8 +13,12 @@ import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 
 /**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
+ * React hook and components from the WordPress block editor package.
+ *
+ * - blockEditorStore:
+ *     - Redux store specific to the block editor's state.
+ *     - Manages state related to blocks like their attributes, order, selection, undo/redo history, etc.
+ *     - Part of the `@wordpress/block-editor` package, allowing for block-editing interfaces beyond the post-editing screen.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
@@ -20,7 +29,20 @@ import {
 	InspectorControls,
 	BlockControls,
 	store as blockEditorStore,
+	__experimentalGetGapCSSValue as getGapCSSValue,
 } from '@wordpress/block-editor';
+
+/**
+ * Components from the WordPress editor package.
+ *
+ * - editorStore:
+ *     - Redux store specific to the post editor in WordPress.
+ *     - Manages state outside of block content like post title, post status, and whether the post is being saved.
+ *     - Part of the `@wordpress/editor` package, integrating the block editor with the post editing experience.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-editor/
+ */
+import { store as editorStore } from '@wordpress/editor';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -54,6 +76,9 @@ import {
 	PanelBody,
 	ToolbarGroup,
 	SelectControl,
+	__experimentalToolsPanel as ToolsPanel,
+	__experimentalToolsPanelItem as ToolsPanelItem,
+	__experimentalBorderControl as BorderControl,
 } from '@wordpress/components';
 
 /**
@@ -86,14 +111,46 @@ const ALLOWED_BLOCKS = [ 'sortable/entry' ];
 export default function ContainerContent( props ) {
 	const { clientId, attributes, setAttributes } = props;
 
+	// Destructure the separator attribute.
+	const { width, style, color } = attributes.separator || {};
+
+	// Construct style properties based on the separator properties.
+	const separatorStyles = {
+		...( width && { '--wp--sortable-container--separator--width': width } ),
+		...( style && { '--wp--sortable-container--separator--style': style } ),
+		...( color && { '--wp--sortable-container--separator--color': color } ),
+	};
+
+	// Custom spacing value.
+	const gap = getGapCSSValue( attributes.style?.spacing?.blockGap );
+
+	// Construct style properties based on the spacing properties.
+	const spacingStyles = {
+		...( gap && { '--wp--sortable-container--spacing--gap': gap } ),
+	};
+
 	const blockProps = useBlockProps( {
 		className: classnames( {
 			'is-list': attributes.layout === 'list',
 			'is-grid': attributes.layout === 'grid',
 			[ `columns-${ attributes.columns }` ]: attributes.layout === 'grid',
+			// Add has-separator class if any of the separator properties exist
+			'has-separator': width || style || color,
 		} ),
+		style: {
+			...separatorStyles,
+			...spacingStyles,
+		},
 	} );
+
 	const { replaceInnerBlocks } = useDispatch( blockEditorStore );
+
+	// Editor settings.
+	const editorSettings = useSelect( ( select ) => {
+		return select( editorStore ).getEditorSettings();
+	}, [] );
+
+	// Get child blocks.
 	const { childBlocks } = useSelect(
 		( select ) => {
 			const { getBlocks } = select( blockEditorStore );
@@ -187,6 +244,27 @@ export default function ContainerContent( props ) {
 						__nextHasNoMarginBottom
 					/>
 				</PanelBody>
+			</InspectorControls>
+			<InspectorControls group="styles">
+				<ToolsPanel label={ __( 'Separator' ) }>
+					<ToolsPanelItem
+						isShownByDefault
+						label={ __( 'Appearance' ) }
+						hasValue={ () => !! attributes.separator }
+						onDeselect={ () =>
+							setAttributes( { separator: undefined } )
+						}
+					>
+						<BorderControl
+							colors={ editorSettings?.colors }
+							onChange={ ( newBorder ) => {
+								setAttributes( { separator: newBorder } );
+							} }
+							value={ attributes.separator }
+							withSlider
+						/>
+					</ToolsPanelItem>
+				</ToolsPanel>
 			</InspectorControls>
 			<BlockControls>
 				<ToolbarGroup
