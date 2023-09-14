@@ -2,7 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
 	"name": "sortable/container",
-	"version": "1.5.0",
+	"version": "1.6.0",
 	"title": "Sortable",
 	"category": "widgets",
 	"icon": "portfolio",
@@ -23,12 +23,17 @@
 		"order": {
 			"type": "string",
 			"default": "desc"
+		},
+		"separator": {
+			"type": "object",
+			"default": {}
 		}
 	},
 	"supports": {
 		"anchor": true,
 		"align": true,
 		"html": false,
+		"layout": false,
 		"color": {
 			"gradients": true,
 			"link": true,
@@ -38,6 +43,12 @@
 			}
 		},
 		"spacing": {
+			"blockGap": {
+				"__experimentalDefault": "1.25em"
+			},
+			"__experimentalDefaultControls": {
+				"blockGap": true
+			},
 			"margin": true,
 			"padding": true
 		},

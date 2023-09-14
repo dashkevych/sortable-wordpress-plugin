@@ -82,6 +82,13 @@ Sortable Entry blocks support the following blocks: Sortable Date, Heading, Para
 
 == Changelog ==
 
+* Add: support for Separator in Sortable block;
+* Add: support for styles in Separator;
+* Add: support for colors in Separator;
+* Add: support for custom spacing between Sortable Entry blocks inside Sortable block;
+* Update: function naming for sortable date render;
+* Update: introduce fallback for outdated sortable blocks;
+
 = 1.5.0 - August 25, 2023 =
 
 * Add: pre-made layout in Patterns to create Changelog List;

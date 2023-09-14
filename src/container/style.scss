@@ -7,22 +7,37 @@
 	&.is-list {
 		display: flex;
 		flex-direction: column;
-		gap: var(--wp--style--block-gap);
+		gap: var(--wp--sortable-container--spacing--gap, var(--wp--style--block-gap));
 	}
 
 	&.is-grid {
 		display: grid;
 		grid-template-columns: repeat(1, minmax(0, 1fr));
-		gap: var(--wp--style--block-gap);
+		gap: var(--wp--sortable-container--spacing--gap, var(--wp--style--block-gap));
+	}
+
+	&.has-separator {
+		& > .wp-block-sortable-entry {
+			position: relative;
+
+			&:where(:not(:first-child)) {
+				&::after {
+					content: "";
+					position: absolute;
+					inset-inline: 0;
+					inset-block-start: calc(-0.5 * var(--wp--sortable-container--spacing--gap, var(--wp--style--block-gap)) - 0.5 * var(--wp--sortable-container--separator--width, 0));
+					border-block-end-color: var(--wp--sortable-container--separator--color, transparent);
+					border-block-end-style: var(--wp--sortable-container--separator--style, solid);
+					border-block-end-width: var(--wp--sortable-container--separator--width, 0);
+				}
+			}
+		}
 	}
 }
 
 @media (min-width: 782px) {
-
 	.wp-block-sortable-container {
-
 		&.is-grid {
-
 			&.columns-2 {
 				grid-template-columns: repeat(2, minmax(0, 1fr));
 			}
@@ -41,6 +56,100 @@
 
 			&.columns-6 {
 				grid-template-columns: repeat(6, minmax(0, 1fr));
+			}
+		}
+
+		&.has-separator {
+			&.is-grid {
+				& > .wp-block-sortable-entry {
+					&::before {
+						content: "";
+						position: absolute;
+						inset-block: 0;
+						inset-inline-end: calc(-0.5 * var(--wp--sortable-container--spacing--gap, var(--wp--style--block-gap)) - 0.5 * var(--wp--sortable-container--separator--width, 0));
+						border-inline-end-color: var(--wp--sortable-container--separator--color, transparent);
+						border-inline-end-style: var(--wp--sortable-container--separator--style, solid);
+						border-inline-end-width: var(--wp--sortable-container--separator--width, 0);
+					}
+
+					&::after {
+						inset-inline: 0;
+						inset-block-start: calc(-0.5 * var(--wp--sortable-container--spacing--gap, var(--wp--style--block-gap)) - 0.5 * var(--wp--sortable-container--separator--width, 0));
+						border-block-end-color: var(--wp--sortable-container--separator--color, transparent);
+						border-block-end-style: var(--wp--sortable-container--separator--style, solid);
+						border-block-end-width: var(--wp--sortable-container--separator--width, 0);
+					}
+				}
+
+				&.columns-2 {
+					& > .wp-block-sortable-entry {
+						// Hide the side border for every second child.
+						&:nth-of-type(2n)::before {
+							border-inline-end-width: 0;
+						}
+
+						/* Styles for the first six items in the first row */
+						&:nth-of-type(-n+2)::after {
+							border-block-end-width: 0;
+						}
+					}
+				}
+
+				&.columns-3 {
+					& > .wp-block-sortable-entry {
+						// Hide the side border for every third child
+						&:nth-of-type(3n)::before {
+							border-inline-end-width: 0;
+						}
+
+						/* Styles for the first six items in the first row */
+						&:nth-of-type(-n+3)::after {
+							border-block-end-width: 0;
+						}
+					}
+				}
+
+				&.columns-4 {
+					& > .wp-block-sortable-entry {
+						// Hide the side border for every fourth child
+						&:nth-of-type(4n)::before {
+							border-inline-end-width: 0;
+						}
+
+						/* Styles for the first six items in the first row */
+						&:nth-of-type(-n+4)::after {
+							border-block-end-width: 0;
+						}
+					}
+				}
+
+				&.columns-5 {
+					& > .wp-block-sortable-entry {
+						// Hide the side border for every fifth child
+						&:nth-of-type(5n)::before {
+							border-inline-end-width: 0;
+						}
+
+						/* Styles for the first six items in the first row */
+						&:nth-of-type(-n+5)::after {
+							border-block-end-width: 0;
+						}
+					}
+				}
+
+				&.columns-6 {
+					& > .wp-block-sortable-entry {
+						// Hide the side border for every sixth child
+						&:nth-of-type(6n)::before {
+							border-inline-end-width: 0;
+						}
+
+						/* Styles for the first six items in the first row */
+						&:nth-of-type(-n+6)::after {
+							border-block-end-width: 0;
+						}
+					}
+				}
 			}
 		}
 	}
