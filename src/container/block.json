@@ -24,10 +24,21 @@
 			"type": "string",
 			"default": "desc"
 		},
+		"filter": {
+			"type": "object",
+			"default": {
+				"displayType": "",
+				"date": "",
+				"ignoreOutdated": false
+			}
+		},
 		"separator": {
 			"type": "object",
 			"default": {}
 		}
+	},
+	"providesContext": {
+		"sortable/filter": "filter"
 	},
 	"supports": {
 		"anchor": true,
