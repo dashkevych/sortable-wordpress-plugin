@@ -19,6 +19,7 @@
 	"providesContext": {
 		"sortable/entryDateTime": "dateTime"
 	},
+	"usesContext": [ "sortable/filter" ],
 	"textdomain": "sortable",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
