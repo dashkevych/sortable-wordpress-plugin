@@ -3,6 +3,16 @@
  */
 .wp-block-sortable-entry {
 
+	&.is-outdated {
+		opacity: 0.5;
+		display: block;
+
+		&.is-selected,
+		&.has-child-selected {
+			opacity: 1;
+		}
+	}
+
 	> .block-list-appender {
 
 		.block-editor-button-block-appender {
@@ -16,6 +26,8 @@
 		}
 	}
 }
+
+
 
 .sortable-block__warning-modal {
 	&.components-modal__frame {

@@ -102,21 +102,53 @@ const ALLOWED_BLOCKS = [
 export default function Edit(props) {
 	const { context, clientId, attributes, setAttributes } = props;
 	const { updateBlockAttributes } = useDispatch(blockEditorStore);
-
-	const { dateTime } = attributes;
-	const filterDateTime = context["sortable/filter"].date;
-	const blockDateObject = new Date(dateTime);
-	const filterDateObject = new Date(filterDateTime);
-	// Determine if dateTime is earlier than filterDate
-	const isExpired = blockDateObject.getTime() < filterDateObject.getTime();
-	const isDateWarningIgnored = context["sortable/filter"].ignoreOutdated;
-
 	const [isOpenWarningModal, setIsOpenWarningModal] = useState(false);
+	const {
+		displayType,
+		date: filterDateValue,
+		dateFilterType,
+		includeDateTime,
+		ignoreOutdated,
+	} = context["sortable/filter"];
+	let isOutdated = false;
+
+	// Create a JavaScript Date object from the block date value.
+	const blockDateObject = new Date(attributes.dateTime);
+	// Create a JavaScript Date object from the filter date value.
+	const filterDateObject = new Date(filterDateValue);
+	if (!isNaN(filterDateObject.getTime())) {
+		// Reset the time part of the date objects to midnight if includeDateTime is false.
+		if (!includeDateTime) {
+			blockDateObject.setHours(0, 0, 0, 0);
+			filterDateObject.setHours(0, 0, 0, 0);
+		}
+
+		// Determine if the block date is outdated based on the filter date and type.
+		if (
+			dateFilterType === "on" &&
+			blockDateObject.getTime() !== filterDateObject.getTime()
+		) {
+			isOutdated = true;
+		} else if (
+			dateFilterType === "after" &&
+			blockDateObject <= filterDateObject
+		) {
+			isOutdated = true;
+		} else if (
+			dateFilterType === "before" &&
+			blockDateObject >= filterDateObject
+		) {
+			isOutdated = true;
+		}
+	} else {
+		if (filterDateValue !== "") {
+			console.error("Invalid date:", filterDateValue);
+		}
+	}
 
 	const blockProps = useBlockProps({
-		className: classnames({
-			"is-expired": isExpired,
-		}),
+		"data-event-date": attributes.dateTime ? attributes.dateTime : "",
+		className: classnames({ "is-outdated": isOutdated }),
 	});
 
 	const { rootClientId, childBlocks } = useSelect(
@@ -144,7 +176,7 @@ export default function Edit(props) {
 	};
 
 	useEffect(() => {
-		if (!dateTime) {
+		if (!attributes.dateTime) {
 			setAttributes({ dateTime: new Date() });
 
 			// Reset parent block sorting.
@@ -152,7 +184,7 @@ export default function Edit(props) {
 				orderBy: "",
 			});
 		}
-	}, [rootClientId, dateTime]);
+	}, [rootClientId, attributes.dateTime]);
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		allowedBlocks: ALLOWED_BLOCKS,
@@ -164,7 +196,7 @@ export default function Edit(props) {
 
 	return (
 		<>
-			{isOpenWarningModal && (
+			{isOpenWarningModal && filterDateObject && (
 				<Modal
 					title={__("This Block's Date is Old", "sortable")}
 					onRequestClose={() => setIsOpenWarningModal(false)}
@@ -242,7 +274,7 @@ export default function Edit(props) {
 					</Button>
 				</Modal>
 			)}
-			{isExpired && !isDateWarningIgnored && (
+			{isOutdated && !ignoreOutdated && (
 				<BlockControls>
 					<Toolbar>
 						<Button
@@ -260,7 +292,7 @@ export default function Edit(props) {
 				<PanelBody title={__("Date Settings", "sortable")}>
 					<PanelRow className="sortable-block__date-row">
 						<DateTimePicker
-							currentDate={dateTime}
+							currentDate={attributes.dateTime}
 							onChange={updateDate}
 							is12Hour={true}
 						/>
