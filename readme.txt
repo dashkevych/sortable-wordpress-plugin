@@ -1,7 +1,7 @@
-=== Sortable Block - Sort and Organize Sections by Date ===
+=== Sortable - Simple Events by Date Manager Block ===
 Contributors:      taskotr
 Author URI:        https://tarascodes.com/
-Tags:              block, sorting, sort, blocks, filter, block sort, blocks sorting, filter content, simple events calendar, product changelog, timeline
+Tags:              event, events, sort, filter, manager, blocks sorting, sort by date, filter content, simple events calendar, product changelog, timeline
 Tested up to:      6.3
 Requires at Least: 6.1
 Requires PHP:      7.4
@@ -14,13 +14,31 @@ Easily create customizable, sortable sections on your website using WordPress bl
 
 == Description ==
 
-The Sortable Block plugin helps to create sortable sections in WordPress. This plugin provides you to build and organize content within a container, with each inner section being sortable by date.
+Easily create and manage events on your WordPress site with Sortable Block free plugin. This WordPress events plugin allows to organize and present both virtual and physical events with elegance and efficiency.
 
-Also, the plugin allows to choose between two layout options: List and Grid.
+Loaded with core features, the Sortable Block event manager is ready to use on any page, making it a perfect choice for small businesses, musicians, photographers, venues, restaurants, and non-profits.
 
-Using any WordPress block to design inner sections, you can create a variety of layouts tailored for specific needs. Sortable Block is perfect for managing event calendars, product changelogs, media mentions, and more.
+**🌟 FEATURES**
 
-Create dynamic, sortable sections with the Sortable Block plugin!
+The Sortable Block plugin provides functionality to create and manage your events.
+
+- Full support for Block editor
+- Event (Sortable Entry) creation and management
+- Dual layout options: List and Grid
+- Customizable date formats with Sortable Date
+- Seamless switching between layout styles
+- Ideal for event calendars, changelogs, media mentions, course schedules, conference agendas, project timelines, booking systems, and publication archives
+- Support for various content types within Sortable Entry
+- User-friendly, enhancing website navigation and organization
+- Responsive design ensuring optimal viewing on all devices
+
+**🔧 EASE OF INSTALLATION AND PERSONALIZATION**
+
+Begin by installing the plugin from the WordPress repository, following the standard plugin installation process. Once activated, the plugin readily integrates with the WordPress block editor, making it easy to start creating and managing your events.
+
+Personalization is at the core of Sortable Block. It supports customization options accessible directly from the block editor. This means you can tailor the events layout to your liking. For instance, you might want to change the background color to align with your brand's theme.
+
+This level of ease in installation and personalization ensures not just a user-friendly experience but also a quick setup, letting you focus more on creating engaging events and less on overcoming technical hurdles.
 
 === Examples ===
 
