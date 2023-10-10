@@ -14,6 +14,9 @@
  * @package           Sortable
  */
 
+define( 'SORTABLE_BLOCK_PLUGIN', __FILE__ );
+define( 'SORTABLE_BLOCK_PLUGIN_DIR_URL', plugin_dir_url( SORTABLE_BLOCK_PLUGIN ) );
+
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
  * Behind the scenes, it registers also all assets so they can be enqueued
