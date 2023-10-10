@@ -57,3 +57,22 @@
     margin-block-start: 10px;
     padding-block-start: 15px;
 }
+
+.block-library-sortable-pattern__selection-modal {
+	& .block-editor-block-patterns-list {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 32px;
+		padding-block: 0.5em;
+
+		& .block-editor-block-preview__container {
+			border: 2px solid #e0e0e0;
+			padding-block: 1em;
+    		border-radius: 8px;
+		}
+	}
+
+	.block-editor-block-patterns-list__item:hover .block-editor-block-preview__container {
+		box-shadow: 0 0 0 6px #eee, 0 0 10px 6px #ddd;
+	}
+}
