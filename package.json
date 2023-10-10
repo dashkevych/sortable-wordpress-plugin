@@ -13,15 +13,17 @@
 		"lint:js": "wp-scripts lint-js",
 		"lint:js:fix": "wp-scripts lint-js --fix",
 		"packages-update": "wp-scripts packages-update",
+		"minify:scripts": "rm -f assets/scripts/*.min.js && echo \"$(tput setaf \"3\")Building JS Files$(tput sgr0)\"; for f in assets/scripts/*.js; do file=${f%.js}; echo \"$(tput setaf \"3\")Building $f$(tput sgr0)\"; node_modules/.bin/uglifyjs $f -c -m > $file.min.js; done",
 		"plugin-zip": "wp-scripts plugin-zip",
 		"start": "wp-scripts start",
 		"prod": "npm run format && npm run lint:css:fix && npm run build && npm run plugin-zip"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^26.12.0"
+		"@wordpress/scripts": "^26.13.0",
+		"uglify-js": "^3.17.4"
 	},
 	"dependencies": {
-		"@wordpress/icons": "^9.32.0",
+		"@wordpress/icons": "^9.33.0",
 		"classnames": "^2.3.2"
 	}
 }
