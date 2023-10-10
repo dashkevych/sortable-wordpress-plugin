@@ -222,54 +222,56 @@ function sortable_render_block_sortable_date( $attributes, $content, $block ) {
  * @return string Return block's content.
  */
 function sortable_render_block_sortable_entry( $attributes, $content, $block ) {
-    // Access block context using the context property of the $block object.
-    $context = $block->context;
+	// Access block context using the context property of the $block object.
+	$context = $block->context;
 
-    // Use the $context variable to access contextual information.
-    $filter_settings = isset( $context['sortable/filter'] ) ? $context['sortable/filter'] : null;
+	// Use the $context variable to access contextual information.
+	$filter_settings = isset( $context['sortable/filter'] ) ? $context['sortable/filter'] : null;
 
-    // Extract filter settings.
-    $filter_date_value = isset( $filter_settings['date'] ) ? $filter_settings['date'] : '';
-    $filter_date_type = isset( $filter_settings['dateFilterType'] ) ? $filter_settings['dateFilterType'] : 'on';
-    $include_date_time = isset( $filter_settings['includeDateTime'] ) ? $filter_settings['includeDateTime'] : false;
+	// Extract filter settings.
+	$filter_date_value = isset( $filter_settings['date'] ) ? $filter_settings['date'] : '';
+	$filter_date_type  = isset( $filter_settings['dateFilterType'] ) ? $filter_settings['dateFilterType'] : 'on';
+	$include_date_time = isset( $filter_settings['includeDateTime'] ) ? $filter_settings['includeDateTime'] : false;
 
-    // Determine if block is outdated.
-    $is_outdated = false;
+	// Determine if block is outdated.
+	$is_outdated = false;
 
-    // Only check for outdated blocks if filter date value is not empty.
-    if ( !empty($filter_date_value) ) {
-        $block_date = new DateTime( $attributes['dateTime'] );
-        $filter_date = new DateTime( $filter_date_value );
+	// Only check for outdated blocks if filter date value is not empty.
+	if ( ! empty( $filter_date_value ) ) {
+		$block_date  = new DateTime( $attributes['dateTime'] );
+		$filter_date = new DateTime( $filter_date_value );
 
-        // Reset time to midnight if includeDateTime is false.
-        if ( ! $include_date_time ) {
-            $block_date->setTime(0, 0, 0);
-            $filter_date->setTime(0, 0, 0);
-        }
+		// Reset time to midnight if includeDateTime is false.
+		if ( ! $include_date_time ) {
+			$block_date->setTime( 0, 0, 0 );
+			$filter_date->setTime( 0, 0, 0 );
+		}
 
-        if (
-            ($filter_date_type === 'on' && $block_date != $filter_date) ||
-            ($filter_date_type === 'after' && $block_date <= $filter_date) ||
-            ($filter_date_type === 'before' && $block_date >= $filter_date)
-        ) {
-            $is_outdated = true;
-        }
-    }
+		if (
+			( 'on' === $filter_date_type && $block_date !== $filter_date ) ||
+			( 'after' === $filter_date_type && $block_date <= $filter_date ) ||
+			( 'before' === $filter_date_type && $block_date >= $filter_date )
+		) {
+			$is_outdated = true;
+		}
+	}
 
-    // Prepare wrapper attributes.
-    $wrapper_attributes = get_block_wrapper_attributes( array(
-        'data-event-date' => esc_attr( $attributes['dateTime'] ),
-        'class' => $is_outdated ? 'is-outdated' : '',
-    ) );
+	// Prepare wrapper attributes.
+	$wrapper_attributes = get_block_wrapper_attributes(
+		array(
+			'data-event-date' => esc_attr( $attributes['dateTime'] ),
+			'class'           => $is_outdated ? 'is-outdated' : '',
+		)
+	);
 
 	if ( $is_outdated ) {
 		return false;
 	}
 
-    // Return block content with wrapper attributes.
-    return sprintf(
-        '<div %1$s>%2$s</div>',
-        $wrapper_attributes,
-        $content
-    );
+	// Return block content with wrapper attributes.
+	return sprintf(
+		'<div %1$s>%2$s</div>',
+		$wrapper_attributes,
+		$content
+	);
 }
