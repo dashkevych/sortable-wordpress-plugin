@@ -134,13 +134,6 @@ export default function ContainerContent(props) {
 		...(gap && { "--wp--sortable-container--spacing--gap": gap }),
 	};
 
-	const filterDateAttribute =
-		attributes.filter.displayType === "date"
-			? `${attributes.filter.dateFilterType}|${attributes.filter.date}|${
-					attributes.filter.includeDateTime ? "withTime" : "withoutTime"
-			  }`
-			: "";
-
 	const blockProps = useBlockProps({
 		className: classnames({
 			"is-list": attributes.layout === "list",
@@ -153,7 +146,6 @@ export default function ContainerContent(props) {
 			...separatorStyles,
 			...spacingStyles,
 		},
-		"data-filter-date": filterDateAttribute,
 	});
 
 	const { replaceInnerBlocks } = useDispatch(blockEditorStore);

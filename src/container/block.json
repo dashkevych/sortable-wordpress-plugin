@@ -29,6 +29,8 @@
 			"default": {
 				"displayType": "",
 				"date": "",
+				"dateFilterType": "on",
+				"includeDateTime": false,
 				"ignoreOutdated": false
 			}
 		},

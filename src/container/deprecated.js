@@ -56,52 +56,6 @@ const v2 = {
 			default: {},
 		},
 	},
-	/**
-	 * The function that determines the block's save output for this version.
-	 *
-	 * @param {Object} props - The properties of the block.
-	 * @returns {JSX.Element} The block's saved markup for this version.
-	 */
-	save(props) {
-		const { attributes } = props;
-
-		// Destructure the separator attribute.
-		const { width, style, color } = attributes.separator || {};
-
-		// Construct style properties based on the separator properties.
-		const separatorStyles = {
-			...(width && { "--wp--sortable-container--separator--width": width }),
-			...(style && { "--wp--sortable-container--separator--style": style }),
-			...(color && { "--wp--sortable-container--separator--color": color }),
-		};
-
-		// Custom spacing value.
-		const gap = getGapCSSValue(attributes.style?.spacing?.blockGap);
-
-		// Construct style properties based on the spacing properties.
-		const spacingStyles = {
-			...(gap && { "--wp--sortable-container--spacing--gap": gap }),
-		};
-
-		// Inner blocks (children of parent block).
-		const innerBlocksProps = useInnerBlocksProps.save(
-			useBlockProps.save({
-				className: classnames({
-					"is-list": attributes.layout === "list",
-					"is-grid": attributes.layout === "grid",
-					[`columns-${attributes.columns}`]: attributes.layout === "grid",
-					// Add has-separator class if any of the separator properties exist
-					"has-separator": width || style || color,
-				}),
-				style: {
-					...separatorStyles,
-					...spacingStyles,
-				},
-			}),
-		);
-
-		return <div {...innerBlocksProps} />;
-	},
 };
 
 /**
@@ -156,7 +110,6 @@ const v1 = {
 };
 
 /**
- * Exports an array of block configurations for deprecation handling.
- * As of now, only version 1 (v1) is provided.
+ * Exports an array of block configurations (versions) for deprecation handling.
  */
 export default [v2, v1];

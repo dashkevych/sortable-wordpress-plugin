@@ -105,7 +105,6 @@ export default function Edit(props) {
 	const { updateBlockAttributes } = useDispatch(blockEditorStore);
 	const [isOpenWarningModal, setIsOpenWarningModal] = useState(false);
 	const {
-		displayType,
 		date: filterDateValue,
 		dateFilterType,
 		includeDateTime,

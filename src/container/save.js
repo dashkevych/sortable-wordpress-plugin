@@ -62,10 +62,6 @@ export default function save(props) {
 				...separatorStyles,
 				...spacingStyles,
 			},
-			"data-filter-date":
-				attributes.filter.displayType === "date"
-					? attributes.filter.date
-					: undefined,
 		}),
 	);
 
