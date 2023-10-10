@@ -225,7 +225,7 @@ export default function ContainerContent(props) {
 		<>
 			<InspectorControls>
 				{attributes.layout === "grid" && (
-					<PanelBody title={__("Grid Settings")}>
+					<PanelBody title={__("Layout")}>
 						<RangeControl
 							__nextHasNoMarginBottom
 							label={__("Columns")}
@@ -237,7 +237,7 @@ export default function ContainerContent(props) {
 						/>
 					</PanelBody>
 				)}
-				<PanelBody title={__("Visibility Settings", "sortable")}>
+				<PanelBody title={__("Visibility", "sortable")}>
 					<RadioControl
 						label={__("Filter Options", "sortable")}
 						help={__(
@@ -385,7 +385,7 @@ export default function ContainerContent(props) {
 						</>
 					)}
 				</PanelBody>
-				<PanelBody title={__("Order Settings")}>
+				<PanelBody title={__("Order")}>
 					<SelectControl
 						label={__("Order")}
 						value={attributes.order}
