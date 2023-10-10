@@ -88,6 +88,7 @@ const ALLOWED_BLOCKS = [
 	"core/cover",
 	"core/group",
 	"core/columns",
+	"core/buttons",
 	"core/block",
 ];
 
