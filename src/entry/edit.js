@@ -61,7 +61,7 @@ import { useSelect, useDispatch } from "@wordpress/data";
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-icons/
  */
-import { Icon, warning } from "@wordpress/icons";
+import { warning } from "@wordpress/icons";
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -85,6 +85,7 @@ const ALLOWED_BLOCKS = [
 	"core/heading",
 	"core/paragraph",
 	"core/media-text",
+	"core/cover",
 	"core/group",
 	"core/columns",
 	"core/block",
@@ -188,7 +189,7 @@ export default function Edit(props) {
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		allowedBlocks: ALLOWED_BLOCKS,
-		orientation: "horizontal",
+		orientation: "vertical",
 		renderAppender: childBlocks.length
 			? undefined
 			: InnerBlocks.ButtonBlockAppender,
@@ -289,7 +290,7 @@ export default function Edit(props) {
 				</BlockControls>
 			)}
 			<InspectorControls>
-				<PanelBody title={__("Date Settings", "sortable")}>
+				<PanelBody title={__("Date", "sortable")}>
 					<PanelRow className="sortable-block__date-row">
 						<DateTimePicker
 							currentDate={attributes.dateTime}
