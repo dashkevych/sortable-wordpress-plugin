@@ -19,11 +19,18 @@
 		"prod": "npm run format && npm run lint:css:fix && npm run build && npm run plugin-zip"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^26.13.0",
+		"@wordpress/scripts": "^26.14.0",
 		"uglify-js": "^3.17.4"
 	},
 	"dependencies": {
-		"@wordpress/icons": "^9.33.0",
+		"@wordpress/icons": "^9.34.0",
 		"classnames": "^2.3.2"
-	}
+	},
+	"files": [
+		"build",
+		"patterns",
+		"assets",
+		"sortable.php",
+		"readme.txt"
+	]
 }
