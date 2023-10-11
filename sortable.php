@@ -58,6 +58,11 @@ function sortable_plugin_init() {
 	// Registers block patterns.
 	foreach ( $pattern_namespaces as $pattern_namespace ) {
 		$pattern_file = __DIR__ . '/patterns/' . $pattern_namespace . '.php';
+
+		if ( ! file_exists( $pattern_file ) ) {
+			continue;
+		}
+
 		register_block_pattern(
 			'sortable/' . $pattern_namespace,
 			require $pattern_file
