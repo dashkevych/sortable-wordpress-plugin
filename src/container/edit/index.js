@@ -29,14 +29,13 @@ import ContainerContent from './container-content';
 import ContainerPlaceholder from './container-placeholder';
 import PatternSelectionModal from './pattern-selection-modal';
 
-const ContainerEdit = ( props ) => {
+const ContainerEdit = (props) => {
 	const { clientId, attributes } = props;
-	const [ isPatternSelectionModalOpen, setIsPatternSelectionModalOpen ] =
-		useState( false );
+	const [isPatternSelectionModalOpen, setIsPatternSelectionModalOpen] =
+		useState(false);
 	const hasInnerBlocks = useSelect(
-		( select ) =>
-			!! select( blockEditorStore ).getBlocks( clientId ).length,
-		[ clientId ]
+		(select) => !!select(blockEditorStore).getBlocks(clientId).length,
+		[clientId]
 	);
 
 	const Component = hasInnerBlocks ? ContainerContent : ContainerPlaceholder;
@@ -44,21 +43,21 @@ const ContainerEdit = ( props ) => {
 	return (
 		<>
 			<Component
-				{ ...props }
-				openPatternSelectionModal={ () =>
-					setIsPatternSelectionModalOpen( true )
+				{...props}
+				openPatternSelectionModal={() =>
+					setIsPatternSelectionModalOpen(true)
 				}
 			/>
 
-			{ isPatternSelectionModalOpen && (
+			{isPatternSelectionModalOpen && (
 				<PatternSelectionModal
-					clientId={ clientId }
-					attributes={ attributes }
+					clientId={clientId}
+					attributes={attributes}
 					setIsPatternSelectionModalOpen={
 						setIsPatternSelectionModalOpen
 					}
 				/>
-			) }
+			)}
 		</>
 	);
 };

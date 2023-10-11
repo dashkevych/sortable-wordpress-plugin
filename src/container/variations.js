@@ -16,9 +16,9 @@ import { emptyView, gridView, listView } from './icons';
 const variations = [
 	{
 		name: 'empty-container',
-		title: __( 'Empty' ),
+		title: __('Empty'),
 		icon: emptyView,
-		description: __( 'Display an empty container' ),
+		description: __('Display an empty container'),
 		attributes: {
 			layout: 'list',
 			columns: 3,
@@ -26,12 +26,12 @@ const variations = [
 			order: 'desc',
 		},
 		innerBlocks: [],
-		scope: [ 'block' ],
+		scope: ['block'],
 		isDefault: true,
 	},
 	{
 		name: 'grid-date-title-description',
-		title: __( 'Grid View' ),
+		title: __('Grid View'),
 		icon: gridView,
 		description: __(
 			'Display multiple columns in a grid with date, title and description'
@@ -51,7 +51,7 @@ const variations = [
 						'core/group',
 						{},
 						[
-							[ 'sortable/date', { fontSize: 'small' } ],
+							['sortable/date', { fontSize: 'small' }],
 							[
 								'core/heading',
 								{
@@ -61,10 +61,7 @@ const variations = [
 							],
 						],
 					],
-					[
-						'core/paragraph',
-						{ placeholder: 'Enter description...' },
-					],
+					['core/paragraph', { placeholder: 'Enter description...' }],
 				],
 			],
 			[
@@ -75,7 +72,7 @@ const variations = [
 						'core/group',
 						{},
 						[
-							[ 'sortable/date', { fontSize: 'small' } ],
+							['sortable/date', { fontSize: 'small' }],
 							[
 								'core/heading',
 								{
@@ -85,10 +82,7 @@ const variations = [
 							],
 						],
 					],
-					[
-						'core/paragraph',
-						{ placeholder: 'Enter description...' },
-					],
+					['core/paragraph', { placeholder: 'Enter description...' }],
 				],
 			],
 			[
@@ -99,7 +93,7 @@ const variations = [
 						'core/group',
 						{},
 						[
-							[ 'sortable/date', { fontSize: 'small' } ],
+							['sortable/date', { fontSize: 'small' }],
 							[
 								'core/heading',
 								{
@@ -109,18 +103,15 @@ const variations = [
 							],
 						],
 					],
-					[
-						'core/paragraph',
-						{ placeholder: 'Enter description...' },
-					],
+					['core/paragraph', { placeholder: 'Enter description...' }],
 				],
 			],
 		],
-		scope: [ 'block' ],
+		scope: ['block'],
 	},
 	{
 		name: 'list-date-title-description',
-		title: __( 'List View' ),
+		title: __('List View'),
 		icon: listView,
 		description: __(
 			'Display multiple lines in a list with date, title and description'
@@ -140,7 +131,7 @@ const variations = [
 						'core/group',
 						{},
 						[
-							[ 'sortable/date', { fontSize: 'small' } ],
+							['sortable/date', { fontSize: 'small' }],
 							[
 								'core/heading',
 								{
@@ -150,10 +141,7 @@ const variations = [
 							],
 						],
 					],
-					[
-						'core/paragraph',
-						{ placeholder: 'Enter description...' },
-					],
+					['core/paragraph', { placeholder: 'Enter description...' }],
 				],
 			],
 			[
@@ -164,7 +152,7 @@ const variations = [
 						'core/group',
 						{},
 						[
-							[ 'sortable/date', { fontSize: 'small' } ],
+							['sortable/date', { fontSize: 'small' }],
 							[
 								'core/heading',
 								{
@@ -174,10 +162,7 @@ const variations = [
 							],
 						],
 					],
-					[
-						'core/paragraph',
-						{ placeholder: 'Enter description...' },
-					],
+					['core/paragraph', { placeholder: 'Enter description...' }],
 				],
 			],
 			[
@@ -188,7 +173,7 @@ const variations = [
 						'core/group',
 						{},
 						[
-							[ 'sortable/date', { fontSize: 'small' } ],
+							['sortable/date', { fontSize: 'small' }],
 							[
 								'core/heading',
 								{
@@ -198,14 +183,11 @@ const variations = [
 							],
 						],
 					],
-					[
-						'core/paragraph',
-						{ placeholder: 'Enter description...' },
-					],
+					['core/paragraph', { placeholder: 'Enter description...' }],
 				],
 			],
 		],
-		scope: [ 'block' ],
+		scope: ['block'],
 	},
 ];
 

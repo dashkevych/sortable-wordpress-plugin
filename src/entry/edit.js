@@ -3,14 +3,14 @@
  *
  * @see https://www.npmjs.com/package/classnames
  */
-import classnames from "classnames";
+import classnames from 'classnames';
 
 /**
  * Retrieves the translation of text.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
  */
-import { __ } from "@wordpress/i18n";
+import { __ } from '@wordpress/i18n';
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -25,7 +25,7 @@ import {
 	InspectorControls,
 	BlockControls,
 	store as blockEditorStore,
-} from "@wordpress/block-editor";
+} from '@wordpress/block-editor';
 
 /**
  * This package includes a library of generic WordPress components.
@@ -39,7 +39,7 @@ import {
 	DateTimePicker,
 	PanelBody,
 	PanelRow,
-} from "@wordpress/components";
+} from '@wordpress/components';
 
 /**
  * WordPress dependencies.
@@ -47,21 +47,21 @@ import {
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-element/ ,
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/
  */
-import { useState, useEffect } from "@wordpress/element";
+import { useState, useEffect } from '@wordpress/element';
 
 /**
  * WordPress Data API functions for managing application data.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/
  */
-import { useSelect, useDispatch } from "@wordpress/data";
+import { useSelect, useDispatch } from '@wordpress/data';
 
 /**
  * Import icons from the WordPress Icons package.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-icons/
  */
-import { warning } from "@wordpress/icons";
+import { warning } from '@wordpress/icons';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -69,7 +69,7 @@ import { warning } from "@wordpress/icons";
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
-import "./editor.scss";
+import './editor.scss';
 
 /**
  * Allowed blocks constant is passed to InnerBlocks precisely as specified here.
@@ -81,15 +81,15 @@ import "./editor.scss";
  * @type {string[]}
  */
 const ALLOWED_BLOCKS = [
-	"sortable/date",
-	"core/heading",
-	"core/paragraph",
-	"core/media-text",
-	"core/cover",
-	"core/group",
-	"core/columns",
-	"core/buttons",
-	"core/block",
+	'sortable/date',
+	'core/heading',
+	'core/paragraph',
+	'core/media-text',
+	'core/cover',
+	'core/group',
+	'core/columns',
+	'core/buttons',
+	'core/block',
 ];
 
 /**
@@ -110,7 +110,7 @@ export default function Edit(props) {
 		dateFilterType,
 		includeDateTime,
 		ignoreOutdated,
-	} = context["sortable/filter"];
+	} = context['sortable/filter'];
 	let isOutdated = false;
 
 	// Create a JavaScript Date object from the block date value.
@@ -126,30 +126,30 @@ export default function Edit(props) {
 
 		// Determine if the block date is outdated based on the filter date and type.
 		if (
-			dateFilterType === "on" &&
+			dateFilterType === 'on' &&
 			blockDateObject.getTime() !== filterDateObject.getTime()
 		) {
 			isOutdated = true;
 		} else if (
-			dateFilterType === "after" &&
+			dateFilterType === 'after' &&
 			blockDateObject <= filterDateObject
 		) {
 			isOutdated = true;
 		} else if (
-			dateFilterType === "before" &&
+			dateFilterType === 'before' &&
 			blockDateObject >= filterDateObject
 		) {
 			isOutdated = true;
 		}
 	} else {
-		if (filterDateValue !== "") {
-			console.error("Invalid date:", filterDateValue);
+		if (filterDateValue !== '') {
+			console.error('Invalid date:', filterDateValue);
 		}
 	}
 
 	const blockProps = useBlockProps({
-		"data-event-date": attributes.dateTime ? attributes.dateTime : "",
-		className: classnames({ "is-outdated": isOutdated }),
+		'data-event-date': attributes.dateTime ? attributes.dateTime : '',
+		className: classnames({ 'is-outdated': isOutdated }),
 	});
 
 	const { rootClientId, childBlocks } = useSelect(
@@ -163,7 +163,7 @@ export default function Edit(props) {
 				childBlocks: parentBlock ? parentBlock.innerBlocks : [],
 			};
 		},
-		[clientId],
+		[clientId]
 	);
 
 	// Update date in block.
@@ -172,7 +172,7 @@ export default function Edit(props) {
 
 		// Reset parent block sorting.
 		updateBlockAttributes(rootClientId, {
-			orderBy: "",
+			orderBy: '',
 		});
 	};
 
@@ -182,14 +182,14 @@ export default function Edit(props) {
 
 			// Reset parent block sorting.
 			updateBlockAttributes(rootClientId, {
-				orderBy: "",
+				orderBy: '',
 			});
 		}
 	}, [rootClientId, attributes.dateTime]);
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		allowedBlocks: ALLOWED_BLOCKS,
-		orientation: "vertical",
+		orientation: 'vertical',
 		renderAppender: childBlocks.length
 			? undefined
 			: InnerBlocks.ButtonBlockAppender,
@@ -199,7 +199,7 @@ export default function Edit(props) {
 		<>
 			{isOpenWarningModal && filterDateObject && (
 				<Modal
-					title={__("This Block's Date is Old", "sortable")}
+					title={__("This Block's Date is Old", 'sortable')}
 					onRequestClose={() => setIsOpenWarningModal(false)}
 					className="sortable-block__warning-modal"
 				>
@@ -207,63 +207,71 @@ export default function Edit(props) {
 						<p>
 							{__(
 								'You are seeing this notice because the date on this "Sortable Entry" block is older than the date you set on the "Sortable" block.',
-								"sortable",
+								'sortable'
 							)}
 						</p>
 						<p>
 							<strong>
-								{__("Here's a summary of the dates:", "sortable")}
+								{__(
+									"Here's a summary of the dates:",
+									'sortable'
+								)}
 							</strong>
 						</p>
 						<ul>
 							<li>
-								{__('Date set in "Sortable":', "sortable")}{" "}
+								{__('Date set in "Sortable":', 'sortable')}{' '}
 								<strong>
-									{filterDateObject.toLocaleString("en-US", {
-										month: "long",
-										day: "2-digit",
-										year: "numeric",
+									{filterDateObject.toLocaleString('en-US', {
+										month: 'long',
+										day: '2-digit',
+										year: 'numeric',
 									})}
 								</strong>
 							</li>
 							<li>
-								{__('Date on this "Sortable Entry":', "sortable")}{" "}
+								{__(
+									'Date on this "Sortable Entry":',
+									'sortable'
+								)}{' '}
 								<strong>
-									{blockDateObject.toLocaleString("en-US", {
-										month: "long",
-										day: "2-digit",
-										year: "numeric",
+									{blockDateObject.toLocaleString('en-US', {
+										month: 'long',
+										day: '2-digit',
+										year: 'numeric',
 									})}
 								</strong>
 							</li>
 						</ul>
 						<p>
-							<strong>{__("To resolve warning, you can:", "sortable")}</strong>
+							<strong>
+								{__('To resolve warning, you can:', 'sortable')}
+							</strong>
 						</p>
 						<ol>
 							<li>
 								{__(
 									'Ignore warnings by changing a setting in the "Sortable" block.',
-									"sortable",
+									'sortable'
 								)}
 							</li>
 							<li>
 								{__(
 									'Change the date in the "Sortable" block to cover more dates.',
-									"sortable",
+									'sortable'
 								)}
 							</li>
 							<li>
 								{__(
 									'Update the date on this "Sortable Entry" block to a newer date.',
-									"sortable",
+									'sortable'
 								)}
 							</li>
 						</ol>
 						<p>
 							{__(
-								"Changes can be made in the block settings sidebar.",
-								"sortable",
+								'Changes can be made in the block settings sidebar.',
+								'sortable'
 							)}
 						</p>
 					</div>
@@ -271,7 +279,7 @@ export default function Edit(props) {
 						variant="secondary"
 						onClick={() => setIsOpenWarningModal(false)}
 					>
-						{__("Close Warning", "sortable")}
+						{__('Close Warning', 'sortable')}
 					</Button>
 				</Modal>
 			)}
@@ -279,7 +287,7 @@ export default function Edit(props) {
 				<BlockControls>
 					<Toolbar>
 						<Button
-							label={__("Inspect visibility problem", "sortable")}
+							label={__('Inspect visibility problem', 'sortable')}
 							icon={warning}
 							onClick={() => {
 								setIsOpenWarningModal(!isOpenWarningModal);
@@ -290,7 +298,7 @@ export default function Edit(props) {
 				</BlockControls>
 			)}
 			<InspectorControls>
-				<PanelBody title={__("Date", "sortable")}>
+				<PanelBody title={__('Date', 'sortable')}>
 					<PanelRow className="sortable-block__date-row">
 						<DateTimePicker
 							currentDate={attributes.dateTime}

@@ -58,71 +58,71 @@ import './editor.scss';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
  */
-export default function Edit( props ) {
+export default function Edit(props) {
 	const { context, attributes, setAttributes, clientId } = props;
 
 	const blockProps = useBlockProps();
 	const dateSettings = getDateSettings();
 
-	const { getBlock, getBlockParents } = useSelect( ( select ) => {
+	const { getBlock, getBlockParents } = useSelect((select) => {
 		return {
-			getBlockParents: select( blockEditorStore ).getBlockParents,
-			getBlock: select( blockEditorStore ).getBlock,
+			getBlockParents: select(blockEditorStore).getBlockParents,
+			getBlock: select(blockEditorStore).getBlock,
 		};
-	}, [] );
+	}, []);
 
-	const { selectBlock } = useDispatch( blockEditorStore );
+	const { selectBlock } = useDispatch(blockEditorStore);
 
-	const [ siteFormat = dateSettings.formats.date ] = useEntityProp(
+	const [siteFormat = dateSettings.formats.date] = useEntityProp(
 		'root',
 		'site',
 		'date_format'
 	);
 
-	const [ siteTimeFormat = dateSettings.formats.time ] = useEntityProp(
+	const [siteTimeFormat = dateSettings.formats.time] = useEntityProp(
 		'root',
 		'site',
 		'time_format'
 	);
 
-	const date = context[ 'sortable/entryDateTime' ];
+	const date = context['sortable/entryDateTime'];
 
 	const entryDate = (
-		<time dateTime={ format( 'c', date ) }>
-			{ format( attributes.format || siteFormat, date ) }
+		<time dateTime={format('c', date)}>
+			{format(attributes.format || siteFormat, date)}
 		</time>
 	);
 
 	// Act when Change Date button clicked.
 	const onChangeDateClick = () => {
-		const containerClientId = getBlockParents( clientId )[ 1 ];
-		const containerBlock = getBlock( containerClientId );
+		const containerClientId = getBlockParents(clientId)[1];
+		const containerBlock = getBlock(containerClientId);
 
 		// Set focus on container block.
-		if ( 'sortable/entry' === containerBlock.name ) {
-			selectBlock( containerClientId );
+		if ('sortable/entry' === containerBlock.name) {
+			selectBlock(containerClientId);
 		}
 	};
 
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( 'Settings' ) }>
+				<PanelBody title={__('Settings')}>
 					<DateFormatPicker
-						format={ attributes.format }
-						defaultFormat={ siteFormat }
-						is12Hour={ is12HourFormat( siteTimeFormat ) }
-						onChange={ ( nextFormat ) =>
-							setAttributes( { format: nextFormat } )
+						format={attributes.format}
+						defaultFormat={siteFormat}
+						is12Hour={is12HourFormat(siteTimeFormat)}
+						onChange={(nextFormat) =>
+							setAttributes({ format: nextFormat })
 						}
 					/>
-					<Button variant="secondary" onClick={ onChangeDateClick }>
-						{ __( 'Change date', 'sortable' ) }
+					<Button variant="secondary" onClick={onChangeDateClick}>
+						{__('Change date', 'sortable')}
 					</Button>
 				</PanelBody>
 			</InspectorControls>
 
-			<div { ...blockProps }>{ entryDate }</div>
+			<div {...blockProps}>{entryDate}</div>
 		</>
 	);
 }
@@ -136,6 +136,6 @@ export default function Edit( props ) {
  *
  * @param {string} dateFormat Date format.
  */
-export function is12HourFormat( dateFormat ) {
-	return /(?:^|[^\\])[aAgh]/.test( dateFormat );
+export function is12HourFormat(dateFormat) {
+	return /(?:^|[^\\])[aAgh]/.test(dateFormat);
 }

@@ -28,21 +28,21 @@
 }
 
 
-
 .sortable-block__warning-modal {
+
 	&.components-modal__frame {
 		max-width: 400px;
 	}
 
-	& .sortable-block__warning-modal-content {
+	.sortable-block__warning-modal-content {
 		margin-block-end: 1.25em;
 
-		& ul {
+		ul {
 			list-style-type: disc;
 			padding-inline-start: 1em;
 		}
 
-		& ol {
+		ol {
 			padding-inline: 1.25em;
 			margin-inline: 0;
 		}

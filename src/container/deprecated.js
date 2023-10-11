@@ -3,7 +3,7 @@
  *
  * @see https://www.npmjs.com/package/classnames
  */
-import classnames from "classnames";
+import classnames from 'classnames';
 
 /**
  * React hooks from the WordPress block editor used for block properties and inner block handling.
@@ -14,7 +14,7 @@ import {
 	useBlockProps,
 	useInnerBlocksProps,
 	__experimentalGetGapCSSValue as getGapCSSValue,
-} from "@wordpress/block-editor";
+} from '@wordpress/block-editor';
 
 /**
  * Deprecation configuration for a custom WordPress Gutenberg block.
@@ -36,23 +36,23 @@ const v2 = {
 	 */
 	attributes: {
 		layout: {
-			type: "string",
-			default: "list",
+			type: 'string',
+			default: 'list',
 		},
 		columns: {
-			type: "number",
+			type: 'number',
 			default: 3,
 		},
 		orderBy: {
-			type: "string",
-			default: "date",
+			type: 'string',
+			default: 'date',
 		},
 		order: {
-			type: "string",
-			default: "desc",
+			type: 'string',
+			default: 'desc',
 		},
 		separator: {
-			type: "object",
+			type: 'object',
 			default: {},
 		},
 	},
@@ -70,20 +70,20 @@ const v1 = {
 	 */
 	attributes: {
 		layout: {
-			type: "string",
-			default: "list",
+			type: 'string',
+			default: 'list',
 		},
 		columns: {
-			type: "number",
+			type: 'number',
 			default: 3,
 		},
 		orderBy: {
-			type: "string",
-			default: "date",
+			type: 'string',
+			default: 'date',
 		},
 		order: {
-			type: "string",
-			default: "desc",
+			type: 'string',
+			default: 'desc',
 		},
 	},
 
@@ -98,11 +98,12 @@ const v1 = {
 		const innerBlocksProps = useInnerBlocksProps.save(
 			useBlockProps.save({
 				className: classnames({
-					"is-list": attributes.layout === "list",
-					"is-grid": attributes.layout === "grid",
-					[`columns-${attributes.columns}`]: attributes.layout === "grid",
+					'is-list': attributes.layout === 'list',
+					'is-grid': attributes.layout === 'grid',
+					[`columns-${attributes.columns}`]:
+						attributes.layout === 'grid',
 				}),
-			}),
+			})
 		);
 
 		return <div {...innerBlocksProps} />;

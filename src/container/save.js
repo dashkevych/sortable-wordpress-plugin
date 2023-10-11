@@ -3,7 +3,7 @@
  *
  * @see https://www.npmjs.com/package/classnames
  */
-import classnames from "classnames";
+import classnames from 'classnames';
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -15,7 +15,7 @@ import {
 	useBlockProps,
 	useInnerBlocksProps,
 	__experimentalGetGapCSSValue as getGapCSSValue,
-} from "@wordpress/block-editor";
+} from '@wordpress/block-editor';
 
 /**
  * The save function defines the way in which the different attributes should
@@ -35,9 +35,9 @@ export default function save(props) {
 
 	// Construct style properties based on the separator properties.
 	const separatorStyles = {
-		...(width && { "--wp--sortable-container--separator--width": width }),
-		...(style && { "--wp--sortable-container--separator--style": style }),
-		...(color && { "--wp--sortable-container--separator--color": color }),
+		...(width && { '--wp--sortable-container--separator--width': width }),
+		...(style && { '--wp--sortable-container--separator--style': style }),
+		...(color && { '--wp--sortable-container--separator--color': color }),
 	};
 
 	// Custom spacing value.
@@ -45,24 +45,24 @@ export default function save(props) {
 
 	// Construct style properties based on the spacing properties.
 	const spacingStyles = {
-		...(gap && { "--wp--sortable-container--spacing--gap": gap }),
+		...(gap && { '--wp--sortable-container--spacing--gap': gap }),
 	};
 
 	// Inner blocks (children of parent block).
 	const innerBlocksProps = useInnerBlocksProps.save(
 		useBlockProps.save({
 			className: classnames({
-				"is-list": attributes.layout === "list",
-				"is-grid": attributes.layout === "grid",
-				[`columns-${attributes.columns}`]: attributes.layout === "grid",
+				'is-list': attributes.layout === 'list',
+				'is-grid': attributes.layout === 'grid',
+				[`columns-${attributes.columns}`]: attributes.layout === 'grid',
 				// Add has-separator class if any of the separator properties exist
-				"has-separator": width || style || color,
+				'has-separator': width || style || color,
 			}),
 			style: {
 				...separatorStyles,
 				...spacingStyles,
 			},
-		}),
+		})
 	);
 
 	return <div {...innerBlocksProps} />;

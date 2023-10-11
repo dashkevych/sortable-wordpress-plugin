@@ -35,56 +35,56 @@ import {
  */
 import { useSortableBlockPatterns } from '../utils';
 
-export default function PatternSelectionModal( {
+export default function PatternSelectionModal({
 	clientId,
 	attributes,
 	setIsPatternSelectionModalOpen,
-} ) {
-	const { replaceBlock, selectBlock } = useDispatch( blockEditorStore );
+}) {
+	const { replaceBlock, selectBlock } = useDispatch(blockEditorStore);
 
-	const onBlockPatternSelect = ( pattern, blocks ) => {
+	const onBlockPatternSelect = (pattern, blocks) => {
 		const { newBlocks, clientIds } = getTransformedBlocks(
 			blocks,
 			attributes
 		);
 
-		replaceBlock( clientId, newBlocks );
+		replaceBlock(clientId, newBlocks);
 
-		if ( clientIds[ 0 ] ) {
-			selectBlock( clientIds[ 0 ] );
+		if (clientIds[0]) {
+			selectBlock(clientIds[0]);
 		}
 	};
 
-	const blockPatterns = useSortableBlockPatterns( clientId );
+	const blockPatterns = useSortableBlockPatterns(clientId);
 
 	return (
 		<Modal
 			overlayClassName="block-library-sortable-pattern__selection-modal"
-			title={ __( 'Choose a pattern' ) }
-			onRequestClose={ () => setIsPatternSelectionModalOpen( false ) }
-			isFullScreen={ true }
+			title={__('Choose a pattern')}
+			onRequestClose={() => setIsPatternSelectionModalOpen(false)}
+			isFullScreen={true}
 		>
 			<div className="block-library-sortable-pattern__selection-content">
 				<BlockPatternsList
-					blockPatterns={ blockPatterns }
-					shownPatterns={ blockPatterns }
-					onClickPattern={ onBlockPatternSelect }
+					blockPatterns={blockPatterns}
+					shownPatterns={blockPatterns}
+					onClickPattern={onBlockPatternSelect}
 				/>
 			</div>
 		</Modal>
 	);
 }
 
-const getTransformedBlocks = ( blocks ) => {
+const getTransformedBlocks = (blocks) => {
 	// Transform the blocks based on your requirements.
 	// For simplicity, in this example, I'll just return the blocks as they are, but you can modify them as necessary.
-	const newBlocks = blocks.map( ( block ) => {
+	const newBlocks = blocks.map((block) => {
 		// Here, you can do any transformation on each block. For now, we're just returning the block as it is.
 		return block;
-	} );
+	});
 
 	// Extract block IDs from the blocks. This assumes that each block has a clientId property.
-	const clientIds = blocks.map( ( block ) => block.clientId );
+	const clientIds = blocks.map((block) => block.clientId);
 
 	return { newBlocks, clientIds };
 };

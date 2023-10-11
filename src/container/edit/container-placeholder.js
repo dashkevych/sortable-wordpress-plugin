@@ -53,7 +53,7 @@ import ContainerContent from './container-content';
  *
  * @param props
  */
-export default function ContainerPlaceholder( props ) {
+export default function ContainerPlaceholder(props) {
 	const { clientId, name, openPatternSelectionModal, setAttributes } = props;
 
 	// Define the phases
@@ -64,90 +64,90 @@ export default function ContainerPlaceholder( props ) {
 	};
 
 	// Replace isPickerVisible and isStartingBlank with currentPhase
-	const [ currentPhase, setCurrentPhase ] = useState( PHASES.PICKER );
+	const [currentPhase, setCurrentPhase] = useState(PHASES.PICKER);
 
 	const { blockType, defaultVariation, variations } = useSelect(
-		( select ) => {
+		(select) => {
 			const {
 				getBlockVariations,
 				getBlockType,
 				getDefaultBlockVariation,
-			} = select( blocksStore );
+			} = select(blocksStore);
 
 			return {
-				blockType: getBlockType( name ),
-				defaultVariation: getDefaultBlockVariation( name, 'block' ),
-				variations: getBlockVariations( name, 'block' ),
+				blockType: getBlockType(name),
+				defaultVariation: getDefaultBlockVariation(name, 'block'),
+				variations: getBlockVariations(name, 'block'),
 			};
 		},
-		[ name, clientId ]
+		[name, clientId]
 	);
-	const { replaceInnerBlocks } = useDispatch( blockEditorStore );
+	const { replaceInnerBlocks } = useDispatch(blockEditorStore);
 	const blockProps = useBlockProps();
 
 	// Check if the user want to use the Variation Picker when first use block.
-	if ( currentPhase === PHASES.BLANK ) {
+	if (currentPhase === PHASES.BLANK) {
 		return (
 			<__experimentalBlockVariationPicker
-				icon={ blockType?.icon?.src }
-				label={ blockType?.title }
-				variations={ variations }
-				onSelect={ ( nextVariation = defaultVariation ) => {
+				icon={blockType?.icon?.src}
+				label={blockType?.title}
+				variations={variations}
+				onSelect={(nextVariation = defaultVariation) => {
 					// Handle the "Skip" button click here. You can either do nothing or perform some custom action.
-					if ( ! nextVariation.innerBlocks.length ) {
-						setCurrentPhase( PHASES.CONTENT );
+					if (!nextVariation.innerBlocks.length) {
+						setCurrentPhase(PHASES.CONTENT);
 						return;
 					}
 
-					if ( nextVariation.attributes ) {
-						setAttributes( nextVariation.attributes );
+					if (nextVariation.attributes) {
+						setAttributes(nextVariation.attributes);
 					}
 
-					if ( nextVariation.innerBlocks ) {
+					if (nextVariation.innerBlocks) {
 						const innerBlocksTemplate = nextVariation.innerBlocks;
 						const createdBlocks =
 							createBlocksFromInnerBlocksTemplate(
 								innerBlocksTemplate
 							);
-						replaceInnerBlocks( clientId, createdBlocks, true );
+						replaceInnerBlocks(clientId, createdBlocks, true);
 					}
 
-					setCurrentPhase( PHASES.CONTENT );
-				} }
+					setCurrentPhase(PHASES.CONTENT);
+				}}
 				allowSkip
 			/>
 		);
 	}
 
-	if ( currentPhase === PHASES.CONTENT ) {
-		return <ContainerContent { ...props } />;
+	if (currentPhase === PHASES.CONTENT) {
+		return <ContainerContent {...props} />;
 	}
 
 	const hasPatterns = true;
 
 	return (
-		<div { ...blockProps }>
+		<div {...blockProps}>
 			<Placeholder
-				icon={ blockType?.icon?.src }
-				label={ blockType?.title }
-				instructions={ __( 'Choose a pattern or start blank.' ) }
+				icon={blockType?.icon?.src}
+				label={blockType?.title}
+				instructions={__('Choose a pattern or start blank.')}
 			>
-				{ !! hasPatterns && (
+				{!!hasPatterns && (
 					<Button
 						variant="primary"
-						onClick={ openPatternSelectionModal }
+						onClick={openPatternSelectionModal}
 					>
-						{ __( 'Choose' ) }
+						{__('Choose')}
 					</Button>
-				) }
+				)}
 
 				<Button
 					variant="secondary"
-					onClick={ () => {
-						setCurrentPhase( PHASES.BLANK );
-					} }
+					onClick={() => {
+						setCurrentPhase(PHASES.BLANK);
+					}}
 				>
-					{ __( 'Start blank' ) }
+					{__('Start blank')}
 				</Button>
 			</Placeholder>
 		</div>

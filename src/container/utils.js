@@ -20,15 +20,15 @@ import { store as blockEditorStore } from '@wordpress/block-editor';
  *
  * @return {Array} array of block patterns.
  */
-export function useSortableBlockPatterns( clientId ) {
+export function useSortableBlockPatterns(clientId) {
 	return useSelect(
-		( select ) => {
+		(select) => {
 			const currentBlockType = 'sortable/container';
 			const { getBlockRootClientId, getPatternsByBlockTypes } =
-				select( blockEditorStore );
-			const rootClientId = getBlockRootClientId( clientId );
-			return getPatternsByBlockTypes( currentBlockType, rootClientId );
+				select(blockEditorStore);
+			const rootClientId = getBlockRootClientId(clientId);
+			return getPatternsByBlockTypes(currentBlockType, rootClientId);
 		},
-		[ clientId ]
+		[clientId]
 	);
 }

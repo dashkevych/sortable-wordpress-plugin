@@ -3,7 +3,7 @@
  *
  * @see https://www.npmjs.com/package/classnames
  */
-import classnames from "classnames";
+import classnames from 'classnames';
 
 /**
  * React hooks from the WordPress block editor used for block properties and inner block handling.
@@ -14,7 +14,7 @@ import {
 	useBlockProps,
 	useInnerBlocksProps,
 	__experimentalGetGapCSSValue as getGapCSSValue,
-} from "@wordpress/block-editor";
+} from '@wordpress/block-editor';
 
 /**
  * Deprecation configuration for a custom WordPress Gutenberg block.

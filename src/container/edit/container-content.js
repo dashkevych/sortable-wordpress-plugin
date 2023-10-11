@@ -3,14 +3,14 @@
  *
  * @see https://www.npmjs.com/package/classnames
  */
-import classnames from "classnames";
+import classnames from 'classnames';
 
 /**
  * Retrieves the translation of text.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
  */
-import { __ } from "@wordpress/i18n";
+import { __ } from '@wordpress/i18n';
 
 /**
  * React hook and components from the WordPress block editor package.
@@ -30,7 +30,7 @@ import {
 	BlockControls,
 	store as blockEditorStore,
 	__experimentalGetGapCSSValue as getGapCSSValue,
-} from "@wordpress/block-editor";
+} from '@wordpress/block-editor';
 
 /**
  * Components from the WordPress editor package.
@@ -42,7 +42,7 @@ import {
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-editor/
  */
-import { store as editorStore } from "@wordpress/editor";
+import { store as editorStore } from '@wordpress/editor';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -50,21 +50,21 @@ import { store as editorStore } from "@wordpress/editor";
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
-import "./../editor.scss";
+import './../editor.scss';
 
 /**
  * WordPress core element library functions for building user interfaces.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-element/
  */
-import { useState, useEffect } from "@wordpress/element";
+import { useState, useEffect } from '@wordpress/element';
 
 /**
  * WordPress Data API functions for managing application data.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-data/
  */
-import { useSelect, useDispatch } from "@wordpress/data";
+import { useSelect, useDispatch } from '@wordpress/data';
 
 /**
  * WordPress core components library for building user interfaces.
@@ -84,14 +84,14 @@ import {
 	__experimentalToolsPanel as ToolsPanel,
 	__experimentalToolsPanelItem as ToolsPanelItem,
 	__experimentalBorderControl as BorderControl,
-} from "@wordpress/components";
+} from '@wordpress/components';
 
 /**
  * Import icons from the WordPress Icons package.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-icons/
  */
-import { list, grid } from "@wordpress/icons";
+import { list, grid } from '@wordpress/icons';
 
 /**
  * Allowed blocks constant is passed to InnerBlocks precisely as specified here.
@@ -102,7 +102,7 @@ import { list, grid } from "@wordpress/icons";
  * @constant
  * @type {string[]}
  */
-const ALLOWED_BLOCKS = ["sortable/entry"];
+const ALLOWED_BLOCKS = ['sortable/entry'];
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -121,9 +121,9 @@ export default function ContainerContent(props) {
 
 	// Construct style properties based on the separator properties.
 	const separatorStyles = {
-		...(width && { "--wp--sortable-container--separator--width": width }),
-		...(style && { "--wp--sortable-container--separator--style": style }),
-		...(color && { "--wp--sortable-container--separator--color": color }),
+		...(width && { '--wp--sortable-container--separator--width': width }),
+		...(style && { '--wp--sortable-container--separator--style': style }),
+		...(color && { '--wp--sortable-container--separator--color': color }),
 	};
 
 	// Custom spacing value.
@@ -131,16 +131,16 @@ export default function ContainerContent(props) {
 
 	// Construct style properties based on the spacing properties.
 	const spacingStyles = {
-		...(gap && { "--wp--sortable-container--spacing--gap": gap }),
+		...(gap && { '--wp--sortable-container--spacing--gap': gap }),
 	};
 
 	const blockProps = useBlockProps({
 		className: classnames({
-			"is-list": attributes.layout === "list",
-			"is-grid": attributes.layout === "grid",
-			[`columns-${attributes.columns}`]: attributes.layout === "grid",
+			'is-list': attributes.layout === 'list',
+			'is-grid': attributes.layout === 'grid',
+			[`columns-${attributes.columns}`]: attributes.layout === 'grid',
 			// Add has-separator class if any of the separator properties exist
-			"has-separator": width || style || color,
+			'has-separator': width || style || color,
 		}),
 		style: {
 			...separatorStyles,
@@ -164,13 +164,16 @@ export default function ContainerContent(props) {
 				childBlocks: getBlocks(clientId),
 			};
 		},
-		[clientId],
+		[clientId]
 	);
 
 	useEffect(() => {
-		if ((childBlocks.length > 0 && !attributes.orderBy) || attributes.order) {
+		if (
+			(childBlocks.length > 0 && !attributes.orderBy) ||
+			attributes.order
+		) {
 			let sortedBlocks = [];
-			if (attributes.order === "asc") {
+			if (attributes.order === 'asc') {
 				sortedBlocks = [...childBlocks].sort((blockA, blockB) => {
 					const result =
 						Number(new Date(blockA.attributes.dateTime)) -
@@ -189,7 +192,7 @@ export default function ContainerContent(props) {
 			}
 
 			setAttributes({
-				orderBy: "date",
+				orderBy: 'date',
 			});
 
 			replaceInnerBlocks(clientId, sortedBlocks, false);
@@ -199,13 +202,14 @@ export default function ContainerContent(props) {
 	// Update order.
 	useEffect(() => {
 		// Make sure order attribute is set.
-		if (attributes.order === "") {
-			setAttributes({ order: "desc" });
+		if (attributes.order === '') {
+			setAttributes({ order: 'desc' });
 		}
 	}, [attributes.order]);
 
 	// Set orientation based on layout
-	const orientation = attributes.layout === "grid" ? "horizontal" : "vertical";
+	const orientation =
+		attributes.layout === 'grid' ? 'horizontal' : 'vertical';
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		allowedBlocks: ALLOWED_BLOCKS,
@@ -216,37 +220,39 @@ export default function ContainerContent(props) {
 	return (
 		<>
 			<InspectorControls>
-				{attributes.layout === "grid" && (
-					<PanelBody title={__("Layout")}>
+				{attributes.layout === 'grid' && (
+					<PanelBody title={__('Layout')}>
 						<RangeControl
 							__nextHasNoMarginBottom
-							label={__("Columns")}
+							label={__('Columns')}
 							value={attributes.columns}
-							onChange={(value) => setAttributes({ columns: value })}
+							onChange={(value) =>
+								setAttributes({ columns: value })
+							}
 							min={2}
 							max={6}
 							required
 						/>
 					</PanelBody>
 				)}
-				<PanelBody title={__("Visibility", "sortable")}>
+				<PanelBody title={__('Visibility', 'sortable')}>
 					<RadioControl
-						label={__("Filter Options", "sortable")}
+						label={__('Filter Options', 'sortable')}
 						help={__(
 							"Select 'All Entries' to show all, or 'Specific Date' to display based on a specific date",
-							"sortable",
+							'sortable'
 						)}
 						options={[
 							{
-								label: __("All Entries", "sortable"),
-								value: "",
+								label: __('All Entries', 'sortable'),
+								value: '',
 							},
 							{
-								label: __("Specific Date", "sortable"),
-								value: "date",
+								label: __('Specific Date', 'sortable'),
+								value: 'date',
 							},
 						]}
-						selected={attributes.filter.displayType || ""}
+						selected={attributes.filter.displayType || ''}
 						onChange={(value) => {
 							const today = new Date().toISOString();
 							setAttributes({
@@ -254,33 +260,43 @@ export default function ContainerContent(props) {
 									...attributes.filter,
 									displayType: value,
 									date:
-										value === "date" && !attributes.filter.date
+										value === 'date' &&
+										!attributes.filter.date
 											? today
-											: value === ""
-											? ""
+											: value === ''
+											? ''
 											: attributes.filter.date,
 								},
 							});
 						}}
 					/>
-					{attributes.filter.displayType === "date" && (
+					{attributes.filter.displayType === 'date' && (
 						<>
 							<PanelRow>
 								<SelectControl
-									label={__("Date Filter Type", "sortable")}
+									label={__('Date Filter Type', 'sortable')}
 									value={attributes.filter.dateFilterType}
 									options={[
 										{
-											label: __("On a Specific Date", "sortable"),
-											value: "on",
+											label: __(
+												'On a Specific Date',
+												'sortable'
+											),
+											value: 'on',
 										},
 										{
-											label: __("Before a Specific Date", "sortable"),
-											value: "before",
+											label: __(
+												'Before a Specific Date',
+												'sortable'
+											),
+											value: 'before',
 										},
 										{
-											label: __("After a Specific Date", "sortable"),
-											value: "after",
+											label: __(
+												'After a Specific Date',
+												'sortable'
+											),
+											value: 'after',
 										},
 									]}
 									onChange={(value) =>
@@ -292,30 +308,39 @@ export default function ContainerContent(props) {
 										})
 									}
 									help={
-										attributes.filter.dateFilterType === "before"
+										attributes.filter.dateFilterType ===
+										'before'
 											? __(
-													"Display entries that occur before the selected filter date below.",
-													"sortable",
+													'Display entries that occur before the selected filter date below.',
+													'sortable'
 											  )
-											: attributes.filter.dateFilterType === "after"
+											: attributes.filter
+													.dateFilterType === 'after'
 											? __(
-													"Display entries that occur before the selected after date below.",
-													"sortable",
+													'Display entries that occur before the selected after date below.',
+													'sortable'
 											  )
 											: __(
-													"Display entries that occur on the selected filter date below.",
-													"sortable",
+													'Display entries that occur on the selected filter date below.',
+													'sortable'
 											  )
 									}
 								/>
 							</PanelRow>
 							<PanelRow>
 								<CheckboxControl
-									checked={attributes.filter.includeDateTime ? true : false}
-									label={__("Include time information", "sortable")}
+									checked={
+										attributes.filter.includeDateTime
+											? true
+											: false
+									}
+									label={__(
+										'Include time information',
+										'sortable'
+									)}
 									help={__(
-										"Check this box to include options for selecting hours and minutes along with the filter date below.",
-										"sortable",
+										'Check this box to include options for selecting hours and minutes along with the filter date below.',
+										'sortable'
 									)}
 									onChange={(isIncluded) =>
 										setAttributes({
@@ -358,12 +383,19 @@ export default function ContainerContent(props) {
 
 							<PanelRow className="sortable-block__ignore-date-warnings">
 								<CheckboxControl
-									checked={attributes.filter.ignoreOutdated ? true : false}
+									checked={
+										attributes.filter.ignoreOutdated
+											? true
+											: false
+									}
 									help={__(
-										"Check this box to ignore editor warnings for Sortable Entry blocks with dates older than the set filter date.",
-										"sortable",
+										'Check this box to ignore editor warnings for Sortable Entry blocks with dates older than the set filter date.',
+										'sortable'
 									)}
-									label={__("Hide date-related warnings", "sortable")}
+									label={__(
+										'Hide date-related warnings',
+										'sortable'
+									)}
 									onChange={(isIgnored) =>
 										setAttributes({
 											filter: {
@@ -377,13 +409,13 @@ export default function ContainerContent(props) {
 						</>
 					)}
 				</PanelBody>
-				<PanelBody title={__("Order")}>
+				<PanelBody title={__('Order')}>
 					<SelectControl
-						label={__("Order")}
+						label={__('Order')}
 						value={attributes.order}
 						options={[
-							{ label: __("Newest to oldest"), value: "desc" },
-							{ label: __("Oldest to newest"), value: "asc" },
+							{ label: __('Newest to oldest'), value: 'desc' },
+							{ label: __('Oldest to newest'), value: 'asc' },
 						]}
 						onChange={(value) => setAttributes({ order: value })}
 						__nextHasNoMarginBottom
@@ -391,12 +423,14 @@ export default function ContainerContent(props) {
 				</PanelBody>
 			</InspectorControls>
 			<InspectorControls group="styles">
-				<ToolsPanel label={__("Separator")}>
+				<ToolsPanel label={__('Separator')}>
 					<ToolsPanelItem
 						isShownByDefault
-						label={__("Appearance")}
+						label={__('Appearance')}
 						hasValue={() => !!attributes.separator}
-						onDeselect={() => setAttributes({ separator: undefined })}
+						onDeselect={() =>
+							setAttributes({ separator: undefined })
+						}
 					>
 						<BorderControl
 							colors={editorSettings?.colors}
@@ -414,15 +448,15 @@ export default function ContainerContent(props) {
 					controls={[
 						{
 							icon: list,
-							title: __("List view"),
-							onClick: () => setAttributes({ layout: "list" }),
-							isActive: attributes.layout === "list",
+							title: __('List view'),
+							onClick: () => setAttributes({ layout: 'list' }),
+							isActive: attributes.layout === 'list',
 						},
 						{
 							icon: grid,
-							title: __("Grid view"),
-							onClick: () => setAttributes({ layout: "grid" }),
-							isActive: attributes.layout === "grid",
+							title: __('Grid view'),
+							onClick: () => setAttributes({ layout: 'grid' }),
+							isActive: attributes.layout === 'grid',
 						},
 					]}
 				/>
