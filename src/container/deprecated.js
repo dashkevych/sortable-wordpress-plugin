@@ -93,24 +93,24 @@ const v1 = {
 	 * @param {Object} props - The properties of the block.
 	 * @returns {JSX.Element} The block's saved markup for this version.
 	 */
-	save(props) {
+	save( props ) {
 		const { attributes } = props;
 		const innerBlocksProps = useInnerBlocksProps.save(
-			useBlockProps.save({
-				className: classnames({
+			useBlockProps.save( {
+				className: classnames( {
 					'is-list': attributes.layout === 'list',
 					'is-grid': attributes.layout === 'grid',
-					[`columns-${attributes.columns}`]:
+					[ `columns-${ attributes.columns }` ]:
 						attributes.layout === 'grid',
-				}),
-			})
+				} ),
+			} )
 		);
 
-		return <div {...innerBlocksProps} />;
+		return <div { ...innerBlocksProps } />;
 	},
 };
 
 /**
  * Exports an array of block configurations (versions) for deprecation handling.
  */
-export default [v2, v1];
+export default [ v2, v1 ];

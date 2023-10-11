@@ -38,13 +38,15 @@ const v1 = {
 	 * @returns {JSX.Element} The block's saved markup for this version.
 	 */
 	save() {
-		const innerBlocksProps = useInnerBlocksProps.save(useBlockProps.save());
+		const innerBlocksProps = useInnerBlocksProps.save(
+			useBlockProps.save()
+		);
 
-		return <div {...innerBlocksProps} />;
+		return <div { ...innerBlocksProps } />;
 	},
 };
 
 /**
  * Exports an array of block configurations (versions) for deprecation handling.
  */
-export default [v1];
+export default [ v1 ];

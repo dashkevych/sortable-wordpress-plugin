@@ -27,7 +27,7 @@ import {
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
  */
-export default function save(props) {
+export default function save( props ) {
 	const { attributes } = props;
 
 	// Destructure the separator attribute.
@@ -35,35 +35,36 @@ export default function save(props) {
 
 	// Construct style properties based on the separator properties.
 	const separatorStyles = {
-		...(width && { '--wp--sortable-container--separator--width': width }),
-		...(style && { '--wp--sortable-container--separator--style': style }),
-		...(color && { '--wp--sortable-container--separator--color': color }),
+		...( width && { '--wp--sortable-container--separator--width': width } ),
+		...( style && { '--wp--sortable-container--separator--style': style } ),
+		...( color && { '--wp--sortable-container--separator--color': color } ),
 	};
 
 	// Custom spacing value.
-	const gap = getGapCSSValue(attributes.style?.spacing?.blockGap);
+	const gap = getGapCSSValue( attributes.style?.spacing?.blockGap );
 
 	// Construct style properties based on the spacing properties.
 	const spacingStyles = {
-		...(gap && { '--wp--sortable-container--spacing--gap': gap }),
+		...( gap && { '--wp--sortable-container--spacing--gap': gap } ),
 	};
 
 	// Inner blocks (children of parent block).
 	const innerBlocksProps = useInnerBlocksProps.save(
-		useBlockProps.save({
-			className: classnames({
+		useBlockProps.save( {
+			className: classnames( {
 				'is-list': attributes.layout === 'list',
 				'is-grid': attributes.layout === 'grid',
-				[`columns-${attributes.columns}`]: attributes.layout === 'grid',
+				[ `columns-${ attributes.columns }` ]:
+					attributes.layout === 'grid',
 				// Add has-separator class if any of the separator properties exist
 				'has-separator': width || style || color,
-			}),
+			} ),
 			style: {
 				...separatorStyles,
 				...spacingStyles,
 			},
-		})
+		} )
 	);
 
-	return <div {...innerBlocksProps} />;
+	return <div { ...innerBlocksProps } />;
 }

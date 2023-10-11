@@ -7,7 +7,7 @@
 	"category": "widgets",
 	"icon": "media-document",
 	"description": "This block serves as an entry that needs to be sorted, and it is where you can set the date and keep specific content for the entry.",
-	"parent": ["sortable/container"],
+	"parent": [ "sortable/container" ],
 	"supports": {
 		"html": false
 	},
@@ -19,7 +19,7 @@
 	"providesContext": {
 		"sortable/entryDateTime": "dateTime"
 	},
-	"usesContext": ["sortable/filter"],
+	"usesContext": [ "sortable/filter" ],
 	"textdomain": "sortable",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
