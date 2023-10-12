@@ -2,7 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
 	"name": "sortable/container",
-	"version": "1.6.0",
+	"version": "1.7.0",
 	"title": "Sortable",
 	"category": "widgets",
 	"icon": "portfolio",
@@ -24,10 +24,23 @@
 			"type": "string",
 			"default": "desc"
 		},
+		"filter": {
+			"type": "object",
+			"default": {
+				"displayType": "",
+				"date": "",
+				"dateFilterType": "on",
+				"includeDateTime": false,
+				"ignoreOutdated": false
+			}
+		},
 		"separator": {
 			"type": "object",
 			"default": {}
 		}
+	},
+	"providesContext": {
+		"sortable/filter": "filter"
 	},
 	"supports": {
 		"anchor": true,

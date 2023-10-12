@@ -57,7 +57,7 @@ import './../editor.scss';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-element/
  */
-import { useEffect } from '@wordpress/element';
+import { useState, useEffect } from '@wordpress/element';
 
 /**
  * WordPress Data API functions for managing application data.
@@ -74,8 +74,13 @@ import { useSelect, useDispatch } from '@wordpress/data';
 import {
 	RangeControl,
 	PanelBody,
+	PanelRow,
 	ToolbarGroup,
 	SelectControl,
+	DatePicker,
+	DateTimePicker,
+	RadioControl,
+	CheckboxControl,
 	__experimentalToolsPanel as ToolsPanel,
 	__experimentalToolsPanelItem as ToolsPanelItem,
 	__experimentalBorderControl as BorderControl,
@@ -216,7 +221,7 @@ export default function ContainerContent( props ) {
 		<>
 			<InspectorControls>
 				{ attributes.layout === 'grid' && (
-					<PanelBody title={ __( 'Grid settings' ) }>
+					<PanelBody title={ __( 'Layout' ) }>
 						<RangeControl
 							__nextHasNoMarginBottom
 							label={ __( 'Columns' ) }
@@ -230,7 +235,184 @@ export default function ContainerContent( props ) {
 						/>
 					</PanelBody>
 				) }
-				<PanelBody title={ __( 'Order settings' ) }>
+				<PanelBody title={ __( 'Visibility', 'sortable' ) }>
+					<RadioControl
+						label={ __( 'Filter Options', 'sortable' ) }
+						help={ __(
+							"Select 'All Entries' to show all, or 'Specific Date' to display based on a specific date",
+							'sortable'
+						) }
+						options={ [
+							{
+								label: __( 'All Entries', 'sortable' ),
+								value: '',
+							},
+							{
+								label: __( 'Specific Date', 'sortable' ),
+								value: 'date',
+							},
+						] }
+						selected={ attributes.filter.displayType || '' }
+						onChange={ ( value ) => {
+							const today = new Date().toISOString();
+							setAttributes( {
+								filter: {
+									...attributes.filter,
+									displayType: value,
+									date:
+										value === 'date' &&
+										! attributes.filter.date
+											? today
+											: value === ''
+											? ''
+											: attributes.filter.date,
+								},
+							} );
+						} }
+					/>
+					{ attributes.filter.displayType === 'date' && (
+						<>
+							<PanelRow>
+								<SelectControl
+									label={ __(
+										'Date Filter Type',
+										'sortable'
+									) }
+									value={ attributes.filter.dateFilterType }
+									options={ [
+										{
+											label: __(
+												'On a Specific Date',
+												'sortable'
+											),
+											value: 'on',
+										},
+										{
+											label: __(
+												'Before a Specific Date',
+												'sortable'
+											),
+											value: 'before',
+										},
+										{
+											label: __(
+												'After a Specific Date',
+												'sortable'
+											),
+											value: 'after',
+										},
+									] }
+									onChange={ ( value ) =>
+										setAttributes( {
+											filter: {
+												...attributes.filter,
+												dateFilterType: value,
+											},
+										} )
+									}
+									help={
+										attributes.filter.dateFilterType ===
+										'before'
+											? __(
+													'Display entries that occur before the selected filter date below.',
+													'sortable'
+											  )
+											: attributes.filter
+													.dateFilterType === 'after'
+											? __(
+													'Display entries that occur before the selected after date below.',
+													'sortable'
+											  )
+											: __(
+													'Display entries that occur on the selected filter date below.',
+													'sortable'
+											  )
+									}
+								/>
+							</PanelRow>
+							<PanelRow>
+								<CheckboxControl
+									checked={
+										attributes.filter.includeDateTime
+											? true
+											: false
+									}
+									label={ __(
+										'Include time information',
+										'sortable'
+									) }
+									help={ __(
+										'Check this box to include options for selecting hours and minutes along with the filter date below.',
+										'sortable'
+									) }
+									onChange={ ( isIncluded ) =>
+										setAttributes( {
+											filter: {
+												...attributes.filter,
+												includeDateTime: isIncluded,
+											},
+										} )
+									}
+								/>
+							</PanelRow>
+							<PanelRow className="sortable-block__date-row">
+								{ attributes.filter.includeDateTime ? (
+									<DateTimePicker
+										is12Hour={ true }
+										currentDate={ attributes.filter.date }
+										onChange={ ( newDate ) =>
+											setAttributes( {
+												filter: {
+													...attributes.filter,
+													date: newDate,
+												},
+											} )
+										}
+									/>
+								) : (
+									<DatePicker
+										currentDate={ attributes.filter.date }
+										onChange={ ( newDate ) =>
+											setAttributes( {
+												filter: {
+													...attributes.filter,
+													date: newDate,
+												},
+											} )
+										}
+									/>
+								) }
+							</PanelRow>
+
+							<PanelRow className="sortable-block__ignore-date-warnings">
+								<CheckboxControl
+									checked={
+										attributes.filter.ignoreOutdated
+											? true
+											: false
+									}
+									help={ __(
+										'Check this box to ignore editor warnings for Sortable Entry blocks with dates older than the set filter date.',
+										'sortable'
+									) }
+									label={ __(
+										'Hide date-related warnings',
+										'sortable'
+									) }
+									onChange={ ( isIgnored ) =>
+										setAttributes( {
+											filter: {
+												...attributes.filter,
+												ignoreOutdated: isIgnored,
+											},
+										} )
+									}
+								/>
+							</PanelRow>
+						</>
+					) }
+				</PanelBody>
+				<PanelBody title={ __( 'Order' ) }>
 					<SelectControl
 						label={ __( 'Order' ) }
 						value={ attributes.order }

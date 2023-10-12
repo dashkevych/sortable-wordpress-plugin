@@ -4,7 +4,7 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
+import { InnerBlocks } from '@wordpress/block-editor';
 
 /**
  * The save function defines the way in which the different attributes should
@@ -16,7 +16,5 @@ import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
  * @return {WPElement} Element to render.
  */
 export default function save() {
-	const innerBlocksProps = useInnerBlocksProps.save( useBlockProps.save() );
-
-	return <div { ...innerBlocksProps } />;
+	return <InnerBlocks.Content />;
 }

@@ -30,80 +30,16 @@ import {
  * Defines attributes such as layout, columns, orderBy, and order.
  * Provides a save function to determine the block's output in this version.
  */
-const v2 = {
-	/**
-	 * Object defining the block's attributes and their default values.
-	 */
-	attributes: {
-		layout: {
-			type: 'string',
-			default: 'list',
-		},
-		columns: {
-			type: 'number',
-			default: 3,
-		},
-		orderBy: {
-			type: 'string',
-			default: 'date',
-		},
-		order: {
-			type: 'string',
-			default: 'desc',
-		},
-		separator: {
-			type: 'object',
-			default: {},
-		},
-	},
-};
-
-/**
- * Configuration for version 1 of the custom block.
- *
- * Defines attributes such as layout, columns, orderBy, and order.
- * Provides a save function to determine the block's output in this version.
- */
 const v1 = {
-	/**
-	 * Object defining the block's attributes and their default values.
-	 */
-	attributes: {
-		layout: {
-			type: 'string',
-			default: 'list',
-		},
-		columns: {
-			type: 'number',
-			default: 3,
-		},
-		orderBy: {
-			type: 'string',
-			default: 'date',
-		},
-		order: {
-			type: 'string',
-			default: 'desc',
-		},
-	},
-
 	/**
 	 * The function that determines the block's save output for this version.
 	 *
 	 * @param {Object} props - The properties of the block.
 	 * @returns {JSX.Element} The block's saved markup for this version.
 	 */
-	save( props ) {
-		const { attributes } = props;
+	save() {
 		const innerBlocksProps = useInnerBlocksProps.save(
-			useBlockProps.save( {
-				className: classnames( {
-					'is-list': attributes.layout === 'list',
-					'is-grid': attributes.layout === 'grid',
-					[ `columns-${ attributes.columns }` ]:
-						attributes.layout === 'grid',
-				} ),
-			} )
+			useBlockProps.save()
 		);
 
 		return <div { ...innerBlocksProps } />;
@@ -113,4 +49,4 @@ const v1 = {
 /**
  * Exports an array of block configurations (versions) for deprecation handling.
  */
-export default [ v2, v1 ];
+export default [ v1 ];

@@ -20,6 +20,7 @@ import './style.scss';
 import Edit from './edit';
 import save from './save';
 import metadata from './block.json';
+import deprecated from './deprecated';
 
 /**
  * Every block starts by registering a new block type definition.
@@ -35,4 +36,8 @@ registerBlockType( metadata.name, {
 	 * @see ./save.js
 	 */
 	save,
+	/**
+	 * @see ./deprecated.js
+	 */
+	deprecated,
 } );
